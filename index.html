@@ -12,38 +12,48 @@
   <div class="fixed inset-0 -z-10 bg-center bg-cover" id="bg"></div>
   <div class="fixed inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/65 to-black/80"></div>
 
-  <header class="max-w-6xl mx-auto px-4 pt-8 pb-6 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded bg-orange-500/20 border border-orange-400/40 flex items-center justify-center">🎧</div>
-      <div><h1 class="text-2xl sm:text-3xl font-black uppercase">Mind4Metal Radio</h1>
-      <p class="text-zinc-300">24/7 Heavy • Power • Hard Rock</p></div>
+ <header class="max-w-6xl mx-auto px-4 pt-8 pb-6 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <div class="w-8 h-8 rounded bg-orange-500/20 border border-orange-400/40 flex items-center justify-center">🎧</div>
+
+    <div class="flex flex-col">
+      <img
+        src="/assets/mind4metal-logo.png"
+        alt="Mind4Metal Radio"
+        class="h-10 sm:h-12 w-auto drop-shadow-lg"
+      />
+      <p class="mt-1 text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">
+        24/7 Heavy • Power • Hard Rock
+      </p>
     </div>
-    <nav class="hidden sm:flex gap-2">
-      <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://facebook.com/Mind4MetalRadio" target="_blank">Facebook</a>
-      <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://instagram.com/Mind4MetalRadio" target="_blank">Instagram</a>
-      <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://x.com/Mind4MetalRadio" target="_blank">X</a>
-      <a class="px-3 py-2 rounded-lg glass border border-white/10" href="mailto:requests@mind4metal.com">Email</a>
-    </nav>
-  </header>
+  </div>
+
+  <nav class="hidden sm:flex gap-2">
+    <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://facebook.com/Mind4MetalRadio" target="_blank">Facebook</a>
+    <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://instagram.com/Mind4MetalRadio" target="_blank">Instagram</a>
+    <a class="px-3 py-2 rounded-lg glass border border-white/10" href="https://x.com/Mind4MetalRadio" target="_blank">X</a>
+    <a class="px-3 py-2 rounded-lg glass border border-white/10" href="mailto:requests@mind4metal.com">Email</a>
+  </nav>
+</header>
+
 
   <main class="max-w-6xl mx-auto px-4 pb-20 grid gap-6 lg:grid-cols-3">
-    <section class="lg:col-span-2 rounded-2xl border border-white/10 glass p-5">
-      <div class="flex items-center gap-3">
-  <div class="w-8 h-8 rounded bg-orange-500/20 border border-orange-400/40 flex items-center justify-center">🎧</div>
-
-  <div class="flex flex-col">
-    <img
-      src="/assets/mind4metal-logo.png"
-      alt="Mind4Metal Radio"
-      class="h-10 sm:h-12 w-auto drop-shadow-lg"
-    />
-    <p class="mt-1 text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">
-      24/7 Heavy • Power • Hard Rock
-    </p>
+ <section class="lg:col-span-2 rounded-2xl border border-white/10 glass p-5">
+  <div class="flex items-center gap-5">
+    <div class="w-28 h-28 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">🎵</div>
+    <div class="min-w-0 flex-1">
+      <div class="text-sm uppercase tracking-widest text-orange-400 font-semibold">Now Playing</div>
+      <h2 id="title" class="text-xl sm:text-2xl font-bold truncate">—</h2>
+      <p id="artist" class="text-zinc-300 truncate">—</p>
+      <div class="mt-3 flex items-center gap-3">
+        <button id="listen" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-semibold">Listen Live</button>
+        <div class="text-xs text-zinc-400">Live • <span id="elapsed">0:00</span></div>
+      </div>
+    </div>
   </div>
-</div>
-      <audio id="audio" preload="none"></audio>
-    </section>
+  <audio id="audio" preload="none"></audio>
+</section>
+
 
     <section class="lg:col-span-1 rounded-2xl border border-white/10 glass p-5">
       <div class="flex items-center gap-2 mb-3"><span>📨</span><h3 class="text-lg font-bold">Send a Request</h3></div>
