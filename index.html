@@ -6,13 +6,61 @@
 <title>Mind4Metal Radio</title>
 <meta name="description" content="Mind4Metal Radio — 24/7 Heavy • Power • Hard Rock">
 <script src="https://cdn.tailwindcss.com"></script>
-<style>.glass{background:rgba(24,24,27,.6);backdrop-filter:blur(6px)}</style>
+<style>
+  .glass{
+    background:rgba(24,24,27,.8);
+    backdrop-filter:blur(8px);
+  }
+
+  /* subtle metal gradient + glow for main cards */
+  .card-metal{
+    background: radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(37,99,235,0.12), transparent 55%),
+                rgba(24,24,27,0.85);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.7), 0 0 35px rgba(59,130,246,0.25);
+  }
+
+  /* glowing blue divider under header */
+  .metal-divider{
+    height: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg,
+      rgba(56,189,248,0.0),
+      rgba(56,189,248,0.9),
+      rgba(129,140,248,0.9),
+      rgba(56,189,248,0.0)
+    );
+    opacity: .8;
+  }
+
+  /* pulsing live dot */
+  .live-dot{
+    position: relative;
+    width: 9px;
+    height: 9px;
+    border-radius: 9999px;
+    background: rgb(248 113 113); /* soft red */
+  }
+  .live-dot::after{
+    content:"";
+    position:absolute;
+    inset:-4px;
+    border-radius:9999px;
+    border:2px solid rgba(248,113,113,0.6);
+    animation: live-ping 1.4s cubic-bezier(0,0,0.2,1) infinite;
+  }
+  @keyframes live-ping{
+    0%{transform:scale(0.6);opacity:1;}
+    100%{transform:scale(1.6);opacity:0;}
+  }
+</style>
+
 </head>
 <body class="min-h-screen text-zinc-100">
   <div class="fixed inset-0 -z-10 bg-center bg-cover" id="bg"></div>
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/65 to-black/80"></div>
+  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-900/80 via-zinc-900/80 to-black/90"></div>
 
-<header class="max-w-6xl mx-auto px-4 pt-10 pb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<header class="max-w-6xl mx-auto px-4 pt-8 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
   <div class="flex items-start gap-4">
     <div class="w-10 h-10 sm:w-12 sm:h-12 rounded bg-orange-500/20 border border-orange-400/40 flex items-center justify-center mt-1">
       🎧
@@ -38,74 +86,147 @@
   </nav>
 </header>
 
+<div class="max-w-6xl mx-auto px-4">
+  <div class="metal-divider"></div>
+</div>
 
-
-  <main class="max-w-6xl mx-auto px-4 pb-20 grid gap-6 lg:grid-cols-3">
- <section class="lg:col-span-2 rounded-2xl border border-white/10 glass p-5">
-  <div class="flex items-center gap-5">
-    <div class="w-28 h-28 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">🎵</div>
-    <div class="min-w-0 flex-1">
-      <div class="text-sm uppercase tracking-widest text-orange-400 font-semibold">Now Playing</div>
-      <h2 id="title" class="text-xl sm:text-2xl font-bold truncate">—</h2>
-      <p id="artist" class="text-zinc-300 truncate">—</p>
-      <div class="mt-3 flex items-center gap-3">
-        <button id="listen" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-semibold">Listen Live</button>
-        <div class="text-xs text-zinc-400">Live • <span id="elapsed">0:00</span></div>
+<main class="max-w-6xl mx-auto px-4 pb-20 grid gap-6 lg:grid-cols-3">
+  <section class="lg:col-span-2 rounded-2xl border border-white/10 glass card-metal p-5">
+    <div class="flex items-center gap-5">
+      <div class="w-28 h-28 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">🎵</div>
+      <div class="min-w-0 flex-1">
+        <div class="text-sm uppercase tracking-widest text-orange-400 font-semibold">Now Playing</div>
+        <h2 id="title" class="text-xl sm:text-2xl font-bold truncate">—</h2>
+        <p id="artist" class="text-zinc-300 truncate">—</p>
+        <div class="mt-3 flex items-center gap-3">
+          <button id="listen" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-semibold shadow-lg shadow-orange-500/40">
+            Listen Live
+          </button>
+          <div class="flex items-center gap-2 text-xs text-zinc-300">
+            <span class="live-dot"></span>
+            <span>Live • <span id="elapsed">0:00</span></span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <audio id="audio" preload="none"></audio>
-</section>
+    <audio id="audio" preload="none"></audio>
+  </section>
 
+  <section class="lg:col-span-1 rounded-2xl border border-white/10 glass card-metal p-5">
+    <div class="flex items-center gap-2 mb-3"><span>📨</span><h3 class="text-lg font-bold">Send a Request</h3></div>
+    <form id="reqform" class="grid gap-3">
+      <input name="name" required placeholder="Your name" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
+      <input name="artist" required placeholder="Artist" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
+      <input name="song" required placeholder="Song" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
+      <textarea name="message" rows="3" placeholder="Optional message" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"></textarea>
+      <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"/>
+      <button class="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-semibold">Submit Request</button>
+    </form>
+  </section>
 
-    <section class="lg:col-span-1 rounded-2xl border border-white/10 glass p-5">
-      <div class="flex items-center gap-2 mb-3"><span>📨</span><h3 class="text-lg font-bold">Send a Request</h3></div>
-      <form id="reqform" class="grid gap-3">
-        <input name="name" required placeholder="Your name" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-        <input name="artist" required placeholder="Artist" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-        <input name="song" required placeholder="Song" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-        <textarea name="message" rows="3" placeholder="Optional message" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"></textarea>
-        <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"/>
-        <button class="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-semibold">Submit Request</button>
-      </form>
-    </section>
+  <section class="lg:col-span-3 rounded-2xl border border-white/10 glass card-metal p-5">
+    <div class="flex items-center gap-2 mb-3"><span>📻</span><h3 class="text-lg font-bold">Recently Played</h3></div>
+    <table class="min-w-full text-sm">
+      <thead>
+        <tr class="text-left text-zinc-400">
+          <th class="py-2 pr-4">Time</th>
+          <th class="py-2 pr-4">Title</th>
+          <th class="py-2 pr-4">Artist</th>
+        </tr>
+      </thead>
+      <tbody id="historyBody"></tbody>
+    </table>
+  </section>
+</main>
 
-    <section class="lg:col-span-3 rounded-2xl border border-white/10 glass p-5">
-      <div class="flex items-center gap-2 mb-3"><span>📻</span><h3 class="text-lg font-bold">Recently Played</h3></div>
-      <table class="min-w-full text-sm"><thead><tr class="text-left text-zinc-400">
-        <th class="py-2 pr-4">Time</th><th class="py-2 pr-4">Title</th><th class="py-2 pr-4">Artist</th></tr></thead>
-        <tbody id="historyBody"></tbody></table>
-    </section>
-  </main>
+<script>
+  const BACKGROUND_URL="https://radio.mind4metal.com/assets/m4m-bg.jpg";
+  const STREAM_URL="https://radio.mind4metal.com/stream.mp3";
+  const ICECAST_STATUS_URL="https://radio.mind4metal.com/status-json.xsl";
+  const REQUEST_POST_URL="https://formspree.io/f/mind4metal";
 
-  <script>
-    const BACKGROUND_URL="https://radio.mind4metal.com/assets/m4m-bg.jpg";
-    const STREAM_URL="https://radio.mind4metal.com/stream.mp3";
-    const ICECAST_STATUS_URL="https://radio.mind4metal.com/status-json.xsl";
-    const REQUEST_POST_URL="https://formspree.io/f/mind4metal";
+  bg.style.backgroundImage = "url("+BACKGROUND_URL+")";
+  const audio=document.getElementById('audio'); audio.src=STREAM_URL;
+  const listen=document.getElementById('listen'); const titleEl=document.getElementById('title');
+  const artistEl=document.getElementById('artist'); const elapsed=document.getElementById('elapsed');
+  const historyBody=document.getElementById('historyBody');
+  let playing=false, startedAt=Date.now(), last=""; const hist=[];
 
-    bg.style.backgroundImage = "url("+BACKGROUND_URL+")";
-    const audio=document.getElementById('audio'); audio.src=STREAM_URL;
-    const listen=document.getElementById('listen'); const titleEl=document.getElementById('title');
-    const artistEl=document.getElementById('artist'); const elapsed=document.getElementById('elapsed');
-    const historyBody=document.getElementById('historyBody');
-    let playing=false, startedAt=Date.now(), last=""; const hist=[];
+  listen.onclick=async()=>{ 
+    try{ 
+      if(!playing){ 
+        await audio.play(); 
+        listen.textContent='Pause'; 
+        playing=true; 
+      } else { 
+        audio.pause(); 
+        listen.textContent='Listen Live'; 
+        playing=false; 
+      } 
+    }catch{} 
+  };
 
-    listen.onclick=async()=>{ try{ if(!playing){ await audio.play(); listen.textContent='Pause'; playing=true; } else { audio.pause(); listen.textContent='Listen Live'; playing=false; } }catch{} };
-    setInterval(()=>{ const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000)); elapsed.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; },1000);
+  setInterval(()=>{ 
+    const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000)); 
+    elapsed.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; 
+  },1000);
 
-    function parseTA(s){ if(!s) return {title:'Unknown Track',artist:'Unknown Artist'}; const p=s.split(' - '); if(p.length>=2) return {artist:p[0],title:p.slice(1).join(' - ')}; const by=s.split(' by '); if(by.length>=2) return {title:by[0],artist:by.slice(1).join(' by ')}; return {title:s,artist:''}; }
-    function renderHist(){ historyBody.innerHTML=hist.map(t=>`<tr class="border-t border-white/10"><td class="py-2 pr-4 text-zinc-300">${new Date(t.at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</td><td class="py-2 pr-4 font-semibold">${t.title}</td><td class="py-2 pr-4 text-zinc-300">${t.artist}</td></tr>`).join(''); }
+  function parseTA(s){ 
+    if(!s) return {title:'Unknown Track',artist:'Unknown Artist'}; 
+    const p=s.split(' - '); 
+    if(p.length>=2) return {artist:p[0],title:p.slice(1).join(' - ')}; 
+    const by=s.split(' by '); 
+    if(by.length>=2) return {title:by[0],artist:by.slice(1).join(' by ')}; 
+    return {title:s,artist:''}; 
+  }
 
-    async function poll(){ try{ const r=await fetch(ICECAST_STATUS_URL,{cache:'no-store'}); const j=await r.json();
+  function renderHist(){ 
+    historyBody.innerHTML=hist.map(t=>`<tr class="border-t border-white/10"><td class="py-2 pr-4 text-zinc-300">${new Date(t.at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</td><td class="py-2 pr-4 font-semibold">${t.title}</td><td class="py-2 pr-4 text-zinc-300">${t.artist}</td></tr>`).join(''); 
+  }
+
+  async function poll(){ 
+    try{ 
+      const r=await fetch(ICECAST_STATUS_URL,{cache:'no-store'}); 
+      const j=await r.json();
       const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
-      const raw=src?.title||src?.yp_currently_playing; const {title,artist}=parseTA(raw); const combo=`${artist} - ${title}`.trim();
-      if(combo && combo!==last){ if(last){ hist.unshift({title:titleEl.textContent||'—',artist:artistEl.textContent||'—',at:startedAt}); if(hist.length>10) hist.pop(); renderHist(); }
-        titleEl.textContent=title||'—'; artistEl.textContent=artist||'—'; startedAt=Date.now(); last=combo; }
-    }catch(e){}}
-    poll(); setInterval(poll,15000);
+      const raw=src?.title||src?.yp_currently_playing; 
+      const {title,artist}=parseTA(raw); 
+      const combo=`${artist} - ${title}`.trim();
+      if(combo && combo!==last){ 
+        if(last){ 
+          hist.unshift({title:titleEl.textContent||'—',artist:artistEl.textContent||'—',at:startedAt}); 
+          if(hist.length>10) hist.pop(); 
+          renderHist(); 
+        }
+        titleEl.textContent=title||'—'; 
+        artistEl.textContent=artist||'—'; 
+        startedAt=Date.now(); 
+        last=combo; 
+      }
+    }catch(e){} 
+  }
 
-    document.getElementById('reqform').onsubmit=async(e)=>{ e.preventDefault(); const fd=new FormData(e.target);
-      if(fd.get('website')) return; try{ if(REQUEST_POST_URL){ await fetch(REQUEST_POST_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.fromEntries(fd.entries()))}); } alert('Request sent! 🤘'); e.target.reset(); }catch{ alert('Couldn\\'t send right now.'); } };
-  </script>
-</body></html>
+  poll(); 
+  setInterval(poll,15000);
+
+  document.getElementById('reqform').onsubmit=async(e)=>{ 
+    e.preventDefault(); 
+    const fd=new FormData(e.target);
+    if(fd.get('website')) return; 
+    try{ 
+      if(REQUEST_POST_URL){ 
+        await fetch(REQUEST_POST_URL,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(Object.fromEntries(fd.entries()))
+        }); 
+      } 
+      alert('Request sent! 🤘'); 
+      e.target.reset(); 
+    }catch{ 
+      alert('Couldn\'t send right now.'); 
+    } 
+  };
+</script>
+</body>
+</html>
