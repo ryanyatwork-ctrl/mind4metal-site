@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mind4Metal Radio</title>
+  <meta name="description" content="Mind4Metal Radio — 24/7 Heavy • Power • Hard Rock" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>.glass{background:rgba(24,24,27,.6);backdrop-filter:blur(6px)}</style>
+</head>
+<body class="min-h-screen text-zinc-100 relative">
+  <!-- Background layers -->
+  <div id="bg" class="fixed inset-0 -z-10 bg-center bg-cover bg-no-repeat"></div>
+  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/65 to-black/80"></div>
+  <div class="fixed inset-0 -z-10 [background:radial-gradient(60vw_40vh_at_50%_10%,rgba(255,140,0,.18),transparent)]"></div>
+
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto px-4 pt-8 pb-6">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded bg-orange-500/20 border border-orange-400/40 flex items-center justify-center">🎧</div>
+        <div>
+          <h1 class="text-2xl sm:text-3xl font-black tracking-wide uppercase drop-shadow">Mind4Metal Radio</h1>
+          <p class="text-zinc-300 text-sm sm:text-base">24/7 Heavy • Power • Hard Rock</p>
+        </div>
+      </div>
+      <nav class="hidden sm:flex items-center gap-2">
+        <a class="px-3 py-2 rounded-lg glass border border-white/10 hover:bg-zinc-800/70" href="https://facebook.com/Mind4MetalRadio" target="_blank" rel="noreferrer">Facebook</a>
+        <a class="px-3 py-2 rounded-lg glass border border-white/10 hover:bg-zinc-800/70" href="https://instagram.com/Mind4MetalRadio" target="_blank" rel="noreferrer">Instagram</a>
+        <a class="px-3 py-2 rounded-lg glass border border-white/10 hover:bg-zinc-800/70" href="https://x.com/Mind4MetalRadio" target="_blank" rel="noreferrer">X</a>
+        <a class="px-3 py-2 rounded-lg glass border border-white/10 hover:bg-zinc-800/70" href="https://youtube.com/@Mind4MetalRadio" target="_blank" rel="noreferrer">YouTube</a>
+        <a class="px-3 py-2 rounded-lg glass border border-white/10 hover:bg-zinc-800/70" href="mailto:requests@mind4metal.com">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-6xl mx-auto px-4 pb-24 grid gap-6 lg:grid-cols-3">
+    <!-- Now Playing -->
+    <section class="lg:col-span-2">
+      <div class="rounded-2xl border border-white/10 glass p-5 shadow-xl">
+        <div class="flex items-center gap-5">
+          <div class="w-28 h-28 rounded-xl bg-zinc-800 overflow-hidden flex items-center justify-center border border-white/10" id="artwrap">🎵</div>
+          <div class="min-w-0 flex-1">
+            <div class="text-sm uppercase tracking-widest text-orange-400 font-semibold">Now Playing</div>
+            <h2 id="title" class="text-xl sm:text-2xl font-bold truncate">—</h2>
+            <p id="artist" class="text-zinc-300 truncate">—</p>
+            <div class="mt-3 flex items-center gap-3">
+              <button id="listen" class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-semibold shadow">Listen Live</button>
+              <div class="text-xs text-zinc-400">Live • <span id="elapsed">0:00</span></div>
+            </div>
+          </div>
+        </div>
+        <audio id="audio" preload="none"></audio>
+      </div>
+    </section>
+
+    <!-- Requests -->
+    <section class="lg:col-span-1">
+      <div class="rounded-2xl border border-white/10 glass p-5 shadow-xl">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-5 h-5 text-orange-400">📨</div>
+          <h3 class="text-lg font-bold">Send a Request</h3>
+        </div>
+        <form id="reqform" class="grid gap-3">
+          <input name="name" required placeholder="Your name" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+          <input name="artist" required placeholder="Artist" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+          <input name="song" required placeholder="Song" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500"/>
+          <textarea name="message" rows="3" placeholder="Optional message" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+          <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+          <button class="mt-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-semibold">Submit Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- History -->
+    <section class="lg:col-span-3">
+      <div class="rounded-2xl border border-white/10 glass p-5 shadow-xl">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-5 h-5 text-orange-400">📻</div>
+          <h3 class="text-lg font-bold">Recently Played</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm" id="historyTable">
+            <thead>
+              <tr class="text-left text-zinc-400">
+                <th class="py-2 pr-4 font-medium">Time</th>
+                <th class="py-2 pr-4 font-medium">Title</th>
+                <th class="py-2 pr-4 font-medium">Artist</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-4 pb-10">
+    <div class="max-w-6xl mx-auto text-zinc-400 text-sm flex items-center gap-2">
+      <span>🎚️</span>
+      <p>Stream not playing? Make sure your browser allows autoplay or click “Listen Live”.</p>
+    </div>
+  </footer>
+
+  <script>
+  // ===== CONFIG =====
+  const BACKGROUND_URL = "https://radio.mind4metal.com/assets/m4m-bg.jpg";
+  const STREAM_URL     = "https://radio.mind4metal.com/stream.mp3";
+  const ICECAST_STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
+  const REQUEST_POST_URL   = "https://formspree.io/f/mind4metal"; // replace with your real endpoint
+  // ===================
+
+  const audio = document.getElementById('audio');
+  const listenBtn = document.getElementById('listen');
+  const titleEl = document.getElementById('title');
+  const artistEl = document.getElementById('artist');
+  const elapsedEl = document.getElementById('elapsed');
+  const bg = document.getElementById('bg');
+  const historyBody = document.getElementById('historyBody');
+  const reqform = document.getElementById('reqform');
+
+  bg.style.backgroundImage = `url(${BACKGROUND_URL})`;
+  audio.src = STREAM_URL;
+
+  let startedAt = Date.now();
+  let lastComposite = '';
+  const hist = [];
+
+  function parseTitleArtists(str) {
+    if (!str) return { title: 'Unknown Track', artist: 'Unknown Artist' };
+    const parts = str.split(' - ');
+    if (parts.length >= 2) return { artist: parts[0], title: parts.slice(1).join(' - ') };
+    const byp = str.split(' by ');
+    if (byp.length >= 2) return { title: byp[0], artist: byp.slice(1).join(' by ') };
+    return { title: str, artist: '' };
+  }
+
+  async function poll() {
+    try {
+      const r = await fetch(ICECAST_STATUS_URL, { cache: 'no-store' });
+      const j = await r.json();
+      const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
+      const raw = src?.title || src?.yp_currently_playing;
+      const { title, artist } = parseTitleArtists(raw);
+      const composite = `${artist} - ${title}`.trim();
+      if (composite && composite !== lastComposite) {
+        if (lastComposite) {
+          hist.unshift({ title: titleEl.textContent || '—', artist: artistEl.textContent || '—', playedAt: new Date(startedAt) });
+          if (hist.length > 10) hist.pop();
+          renderHistory();
+        }
+        titleEl.textContent = title || '—';
+        artistEl.textContent = artist || '—';
+        startedAt = Date.now();
+        lastComposite = composite;
+      }
+    } catch (e) {}
+  }
+
+  function renderHistory() {
+    historyBody.innerHTML = hist.map((t) => {
+      const tstr = (t.playedAt || new Date()).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      return `<tr class="border-t border-white/10">
+        <td class="py-2 pr-4 text-zinc-300">${tstr}</td>
+        <td class="py-2 pr-4 font-semibold">${t.title}</td>
+        <td class="py-2 pr-4 text-zinc-300">${t.artist}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  setInterval(() => {
+    const secs = Math.max(0, Math.floor((Date.now() - startedAt)/1000));
+    const m = String(Math.floor(secs/60));
+    const s = String(secs % 60).padStart(2,'0');
+    elapsedEl.textContent = `${m}:${s}`;
+  }, 1000);
+
+  poll();
+  setInterval(poll, 15000);
+
+  let playing = false;
+  listenBtn.addEventListener('click', async () => {
+    try {
+      if (!playing) { await audio.play(); listenBtn.textContent = 'Pause'; playing = true; }
+      else { audio.pause(); listenBtn.textContent = 'Listen Live'; playing = false; }
+    } catch (e) {}
+  });
+
+  reqform.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(reqform);
+    if (fd.get('website')) return;
+    const payload = Object.fromEntries(fd.entries());
+    try {
+      if (REQUEST_POST_URL) {
+        await fetch(REQUEST_POST_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      }
+      alert('Request sent! Thanks for tuning in — horns up!');
+      reqform.reset();
+    } catch { alert("Couldn't send right now, but your request is noted."); }
+  });
+  </script>
+</body>
+</html>
