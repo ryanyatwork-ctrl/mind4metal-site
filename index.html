@@ -7,30 +7,23 @@
 <meta name="description" content="Mind4Metal Radio — 24/7 Heavy • Power • Hard Rock">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+  /* main card surface */
   .glass{
-    background:rgba(24,24,27,.8);
-    backdrop-filter:blur(8px);
+    background: rgba(24,24,27,0.9);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.6);
   }
 
-  /* subtle metal gradient + glow for main cards */
-  .card-metal{
-    background: radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(37,99,235,0.12), transparent 55%),
-                rgba(24,24,27,0.85);
-    box-shadow: 0 18px 45px rgba(0,0,0,0.7), 0 0 35px rgba(59,130,246,0.25);
-  }
-
-  /* glowing blue divider under header */
+  /* subtle divider under header, not glowy */
   .metal-divider{
-    height: 3px;
+    height: 1px;
     border-radius: 9999px;
-    background: linear-gradient(90deg,
-      rgba(56,189,248,0.0),
-      rgba(56,189,248,0.9),
-      rgba(129,140,248,0.9),
-      rgba(56,189,248,0.0)
+    background: linear-gradient(to right,
+      transparent,
+      rgba(148,163,184,0.8),
+      transparent
     );
-    opacity: .8;
+    opacity: .7;
   }
 
   /* pulsing live dot */
@@ -58,18 +51,19 @@
 </head>
 <body class="min-h-screen text-zinc-100">
   <div class="fixed inset-0 -z-10 bg-center bg-cover" id="bg"></div>
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-900/80 via-zinc-900/80 to-black/90"></div>
+  <!-- clean, simple dark gradient -->
+  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/70 to-black/90"></div>
 
 <header class="max-w-6xl mx-auto px-4 pt-8 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-  <!-- Left: main logo block, aligned toward the corner -->
+  <!-- Left: main logo block -->
   <div class="flex flex-col">
     <img
       src="Mind4MetalRadio.png"
       alt="Mind4Metal Radio"
       class="max-h-24 sm:max-h-28 w-auto drop-shadow-lg"
     />
-    <p class="mt-2 text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">
-      24/7 Heavy Metal • Power Metal • Hard Rock
+    <p class="mt-2 ml-2 sm:ml-6 text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">
+      The Best Hard Rock and Heavy Metal From the 80's To Now
     </p>
   </div>
 
@@ -87,7 +81,7 @@
 </div>
 
 <main class="max-w-6xl mx-auto px-4 pb-20 grid gap-6 lg:grid-cols-3">
-  <section class="lg:col-span-2 rounded-2xl border border-white/10 glass card-metal p-5">
+  <section class="lg:col-span-2 rounded-2xl border border-white/10 glass p-5">
     <div class="flex items-center gap-5">
       <div class="w-28 h-28 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">🎵</div>
       <div class="min-w-0 flex-1">
@@ -108,7 +102,7 @@
     <audio id="audio" preload="none"></audio>
   </section>
 
-  <section class="lg:col-span-1 rounded-2xl border border-white/10 glass card-metal p-5">
+  <section class="lg:col-span-1 rounded-2xl border border-white/10 glass p-5">
     <div class="flex items-center gap-2 mb-3"><span>📨</span><h3 class="text-lg font-bold">Send a Request</h3></div>
     <form id="reqform" class="grid gap-3">
       <input name="name" required placeholder="Your name" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
@@ -120,7 +114,7 @@
     </form>
   </section>
 
-  <section class="lg:col-span-3 rounded-2xl border border-white/10 glass card-metal p-5">
+  <section class="lg:col-span-3 rounded-2xl border border-white/10 glass p-5">
     <div class="flex items-center gap-2 mb-3"><span>📻</span><h3 class="text-lg font-bold">Recently Played</h3></div>
     <table class="min-w-full text-sm">
       <thead>
