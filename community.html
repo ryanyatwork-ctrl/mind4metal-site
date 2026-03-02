@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mind4Metal · Community</title>
+<meta name="description" content="Mind4Metal Radio Community — Sign up for updates and leave a message in the guestbook!">
+<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- ── REPLACE THIS WITH YOUR REAL GA ID ── -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+<style>
+:root{
+  --fire:#ff5500;--fire2:#ff8800;--fire-glow:rgba(255,85,0,0.4);
+  --fire-dim:rgba(255,85,0,0.12);
+  --bg:#07080a;--bg2:#0d0f13;--bg3:#12151b;
+  --steel:#1a1e26;--steel2:#222633;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#dde1e8;--text-dim:rgba(221,225,232,0.55);--text-muted:rgba(221,225,232,0.3);
+  --silver:#c8d0dc;--silver2:#8a94a0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* BG */
+.bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
+.bg-fixed::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('Mind4Metal_banner.png');
+  background-size:85% auto;background-position:center center;background-repeat:no-repeat;
+  opacity:0.07;filter:grayscale(30%);
+}
+.bg-fixed::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(58,123,213,0.05) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 40% at 80% 80%,rgba(255,85,0,0.04) 0%,transparent 55%);}
+.wrapper{position:relative;z-index:1;}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:72px;
+  background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);
+  border-bottom:1px solid rgba(255,85,0,0.22);
+  box-shadow:0 4px 20px rgba(0,0,0,0.8);
+  position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:44px;filter:drop-shadow(0 0 10px rgba(255,85,0,0.5));}
+.nav-logo-text{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);}
+.nav-links{display:flex;gap:5px;}
+.nav-links a{
+  padding:5px 12px;border-radius:3px;background:rgba(0,0,0,0.4);border:1px solid var(--border2);
+  font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--silver2);text-decoration:none;transition:all .18s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--fire2);border-color:rgba(255,85,0,0.4);background:rgba(255,85,0,0.08);}
+
+/* PAGE HEADER */
+.page-header{
+  text-align:center;padding:52px 24px 40px;
+  border-bottom:1px solid rgba(255,85,0,0.1);
+}
+.page-header h1{
+  font-family:'Oswald',sans-serif;font-size:clamp(28px,5vw,52px);font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:#fff;
+  text-shadow:0 0 40px rgba(255,85,0,0.3);margin-bottom:10px;
+}
+.page-header h1 span{color:var(--fire2);}
+.page-header p{font-size:16px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:44px 24px 80px;}
+
+/* SECTION */
+.card{
+  background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
+  margin-bottom:28px;overflow:hidden;
+}
+.card-head{
+  padding:18px 24px;border-bottom:1px solid rgba(255,85,0,0.14);
+  background:rgba(0,0,0,0.3);
+  display:flex;align-items:center;gap:12px;
+}
+.card-icon{font-size:20px;}
+.card-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);}
+.card-sub{font-size:12px;color:var(--text-muted);letter-spacing:.06em;margin-top:2px;}
+.card-body{padding:24px;}
+
+/* STEEL DIVIDER */
+.fire-bar{height:2px;background:linear-gradient(90deg,var(--fire),var(--fire2),rgba(255,136,0,0.15),transparent);border-radius:2px;margin-bottom:22px;}
+
+/* EMAIL SIGNUP */
+.signup-wrap{display:flex;flex-direction:column;gap:10px;}
+.signup-desc{font-size:15px;color:var(--text-dim);line-height:1.6;margin-bottom:8px;}
+.signup-row{display:flex;gap:10px;}
+.signup-input{
+  flex:1;padding:11px 14px;background:rgba(0,0,0,0.45);
+  border:1px solid var(--border2);border-radius:4px;
+  color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;outline:none;
+  transition:border-color .2s;
+}
+.signup-input:focus{border-color:rgba(255,85,0,0.5);box-shadow:0 0 0 2px rgba(255,85,0,0.1);}
+.signup-btn{
+  padding:11px 22px;background:linear-gradient(135deg,var(--fire),var(--fire2));
+  border:none;border-radius:4px;color:#fff;
+  font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(255,85,0,0.3);
+}
+.signup-btn:hover{box-shadow:0 4px 24px rgba(255,85,0,0.55);transform:translateY(-1px);}
+.signup-note{font-size:12px;color:var(--text-muted);letter-spacing:.04em;}
+.signup-success{color:var(--fire2);font-size:14px;font-weight:600;letter-spacing:.06em;display:none;}
+
+/* Bravenet embed placeholder */
+.bravenet-wrap{
+  background:rgba(0,0,0,0.3);border:1px dashed rgba(255,85,0,0.2);border-radius:4px;
+  padding:20px;text-align:center;color:var(--text-muted);font-size:13px;letter-spacing:.06em;
+}
+
+/* GUESTBOOK */
+.gb-form{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.gb-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.field-label{display:block;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;}
+.gb-form input,.gb-form textarea,.gb-form select{
+  width:100%;padding:10px 13px;background:rgba(0,0,0,0.45);
+  border:1px solid var(--border2);border-radius:4px;
+  color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:15px;outline:none;
+  transition:border-color .2s;
+}
+.gb-form input:focus,.gb-form textarea:focus{border-color:rgba(255,85,0,0.5);box-shadow:0 0 0 2px rgba(255,85,0,0.1);}
+.gb-form textarea{height:90px;resize:none;}
+.gb-submit{
+  align-self:flex-start;padding:11px 28px;
+  background:linear-gradient(135deg,var(--fire),var(--fire2));
+  border:none;border-radius:4px;color:#fff;
+  font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;
+  box-shadow:0 4px 16px rgba(255,85,0,0.3);
+}
+.gb-submit:hover{box-shadow:0 4px 24px rgba(255,85,0,0.55);transform:translateY(-1px);}
+
+/* Guestbook entries */
+.gb-entries{display:flex;flex-direction:column;gap:0;}
+.gb-entry{
+  padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  animation:fadeUp .4s ease both;
+}
+.gb-entry:last-child{border-bottom:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.gb-entry-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;}
+.gb-name{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;color:var(--fire2);letter-spacing:.04em;}
+.gb-location{font-size:12px;color:var(--text-muted);margin-left:8px;}
+.gb-date{font-size:11px;color:var(--text-muted);letter-spacing:.04em;}
+.gb-msg{font-size:15px;color:var(--text-dim);line-height:1.6;}
+.gb-rating{color:var(--fire2);font-size:14px;margin-top:4px;}
+.gb-empty{text-align:center;padding:28px;color:var(--text-muted);font-size:14px;letter-spacing:.06em;}
+.gb-loading{text-align:center;padding:20px;color:var(--text-muted);font-size:13px;}
+
+/* RATINGS */
+.rating-wrap{display:flex;gap:6px;}
+.star{font-size:22px;cursor:pointer;color:var(--text-muted);transition:all .15s;line-height:1;}
+.star:hover,.star.on{color:var(--fire2);text-shadow:0 0 8px rgba(255,136,0,0.6);}
+
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--steel2);border:1px solid rgba(255,85,0,.35);border-radius:4px;padding:11px 22px;font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--fire2);z-index:999;transition:transform .35s cubic-bezier(.34,1.56,.64,1);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* FOOTER */
+footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
+.footer-logo{height:28px;opacity:.55;}
+
+@media(max-width:600px){
+  .signup-row{flex-direction:column;}
+  .gb-row{grid-template-columns:1fr;}
+  nav{padding:0 12px;}
+  .nav-links a span{display:none;}
+  .bg-fixed::before{display:none;}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-EVLV2T57J8");</script>
+</head>
+<body>
+<div class="bg-fixed"></div>
+<div class="wrapper">
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Mind4Metal_Dragon.png" alt="Mind4Metal">
+    <div class="nav-logo-text">Mind4Metal Radio</div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">← Listen Live</a>
+    <a href="community.html" class="active">Community</a>
+    <a href="blog.html">Blog</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>The Metal <span>Community</span></h1>
+  <p>Sign up for updates · Leave your mark · Keep the flame alive</p>
+</div>
+
+<main class="main">
+
+  <!-- EMAIL SIGNUP -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">🔥</span>
+      <div>
+        <div class="card-title">Stay in the Fire</div>
+        <div class="card-sub">Get notified about new shows, events &amp; announcements</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="fire-bar"></div>
+
+      <!-- ── BRAVENET MAILING LIST ──────────────────────────────
+           Sign up at bravenet.com → My Tools → Mailing List
+           Copy your embed form code and replace the placeholder below
+      ──────────────────────────────────────────────────────── -->
+      <div id="braveNetWrap">
+        <!-- PASTE YOUR BRAVENET FORM CODE HERE -->
+        <div class="bravenet-wrap">
+          <p style="margin-bottom:8px">📋 Bravenet mailing list form goes here</p>
+          <p>Sign up at <strong>bravenet.com</strong> → My Tools → Mailing List Manager<br>
+          then paste your embed code in this spot in community.html</p>
+        </div>
+        <!-- END BRAVENET CODE -->
+      </div>
+
+      <!-- Fallback simple form (uses Formspree, remove once Bravenet is set up) -->
+      <div id="fallbackSignup" style="margin-top:16px;">
+        <p class="signup-desc">Or drop your email below and we'll reach out directly:</p>
+        <form id="signupForm">
+          <div class="signup-row">
+            <input class="signup-input" type="text" name="name" placeholder="Your name" required>
+            <input class="signup-input" type="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+          <div style="margin-top:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <button type="submit" class="signup-btn">Sign Me Up 🤘</button>
+            <div class="signup-success" id="signupSuccess">✓ You're on the list!</div>
+          </div>
+          <div class="signup-note" style="margin-top:8px;">No spam. Ever. Just metal. 🤘</div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GUESTBOOK -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">📖</span>
+      <div>
+        <div class="card-title">Guestbook</div>
+        <div class="card-sub">Tell us where you're tuning in from!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="fire-bar"></div>
+
+      <form class="gb-form" id="gbForm">
+        <div class="gb-row">
+          <div>
+            <label class="field-label">Your Name *</label>
+            <input name="name" required placeholder="Name or handle">
+          </div>
+          <div>
+            <label class="field-label">Location</label>
+            <input name="location" placeholder="City, Country">
+          </div>
+        </div>
+
+        <div>
+          <label class="field-label">Your Message *</label>
+          <textarea name="message" required placeholder="Tell us where you're tuning in from, your favorite bands, anything!"></textarea>
+        </div>
+
+        <div>
+          <label class="field-label">Rate Mind4Metal</label>
+          <div class="rating-wrap" id="ratingWrap">
+            <span class="star" data-v="1">🔥</span>
+            <span class="star" data-v="2">🔥</span>
+            <span class="star" data-v="3">🔥</span>
+            <span class="star" data-v="4">🔥</span>
+            <span class="star" data-v="5">🔥</span>
+          </div>
+          <input type="hidden" name="rating" id="ratingVal">
+        </div>
+
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+        <button type="submit" class="gb-submit">Sign the Book 🤘</button>
+      </form>
+
+      <!-- Entries loaded from Formspree -->
+      <div id="gbEntries">
+        <div class="gb-loading">Loading entries...</div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-left">
+    <img src="Mind4Metal_Dragon.png" alt="" class="footer-logo">
+    <span>© 2026 Mind4Metal Radio · Coeur d'Alene, Idaho</span>
+  </div>
+</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────────────────
+// 1. Replace with your GA ID once you create it
+const GA_ID = 'G-XXXXXXXXXX';
+
+// 2. Your existing Formspree ID for requests
+const FORMSPREE_SIGNUP = 'xgolbjen'; // reusing existing — or create a new one
+
+// 3. Create a NEW Formspree form called "Mind4Metal Guestbook"
+//    and paste its ID here (e.g. 'xabcd1234')
+const FORMSPREE_GUESTBOOK = 'GUESTBOOK_FORM_ID';
+
+// ── TOAST ────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// ── STAR RATING ──────────────────────────────────────────────────
+let rating = 0;
+document.querySelectorAll('.star').forEach(s => {
+  s.addEventListener('click', () => {
+    rating = parseInt(s.dataset.v);
+    document.getElementById('ratingVal').value = rating + ' flames';
+    document.querySelectorAll('.star').forEach((st, i) => {
+      st.classList.toggle('on', i < rating);
+    });
+  });
+});
+
+// ── EMAIL SIGNUP ─────────────────────────────────────────────────
+document.getElementById('signupForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  if (fd.get('website')) return;
+  try {
+    await fetch(`https://formspree.io/f/${FORMSPREE_SIGNUP}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'New Email Signup — Mind4Metal',
+        name: fd.get('name'),
+        email: fd.get('email'),
+        type: 'email_signup'
+      })
+    });
+    e.target.reset();
+    document.getElementById('signupSuccess').style.display = 'block';
+    showToast('You\'re on the list! 🤘 Stay metal!');
+  } catch {
+    showToast('Something went wrong — try again.');
+  }
+});
+
+// ── GUESTBOOK SUBMIT ─────────────────────────────────────────────
+document.getElementById('gbForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  if (fd.get('website')) return;
+
+  const entry = {
+    _subject: `Guestbook: ${fd.get('name')} from ${fd.get('location') || 'Unknown'}`,
+    name:     fd.get('name'),
+    location: fd.get('location') || '',
+    message:  fd.get('message'),
+    rating:   fd.get('rating') || '',
+    date:     new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'})
+  };
+
+  try {
+    if (FORMSPREE_GUESTBOOK !== 'GUESTBOOK_FORM_ID') {
+      await fetch(`https://formspree.io/f/${FORMSPREE_GUESTBOOK}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry)
+      });
+    }
+    // Also save locally for instant display
+    const saved = JSON.parse(localStorage.getItem('m4m_guestbook') || '[]');
+    saved.unshift({ ...entry, id: Date.now() });
+    if (saved.length > 50) saved.pop();
+    localStorage.setItem('m4m_guestbook', JSON.stringify(saved));
+
+    e.target.reset();
+    rating = 0;
+    document.querySelectorAll('.star').forEach(s => s.classList.remove('on'));
+    renderGuestbook();
+    showToast('Entry added! Thanks for signing! 🤘');
+  } catch {
+    showToast('Something went wrong — try again.');
+  }
+});
+
+// ── RENDER GUESTBOOK ─────────────────────────────────────────────
+// Loads from localStorage (entries submitted in this browser)
+// When you connect a real backend, replace this with a fetch to your API
+function renderGuestbook() {
+  const entries = JSON.parse(localStorage.getItem('m4m_guestbook') || '[]');
+  const wrap = document.getElementById('gbEntries');
+
+  if (!entries.length) {
+    wrap.innerHTML = `<div class="gb-empty">Be the first to sign the guestbook! 🤘</div>`;
+    return;
+  }
+
+  wrap.innerHTML = entries.map(e => `
+    <div class="gb-entry">
+      <div class="gb-entry-head">
+        <div>
+          <span class="gb-name">${escHtml(e.name)}</span>
+          ${e.location ? `<span class="gb-location">📍 ${escHtml(e.location)}</span>` : ''}
+        </div>
+        <div class="gb-date">${e.date || ''}</div>
+      </div>
+      <div class="gb-msg">${escHtml(e.message)}</div>
+      ${e.rating ? `<div class="gb-rating">${e.rating}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+renderGuestbook();
+</script>
+</body>
+</html>
