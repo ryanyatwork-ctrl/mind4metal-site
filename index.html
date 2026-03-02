@@ -105,19 +105,17 @@ nav{
 /* ── BANNER ── */
 .site-banner{
   width:100%;
-  max-height:260px;
-  overflow:hidden;
   position:relative;
   border-bottom:2px solid rgba(255,85,0,0.3);
+  line-height:0;
 }
 .site-banner img{
   width:100%;height:auto;display:block;
-  object-fit:cover;object-position:center;
 }
 /* fire gradient fade at bottom */
 .site-banner::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:60%;
-  background:linear-gradient(to bottom,transparent,rgba(7,8,10,0.85));
+  content:'';position:absolute;bottom:0;left:0;right:0;height:35%;
+  background:linear-gradient(to bottom,transparent,rgba(7,8,10,0.92));
 }
 
 /* ── SLIDE PANEL ── */
@@ -285,7 +283,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   .nav-dragon{height:44px;width:44px;}
   .listener-badge{padding:4px 8px;font-size:10px;}
 
-  .site-banner{max-height:140px;}
+
 
   .now-playing-section{
     grid-template-columns:1fr;
