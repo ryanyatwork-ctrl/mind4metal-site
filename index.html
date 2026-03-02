@@ -5,235 +5,674 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal Radio</title>
 <meta name="description" content="Mind4Metal Radio — 24/7 Heavy • Power • Hard Rock">
-<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Favicon: dragon logo -->
+<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="apple-touch-icon" href="Mind4Metal_Dragon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-  /* main card surface */
-  .glass{
-    background: rgba(24,24,27,0.9);
-    backdrop-filter: blur(6px);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.6);
-  }
+:root {
+  --fire:      #ff5500;
+  --fire2:     #ff8800;
+  --fire-glow: rgba(255,85,0,0.45);
+  --fire-dim:  rgba(255,85,0,0.12);
+  --silver:    #c8d0dc;
+  --silver2:   #8a94a0;
+  --bg:        #07080a;
+  --bg2:       #0d0f13;
+  --steel:     #1a1e26;
+  --steel2:    #222633;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.13);
+  --text:      #dde1e8;
+  --text-dim:  rgba(221,225,232,0.55);
+  --text-muted:rgba(221,225,232,0.3);
+}
 
-  /* subtle divider under header, not glowy */
-  .metal-divider{
-    height: 1px;
-    border-radius: 9999px;
-    background: linear-gradient(to right,
-      transparent,
-      rgba(148,163,184,0.8),
-      transparent
-    );
-    opacity: .7;
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 
-  /* pulsing live dot */
-  .live-dot{
-    position: relative;
-    width: 9px;
-    height: 9px;
-    border-radius: 9999px;
-    background: rgb(248 113 113); /* soft red */
+/* ── GEAR BG ── */
+.bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
+.bg-fixed::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(255,85,0,0.05) 0%,transparent 60%);}
+.bg-fixed::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1.2'/%3E%3Ccircle cx='50' cy='50' r='14' fill='none' stroke='rgba(255,255,255,0.015)' stroke-width='.8'/%3E%3Crect x='46' y='24' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='46' y='70' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='24' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='70' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");opacity:.5;}
+.wrapper{position:relative;z-index:1;}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:64px;
+  background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.94) 100%);
+  border-bottom:1px solid rgba(255,85,0,0.2);
+  box-shadow:0 4px 20px rgba(0,0,0,0.7);
+  position:sticky;top:0;z-index:100;backdrop-filter:blur(16px);
+}
+
+.nav-dragon{height:52px;width:52px;flex-shrink:0;}
+.nav-dragon img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 10px rgba(255,85,0,0.5));}
+
+.nav-tagline{
+  font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-muted);display:flex;flex-direction:column;align-items:center;gap:2px;
+}
+.nav-tagline strong{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--silver2);}
+
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+
+.listener-badge{
+  display:flex;align-items:center;gap:7px;padding:5px 11px;
+  background:rgba(0,0,0,0.5);border:1px solid rgba(255,85,0,0.22);border-radius:4px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--text-dim);text-transform:uppercase;
+  white-space:nowrap;
+}
+.fire-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0;
+  background:var(--fire);box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,0.5);
+  animation:flicker 1.8s ease-in-out infinite;
+}
+@keyframes flicker{
+  0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}
+  25%{opacity:.7;box-shadow:0 0 5px var(--fire);}
+  75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}
+}
+.listener-num{color:var(--fire2);font-size:14px;}
+
+.nav-social{display:flex;gap:4px;}
+.nav-social a{
+  padding:5px 10px;border-radius:3px;background:rgba(0,0,0,0.45);border:1px solid var(--border2);
+  font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--silver2);text-decoration:none;transition:all .18s;
+}
+.nav-social a:hover{color:var(--fire2);border-color:rgba(255,136,0,.4);background:rgba(255,85,0,.08);}
+
+.hamburger-btn{
+  width:38px;height:38px;border-radius:4px;background:rgba(255,85,0,.1);
+  border:1px solid rgba(255,85,0,.3);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  transition:all .2s;flex-shrink:0;
+}
+.hamburger-btn:hover{background:rgba(255,85,0,.2);border-color:rgba(255,85,0,.6);box-shadow:0 0 12px rgba(255,85,0,.3);}
+.hamburger-btn span{display:block;width:18px;height:2px;background:var(--fire2);border-radius:1px;transition:all .3s;}
+.hamburger-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger-btn.open span:nth-child(2){opacity:0;}
+.hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ── BANNER ── */
+.site-banner{
+  width:100%;
+  max-height:260px;
+  overflow:hidden;
+  position:relative;
+  border-bottom:2px solid rgba(255,85,0,0.3);
+}
+.site-banner img{
+  width:100%;height:auto;display:block;
+  object-fit:cover;object-position:center;
+}
+/* fire gradient fade at bottom */
+.site-banner::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:60%;
+  background:linear-gradient(to bottom,transparent,rgba(7,8,10,0.85));
+}
+
+/* ── SLIDE PANEL ── */
+.request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
+.request-overlay.open{opacity:1;pointer-events:all;}
+
+.slide-panel{
+  position:fixed;top:0;right:0;bottom:0;width:min(380px,100vw);
+  background:var(--bg2);border-left:1px solid rgba(255,85,0,0.22);
+  box-shadow:-8px 0 40px rgba(0,0,0,.85);z-index:201;
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  overflow-y:auto;padding:28px 22px;
+}
+.slide-panel.open{transform:translateX(0);}
+
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:14px;border-bottom:1px solid rgba(255,85,0,.18);}
+.panel-brand{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--silver);}
+.panel-close{width:34px;height:34px;border-radius:3px;background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.25);color:var(--fire2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.panel-close:hover{background:rgba(255,85,0,.2);}
+
+/* Panel nav links */
+.panel-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06);}
+.panel-nav a{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:4px;
+  font-family:'Oswald',sans-serif;font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--silver2);text-decoration:none;transition:all .18s;
+}
+.panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);}
+.panel-nav a .nav-icon{font-size:18px;width:24px;text-align:center;}
+
+.panel-section-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
+
+.field-label{display:block;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;margin-top:14px;}
+.slide-panel input,.slide-panel textarea{
+  width:100%;padding:9px 12px;background:rgba(0,0,0,.45);border:1px solid var(--border2);
+  border-radius:4px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:15px;
+  outline:none;transition:border-color .2s;
+}
+.slide-panel input:focus,.slide-panel textarea:focus{border-color:rgba(255,85,0,.5);box-shadow:0 0 0 2px rgba(255,85,0,.1);}
+.slide-panel textarea{height:86px;resize:none;}
+
+.submit-btn{
+  width:100%;margin-top:18px;padding:13px;
+  background:linear-gradient(135deg,var(--fire) 0%,var(--fire2) 100%);
+  color:#fff;font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;
+  cursor:pointer;transition:all .2s;text-shadow:0 1px 2px rgba(0,0,0,.4);
+  box-shadow:0 4px 20px rgba(255,85,0,.32);
+}
+.submit-btn:hover{background:linear-gradient(135deg,var(--fire2),#ffaa00);box-shadow:0 4px 28px rgba(255,85,0,.6);transform:translateY(-1px);}
+
+/* ── NOW PLAYING ── */
+.now-playing-section{
+  max-width:1100px;margin:0 auto;padding:44px 28px 20px;
+  display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;
+  animation:fadeUp .7s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+/* Album art */
+.art-frame{
+  width:220px;height:220px;border-radius:8px;overflow:hidden;
+  border:1px solid rgba(255,85,0,.22);background:var(--steel);
+  position:relative;flex-shrink:0;
+}
+.art-frame::before,.art-frame::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--fire2);border-style:solid;z-index:2;}
+.art-frame::before{top:0;left:0;border-width:2px 0 0 2px;}
+.art-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;}
+.art-frame img#albumArt{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;}
+.art-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(135deg,var(--steel),var(--steel2));opacity:.45;}
+/* Subtle glow behind art when art is loaded */
+.art-glow{position:absolute;inset:-12px;border-radius:12px;background:radial-gradient(circle,rgba(255,85,0,.18),transparent 70%);opacity:0;transition:opacity 1s;pointer-events:none;}
+.art-glow.on{opacity:1;}
+
+/* NP info */
+.np-info{min-width:0;}
+.steel-bar{height:2px;background:linear-gradient(90deg,var(--fire),var(--fire2),rgba(255,136,0,.15),transparent);border-radius:2px;margin-bottom:18px;}
+.np-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--fire2);margin-bottom:10px;}
+.live-badge{display:flex;align-items:center;gap:6px;padding:3px 9px;background:rgba(255,85,0,.12);border:1px solid rgba(255,85,0,.35);border-radius:3px;font-size:10px;letter-spacing:.12em;}
+
+#title{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(24px,3.8vw,46px);font-weight:700;line-height:1.08;
+  letter-spacing:.02em;text-transform:uppercase;color:#fff;
+  text-shadow:0 2px 20px rgba(255,85,0,.2);margin-bottom:7px;
+  transition:opacity .4s;
+}
+#artist{font-size:18px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);margin-bottom:24px;transition:opacity .4s;}
+
+/* Flame waveform */
+.waveform{display:flex;align-items:flex-end;gap:3px;height:34px;margin-bottom:24px;}
+.waveform .bar{
+  width:4px;border-radius:2px 2px 0 0;transform-origin:bottom;
+  background:linear-gradient(to top,var(--fire),var(--fire2),rgba(255,210,80,.8));
+  animation:wave 1.1s ease-in-out infinite;opacity:.28;transition:opacity .4s;
+}
+.waveform.on .bar{opacity:1;}
+.waveform:not(.on) .bar{animation:none;height:3px!important;}
+@keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
+
+.controls{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+#listen-btn{
+  display:flex;align-items:center;gap:9px;padding:12px 26px;
+  background:transparent;border:2px solid var(--fire);color:var(--fire2);
+  border-radius:3px;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .22s;
+  position:relative;overflow:hidden;
+}
+#listen-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--fire),var(--fire2));opacity:0;transition:opacity .22s;}
+#listen-btn:hover::before,#listen-btn.on::before{opacity:1;}
+#listen-btn:hover,#listen-btn.on{color:#fff;box-shadow:0 0 28px var(--fire-glow);}
+#listen-btn span{position:relative;z-index:1;}
+.elapsed{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--text-muted);}
+
+.stream-meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+
+/* ── DIVIDER ── */
+.flame-divider{max-width:1100px;margin:0 auto 0;padding:0 28px;}
+.flame-divider hr{border:none;border-top:1px solid rgba(255,85,0,.14);margin:0;}
+
+/* ── RECENTLY PLAYED ── */
+.section{max-width:1100px;margin:0 auto;padding:32px 28px 60px;}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,85,0,.12);}
+.sec-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--silver);}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,85,0,.25),transparent);}
+.hist-table{width:100%;border-collapse:collapse;}
+.hist-table thead th{text-align:left;padding:0 10px 9px;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--text-muted);}
+.hist-table tbody tr{border-top:1px solid rgba(255,255,255,.04);transition:background .14s;}
+.hist-table tbody tr:hover{background:rgba(255,85,0,.04);}
+.hist-table td{padding:11px 10px;font-size:14px;}
+.td-n{color:var(--text-muted);font-size:11px;width:28px;text-align:center;font-family:'Oswald';}
+.td-ti{color:var(--text);font-weight:600;}
+.td-ar{color:var(--silver2);font-weight:300;}
+.td-tm{color:var(--text-muted);font-size:11px;font-family:'Oswald';letter-spacing:.06em;white-space:nowrap;width:64px;}
+
+/* ── SOCIAL ── */
+.social-section{max-width:1100px;margin:0 auto;padding:0 28px 60px;}
+.social-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:14px;}
+.s-card{background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;}
+.s-head{display:flex;align-items:center;gap:9px;padding:11px 15px;background:rgba(0,0,0,.35);border-bottom:1px solid var(--border);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);}
+.s-body{padding:12px;min-height:300px;}
+
+/* ── FOOTER ── */
+footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
+.footer-dragon{height:28px;opacity:.55;}
+.footer-links{display:flex;gap:4px;flex-wrap:wrap;}
+.footer-links a{padding:4px 9px;border-radius:3px;background:var(--fire-dim);border:1px solid rgba(255,85,0,.14);font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--silver2);text-decoration:none;transition:all .18s;}
+.footer-links a:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--steel2);border:1px solid rgba(255,85,0,.35);border-radius:4px;padding:11px 22px;font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--fire2);z-index:999;transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 36px rgba(0,0,0,.8);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+.fade{transition:opacity .4s;}
+.fade.dim{opacity:.3;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-tagline{display:none;}
+  .nav-social{display:none;}
+}
+@media(max-width:600px){
+  nav{padding:0 12px;height:58px;}
+  .nav-dragon{height:44px;width:44px;}
+  .listener-badge{padding:4px 8px;font-size:10px;}
+
+  .site-banner{max-height:140px;}
+
+  .now-playing-section{
+    grid-template-columns:1fr;
+    padding:28px 16px 16px;gap:22px;
+    justify-items:center;text-align:center;
   }
-  .live-dot::after{
-    content:"";
-    position:absolute;
-    inset:-4px;
-    border-radius:9999px;
-    border:2px solid rgba(248,113,113,0.6);
-    animation: live-ping 1.4s cubic-bezier(0,0,0.2,1) infinite;
-  }
-  @keyframes live-ping{
-    0%{transform:scale(0.6);opacity:1;}
-    100%{transform:scale(1.6);opacity:0;}
-  }
+  .art-frame{width:180px;height:180px;}
+  .np-eyebrow,.controls{justify-content:center;}
+  .np-info{width:100%;}
+
+  .section,.social-section{padding:24px 16px 48px;}
+  footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}
+  .footer-left span{display:none;}
+}
 </style>
-
 </head>
-<body class="min-h-screen text-zinc-100">
-  <div class="fixed inset-0 -z-10 bg-center bg-cover" id="bg"></div>
-  <!-- clean, simple dark gradient -->
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-black/70 via-black/70 to-black/90"></div>
 
-<header class="max-w-6xl mx-auto px-4 pt-8 pb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-  <!-- Left: main logo block -->
-  <div class="flex flex-col">
-    <img
-      src="Mind4MetalRadio.png"
-      alt="Mind4Metal Radio"
-      class="max-h-24 sm:max-h-28 w-auto drop-shadow-lg"
-    />
-    <p class="mt-2 ml-2 sm:ml-6 text-xs sm:text-sm text-zinc-300 tracking-wide uppercase">
-      The Best Hard Rock and Heavy Metal From the 80's To Now
-    </p>
+<body>
+<div class="bg-fixed"></div>
+<div class="wrapper">
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-dragon">
+    <img src="Mind4Metal_Dragon.png" alt="Mind4Metal">
   </div>
 
-  <!-- Right: social nav -->
- <nav class="flex flex-wrap gap-2 w-full justify-center mt-3
-            sm:w-auto sm:mt-0 sm:justify-end sm:self-auto">
-  <a class="px-3 py-2 rounded-lg glass border border-white/10"
-     href="https://facebook.com/Mind4Metal"
-     target="_blank">
-    Facebook
-  </a>
-  <a class="px-3 py-2 rounded-lg glass border border-white/10"
-     href="https://instagram.com/mind4metalradio"
-     target="_blank">
-    Instagram
-  </a>
-  <a class="px-3 py-2 rounded-lg glass border border-white/10"
-     href="https://x.com/mind4metal"
-     target="_blank">
-    X
-  </a>
-  <a class="px-3 py-2 rounded-lg glass border border-white/10"
-     href="mailto:mind4metal@hotmail.com">
-    Email
-  </a>
+  <div class="nav-tagline">
+    <strong>Mind4Metal Radio</strong>
+    The Best Hard Rock &amp; Heavy Metal From the 80's to Now
+  </div>
+
+  <div class="nav-right">
+    <div class="listener-badge">
+      <span class="fire-dot"></span>
+      Listeners&nbsp;<span class="listener-num" id="listenerCount">—</span>
+    </div>
+    <nav class="nav-social">
+      <a href="https://facebook.com/Mind4Metal" target="_blank">Facebook</a>
+      <a href="https://instagram.com/mind4metalradio" target="_blank">Instagram</a>
+      <a href="https://x.com/mind4metal" target="_blank">X</a>
+      <a href="mailto:mind4metal@hotmail.com">Email</a>
+    </nav>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-</header>
-
-<div class="max-w-6xl mx-auto px-4">
-  <div class="metal-divider"></div>
+<!-- ── BANNER ── -->
+<div class="site-banner">
+  <img src="Mind4Metal_FB_Cover_Page_-_Dragon_2.png" alt="Mind4Metal Radio">
 </div>
 
-<main class="max-w-6xl mx-auto px-4 pb-20 grid gap-6 lg:grid-cols-3">
-  <section class="lg:col-span-2 rounded-2xl border border-white/10 glass p-5">
-    <div class="flex items-center gap-5">
-      <div class="w-28 h-28 rounded-xl bg-zinc-800 border border-white/10 flex items-center justify-center">🎵</div>
-      <div class="min-w-0 flex-1">
-        <div class="text-sm uppercase tracking-widest text-orange-400 font-semibold">Now Playing</div>
-        <h2 id="title" class="text-xl sm:text-2xl font-bold truncate">—</h2>
-        <p id="artist" class="text-zinc-300 truncate">—</p>
-        <div class="mt-3 flex items-center gap-3">
-          <button id="listen" class="px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-black font-semibold shadow-lg shadow-orange-500/40">
-            Listen Live
-          </button>
-          <div class="flex items-center gap-2 text-xs text-zinc-300">
-            <span class="live-dot"></span>
-            <span>Live • <span id="elapsed">0:00</span></span>
+<!-- ── SLIDE PANEL ── -->
+<div class="request-overlay" id="overlay"></div>
+<aside class="slide-panel" id="slidePanel">
+  <div class="panel-header">
+    <div class="panel-brand">🤘 Mind4Metal</div>
+    <button class="panel-close" id="panelClose">✕</button>
+  </div>
+
+  <!-- Navigation links -->
+  <nav class="panel-nav">
+    <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
+    <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">📷</span> Instagram</a>
+    <a href="https://x.com/mind4metal" target="_blank"><span class="nav-icon">𝕏</span> X / Twitter</a>
+    <a href="/blog" ><span class="nav-icon">📝</span> Blog</a>
+    <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">✉️</span> Email Us</a>
+  </nav>
+
+  <!-- Request Form -->
+  <div class="panel-section-title">🎸 Song Request</div>
+  <form id="reqform">
+    <label class="field-label">Your Name</label>
+    <input name="name" required placeholder="Your name">
+    <label class="field-label">Artist</label>
+    <input name="artist" required placeholder="Artist">
+    <label class="field-label">Song Title</label>
+    <input name="song" required placeholder="Song title">
+    <label class="field-label">Message / Shout-Out (optional)</label>
+    <textarea name="message" placeholder="Dedication, shout out, anything..."></textarea>
+    <!-- Honeypot -->
+    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+    <button type="submit" class="submit-btn">Send Request 🤘</button>
+  </form>
+</aside>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- NOW PLAYING -->
+  <div class="now-playing-section">
+
+    <!-- Album Art -->
+    <div style="position:relative;">
+      <div class="art-glow" id="artGlow"></div>
+      <div class="art-frame" id="artFrame">
+        <div class="art-placeholder" id="artPlaceholder">🎸</div>
+        <img id="albumArt" alt="Album Art">
+      </div>
+    </div>
+
+    <!-- NP Info -->
+    <div class="np-info">
+      <div class="steel-bar"></div>
+      <div class="np-eyebrow">
+        Now Playing
+        <span class="live-badge">
+          <span class="fire-dot"></span>
+          Live Broadcast
+        </span>
+      </div>
+
+      <h2 id="title" class="fade">—</h2>
+      <p id="artist" class="fade">—</p>
+
+      <div class="waveform" id="waveform"></div>
+
+      <div class="controls">
+        <button id="listen-btn">
+          <span id="playIcon">▶</span>
+          <span id="btnText">Listen Live</span>
+        </button>
+        <span class="elapsed" id="elapsed">0:00</span>
+      </div>
+
+      <div class="stream-meta">192 kbps · Hard Rock / Heavy Metal · 24/7 Live</div>
+    </div>
+  </div>
+
+  <div class="flame-divider"><hr></div>
+
+  <!-- RECENTLY PLAYED -->
+  <section class="section">
+    <div class="sec-head">
+      <span style="font-size:17px">🔥</span>
+      <h3 class="sec-title">Recently Played</h3>
+      <div class="sec-line"></div>
+    </div>
+    <table class="hist-table">
+      <thead><tr><th class="td-n">#</th><th>Title</th><th>Artist</th><th>Time</th></tr></thead>
+      <tbody id="histBody">
+        <tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="flame-divider"><hr></div>
+
+  <!-- SOCIAL -->
+  <section class="social-section">
+    <div class="sec-head">
+      <span style="font-size:17px">⚡</span>
+      <h3 class="sec-title">Follow the Metal</h3>
+      <div class="sec-line"></div>
+    </div>
+    <div class="social-grid">
+      <div class="s-card">
+        <div class="s-head"><span>𝕏</span> X / Twitter</div>
+        <div class="s-body">
+          <a class="twitter-timeline" data-theme="dark"
+             data-chrome="noheader nofooter noborders transparent"
+             data-tweet-limit="3"
+             href="https://twitter.com/mind4metal">Tweets by @mind4metal</a>
+        </div>
+      </div>
+      <div class="s-card">
+        <div class="s-head"><span>📘</span> Facebook</div>
+        <div class="s-body">
+          <div id="fb-root"></div>
+          <div class="fb-page"
+            data-href="https://www.facebook.com/Mind4Metal"
+            data-tabs="timeline" data-width="360" data-height="340"
+            data-small-header="true" data-adapt-container-width="true"
+            data-hide-cover="false" data-show-facepile="false">
           </div>
         </div>
       </div>
     </div>
-    <audio id="audio" preload="none"></audio>
   </section>
 
-  <section class="lg:col-span-1 rounded-2xl border border-white/10 glass p-5">
-    <div class="flex items-center gap-2 mb-3"><span>📨</span><h3 class="text-lg font-bold">Send a Request</h3></div>
-    <form id="reqform" class="grid gap-3">
-      <input name="name" required placeholder="Your name" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-      <input name="artist" required placeholder="Artist" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-      <input name="song" required placeholder="Song" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"/>
-      <textarea name="message" rows="3" placeholder="Optional message" class="px-3 py-2 rounded-lg bg-zinc-800/70 border border-white/10"></textarea>
-      <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off"/>
-      <button class="px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-400 text-black font-semibold">Submit Request</button>
-    </form>
-  </section>
-
-  <section class="lg:col-span-3 rounded-2xl border border-white/10 glass p-5">
-    <div class="flex items-center gap-2 mb-3"><span>📻</span><h3 class="text-lg font-bold">Recently Played</h3></div>
-    <table class="min-w-full text-sm">
-      <thead>
-        <tr class="text-left text-zinc-400">
-          <th class="py-2 pr-4">Time</th>
-          <th class="py-2 pr-4">Title</th>
-          <th class="py-2 pr-4">Artist</th>
-        </tr>
-      </thead>
-      <tbody id="historyBody"></tbody>
-    </table>
-  </section>
 </main>
 
+<footer>
+  <div class="footer-left">
+    <img src="Mind4Metal_Dragon.png" alt="" class="footer-dragon">
+    <span>© 2026 Mind4Metal Radio · Coeur d'Alene, Idaho</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://facebook.com/Mind4Metal" target="_blank">Facebook</a>
+    <a href="https://instagram.com/mind4metalradio" target="_blank">Instagram</a>
+    <a href="https://x.com/mind4metal" target="_blank">X</a>
+    <a href="/blog">Blog</a>
+    <a href="mailto:mind4metal@hotmail.com">Email</a>
+  </div>
+</footer>
+</div><!-- /wrapper -->
+
+<div class="toast" id="toast"></div>
+<audio id="audio" preload="none"></audio>
+
+<script async src="https://platform.twitter.com/widgets.js"></script>
 <script>
-  const BACKGROUND_URL="https://radio.mind4metal.com/assets/m4m-bg.jpg";
-  const STREAM_URL="https://radio.mind4metal.com/stream.mp3";
-  const ICECAST_STATUS_URL="https://radio.mind4metal.com/status-json.xsl";
-  const REQUEST_POST_URL="https://formspree.io/f/mind4metal";
+(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0";fjs.parentNode.insertBefore(js,fjs);}(document,'script','facebook-jssdk'));
+</script>
 
-  bg.style.backgroundImage = "url("+BACKGROUND_URL+")";
-  const audio=document.getElementById('audio'); audio.src=STREAM_URL;
-  const listen=document.getElementById('listen'); const titleEl=document.getElementById('title');
-  const artistEl=document.getElementById('artist'); const elapsed=document.getElementById('elapsed');
-  const historyBody=document.getElementById('historyBody');
-  let playing=false, startedAt=Date.now(), last=""; const hist=[];
+<script>
+// ── CONFIG ──
+const STREAM_URL  = "https://radio.mind4metal.com/stream.mp3";
+const STATUS_URL  = "https://radio.mind4metal.com/status-json.xsl";
+const CONTACT_EMAIL = "mind4metal@hotmail.com";
+const MAX_HIST    = 10;
 
-  listen.onclick=async()=>{ 
-    try{ 
-      if(!playing){ 
-        await audio.play(); 
-        listen.textContent='Pause'; 
-        playing=true; 
-      } else { 
-        audio.pause(); 
-        listen.textContent='Listen Live'; 
-        playing=false; 
-      } 
-    }catch{} 
-  };
+// Formspree: sign up free at formspree.io and replace with your form ID
+// OR leave blank to use mailto fallback
+const FORMSPREE_ID = "xgolbjen";
 
-  setInterval(()=>{ 
-    const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000)); 
-    elapsed.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`; 
-  },1000);
+let playing=false, startedAt=Date.now(), lastCombo="";
+const hist=[];
 
-  function parseTA(s){ 
-    if(!s) return {title:'Unknown Track',artist:'Unknown Artist'}; 
-    const p=s.split(' - '); 
-    if(p.length>=2) return {artist:p[0],title:p.slice(1).join(' - ')}; 
-    const by=s.split(' by '); 
-    if(by.length>=2) return {title:by[0],artist:by.slice(1).join(' by ')}; 
-    return {title:s,artist:''}; 
+const audio      = document.getElementById('audio');
+const listenBtn  = document.getElementById('listen-btn');
+const playIcon   = document.getElementById('playIcon');
+const btnText    = document.getElementById('btnText');
+const titleEl    = document.getElementById('title');
+const artistEl   = document.getElementById('artist');
+const elapsedEl  = document.getElementById('elapsed');
+const histBody   = document.getElementById('histBody');
+const waveform   = document.getElementById('waveform');
+const albumArt   = document.getElementById('albumArt');
+const artHolder  = document.getElementById('artPlaceholder');
+const artGlow    = document.getElementById('artGlow');
+const listenerEl = document.getElementById('listenerCount');
+const hamburger  = document.getElementById('hamburgerBtn');
+const panel      = document.getElementById('slidePanel');
+const overlay    = document.getElementById('overlay');
+const panelClose = document.getElementById('panelClose');
+const toast      = document.getElementById('toast');
+
+audio.src = STREAM_URL;
+
+// Waveform bars
+for(let i=0;i<32;i++){
+  const b=document.createElement('div');
+  b.className='bar';
+  b.style.height=(Math.random()*26+4)+'px';
+  b.style.animationDelay=(i*0.04)+'s';
+  b.style.animationDuration=(0.7+Math.random()*0.85)+'s';
+  waveform.appendChild(b);
+}
+
+// Play / Pause
+listenBtn.addEventListener('click', async()=>{
+  try{
+    if(!playing){
+      await audio.play(); playing=true;
+      listenBtn.classList.add('on'); playIcon.textContent='⏸'; btnText.textContent='Pause';
+      waveform.classList.add('on');
+    } else {
+      audio.pause(); playing=false;
+      listenBtn.classList.remove('on'); playIcon.textContent='▶'; btnText.textContent='Listen Live';
+      waveform.classList.remove('on');
+    }
+  }catch(e){}
+});
+
+// Elapsed timer
+setInterval(()=>{
+  const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
+  elapsedEl.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+},1000);
+
+// Parse "Artist - Title" from Icecast
+function parseTrack(raw){
+  if(!raw)return{title:'Unknown',artist:''};
+  const p=raw.split(' - ');
+  if(p.length>=2)return{artist:p[0].trim(),title:p.slice(1).join(' - ').trim()};
+  return{title:raw.trim(),artist:''};
+}
+
+// Album art via MusicBrainz + Cover Art Archive (free, no key needed)
+async function fetchArt(artist,title){
+  try{
+    const q=encodeURIComponent(`artist:"${artist}" AND recording:"${title}"`);
+    const r=await fetch(`https://musicbrainz.org/ws/2/recording/?query=${q}&fmt=json&limit=1`,
+      {headers:{'User-Agent':'Mind4MetalRadio/1.0 (mind4metal@hotmail.com)'}});
+    const d=await r.json();
+    const rid=d?.recordings?.[0]?.releases?.[0]?.id;
+    if(!rid)return null;
+    const url=`https://coverartarchive.org/release/${rid}/front-250`;
+    const c=await fetch(url,{method:'HEAD'});
+    return c.ok?url:null;
+  }catch{return null;}
+}
+
+function showArt(url){
+  if(url){
+    const i=new Image();
+    i.onload=()=>{albumArt.src=url;albumArt.style.display='block';artHolder.style.display='none';artGlow.classList.add('on');};
+    i.onerror=()=>{albumArt.style.display='none';artHolder.style.display='flex';artGlow.classList.remove('on');};
+    i.src=url;
+  } else {
+    albumArt.style.display='none';artHolder.style.display='flex';artGlow.classList.remove('on');
   }
+}
 
-  function renderHist(){ 
-    historyBody.innerHTML=hist.map(t=>`<tr class="border-t border-white/10"><td class="py-2 pr-4 text-zinc-300">${new Date(t.at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</td><td class="py-2 pr-4 font-semibold">${t.title}</td><td class="py-2 pr-4 text-zinc-300">${t.artist}</td></tr>`).join(''); 
+function renderHist(){
+  if(!hist.length){
+    histBody.innerHTML=`<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>`;
+    return;
   }
+  histBody.innerHTML=hist.map((t,i)=>`
+    <tr>
+      <td class="td-n">${i+1}</td>
+      <td class="td-ti">${t.title}</td>
+      <td class="td-ar">${t.artist}</td>
+      <td class="td-tm">${new Date(t.at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</td>
+    </tr>`).join('');
+}
 
-  async function poll(){ 
-    try{ 
-      const r=await fetch(ICECAST_STATUS_URL,{cache:'no-store'}); 
-      const j=await r.json();
-      const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
-      const raw=src?.title||src?.yp_currently_playing; 
-      const {title,artist}=parseTA(raw); 
-      const combo=`${artist} - ${title}`.trim();
-      if(combo && combo!==last){ 
-        if(last){ 
-          hist.unshift({title:titleEl.textContent||'—',artist:artistEl.textContent||'—',at:startedAt}); 
-          if(hist.length>10) hist.pop(); 
-          renderHist(); 
-        }
-        titleEl.textContent=title||'—'; 
-        artistEl.textContent=artist||'—'; 
-        startedAt=Date.now(); 
-        last=combo; 
+// Poll Icecast every 15s
+async function poll(){
+  try{
+    const r=await fetch(STATUS_URL,{cache:'no-store'});
+    const j=await r.json();
+    const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
+    if(!src)return;
+
+    listenerEl.textContent=src.listeners??'—';
+
+    const raw=src.title||src.yp_currently_playing||'';
+    const{title,artist}=parseTrack(raw);
+    const combo=`${artist}|||${title}`;
+
+    if(combo&&combo!==lastCombo){
+      if(lastCombo&&titleEl.textContent!=='—'){
+        hist.unshift({title:titleEl.textContent,artist:artistEl.textContent,at:startedAt});
+        if(hist.length>MAX_HIST)hist.pop();
+        renderHist();
       }
-    }catch(e){} 
+      titleEl.classList.add('dim'); artistEl.classList.add('dim');
+      await new Promise(r=>setTimeout(r,280));
+      titleEl.textContent=title||'—'; artistEl.textContent=artist||'—';
+      startedAt=Date.now(); lastCombo=combo;
+      titleEl.classList.remove('dim'); artistEl.classList.remove('dim');
+      if(artist&&title) setTimeout(async()=>showArt(await fetchArt(artist,title)),700);
+    }
+  }catch(e){}
+}
+poll(); setInterval(poll,15000);
+
+// Panel
+const openPanel =()=>{ hamburger.classList.add('open'); panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; };
+const closePanel=()=>{ hamburger.classList.remove('open'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; };
+hamburger.addEventListener('click',()=>panel.classList.contains('open')?closePanel():openPanel());
+overlay.addEventListener('click',closePanel);
+panelClose.addEventListener('click',closePanel);
+
+// Toast
+function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),3200); }
+
+// Request form — posts to Formspree if ID set, otherwise mailto fallback
+document.getElementById('reqform').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const fd=new FormData(e.target);
+  if(fd.get('website'))return; // honeypot
+
+  const data=Object.fromEntries(fd.entries());
+
+  if(FORMSPREE_ID){
+    try{
+      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({...data,_replyto:CONTACT_EMAIL})
+      });
+      e.target.reset(); closePanel(); showToast('Request sent! 🤘 Horns up!');
+    }catch{ showToast("Couldn't send — try again."); }
+  } else {
+    // mailto fallback — opens email client
+    const subject=encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
+    const body=encodeURIComponent(`From: ${data.name}\nArtist: ${data.artist}\nSong: ${data.song}\n\n${data.message||''}`);
+    window.location.href=`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    e.target.reset(); closePanel();
   }
-
-  poll(); 
-  setInterval(poll,15000);
-
-  document.getElementById('reqform').onsubmit=async(e)=>{ 
-    e.preventDefault(); 
-    const fd=new FormData(e.target);
-    if(fd.get('website')) return; 
-    try{ 
-      if(REQUEST_POST_URL){ 
-        await fetch(REQUEST_POST_URL,{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(Object.fromEntries(fd.entries()))
-        }); 
-      } 
-      alert('Request sent! 🤘'); 
-      e.target.reset(); 
-    }catch{ 
-      alert('Couldn\'t send right now.'); 
-    } 
-  };
+});
 </script>
 </body>
 </html>
