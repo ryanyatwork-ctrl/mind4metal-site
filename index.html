@@ -39,35 +39,33 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
 
 /* ── GEAR BG ── */
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-.bg-fixed::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(255,85,0,0.05) 0%,transparent 60%);}
+
+/* Watermark dragon image — fixed, centered, very subtle */
+.bg-fixed::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('Mind4Metal_banner.png');
+  background-size:85% auto;
+  background-position:center center;
+  background-repeat:no-repeat;
+  opacity:0.07;
+  filter:grayscale(30%);
+}
+
+/* Gear pattern on top */
 .bg-fixed::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1.2'/%3E%3Ccircle cx='50' cy='50' r='14' fill='none' stroke='rgba(255,255,255,0.015)' stroke-width='.8'/%3E%3Crect x='46' y='24' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='46' y='70' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='24' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='70' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");opacity:.5;}
 .wrapper{position:relative;z-index:1;}
 
 /* ── NAV ── */
 nav{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:90px;
-  background-image:url('Mind4Metal_Banner.png');
-  background-size:cover;
-  background-position:left center;
-  border-bottom:2px solid rgba(255,85,0,0.35);
-  box-shadow:0 4px 24px rgba(0,0,0,0.8);
+  padding:0 20px;height:72px;
+  background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);
+  border-bottom:1px solid rgba(255,85,0,0.25);
+  box-shadow:0 4px 20px rgba(0,0,0,0.8);
   position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(16px);
 }
 
-/* Overlay: clear left (show dragon), dark right (readable menu) */
-nav::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,
-    rgba(0,0,0,0.35) 0%,
-    rgba(0,0,0,0.55) 30%,
-    rgba(0,0,0,0.82) 55%,
-    rgba(0,0,0,0.93) 100%);
-  z-index:0;
-}
-
-/* All direct nav children float above overlay */
-nav > *{position:relative;z-index:1;}
 
 .nav-tagline{
   font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;
