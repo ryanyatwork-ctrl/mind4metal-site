@@ -49,21 +49,20 @@ nav{
   padding:0 20px;height:90px;
   background-image:url('Mind4Metal_Banner.png');
   background-size:cover;
-  background-position:center center;
+  background-position:left center;
   border-bottom:2px solid rgba(255,85,0,0.35);
   box-shadow:0 4px 24px rgba(0,0,0,0.8);
   position:sticky;top:0;z-index:100;
-  /* Dark overlay so text stays readable */
-  position:sticky;
 }
 
-/* Dark gradient overlay across full nav */
+/* Overlay: clear left (show dragon), dark right (readable menu) */
 nav::before{
   content:'';position:absolute;inset:0;
   background:linear-gradient(90deg,
-    rgba(0,0,0,0.72) 0%,
-    rgba(0,0,0,0.45) 40%,
-    rgba(0,0,0,0.65) 100%);
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.55) 30%,
+    rgba(0,0,0,0.82) 55%,
+    rgba(0,0,0,0.93) 100%);
   z-index:0;
 }
 
