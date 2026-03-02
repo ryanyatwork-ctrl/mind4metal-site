@@ -567,29 +567,74 @@ function parseTrack(raw){
   return{title:raw.trim(),artist:''};
 }
 
-// Album art via MusicBrainz + Cover Art Archive (free, no key needed)
-async function fetchArt(artist,title){
-  try{
-    const q=encodeURIComponent(`artist:"${artist}" AND recording:"${title}"`);
-    const r=await fetch(`https://musicbrainz.org/ws/2/recording/?query=${q}&fmt=json&limit=1`,
-      {headers:{'User-Agent':'Mind4MetalRadio/1.0 (mind4metal@hotmail.com)'}});
-    const d=await r.json();
-    const rid=d?.recordings?.[0]?.releases?.[0]?.id;
-    if(!rid)return null;
-    const url=`https://coverartarchive.org/release/${rid}/front-250`;
-    const c=await fetch(url,{method:'HEAD'});
-    return c.ok?url:null;
-  }catch{return null;}
+// ── ART CACHE (localStorage) ──────────────────────────────
+// Stores { "Artist|||Title": "https://url-to-art" }
+// Speeds up repeat plays — art loads instantly from cache
+const ART_CACHE_KEY = 'm4m_art_cache';
+const ART_CACHE_MAX = 500; // max entries to store
+
+// Pre-seeded covers — add known local or remote URLs here
+const ART_PRESEEDED = {
+  'Chrome Viper|||Neurocore Reign': 'Chrome_Viper_cover.png',
+  'Chrome Viper|||Neurcore Reign (canon)': 'Chrome_Viper_cover.png',
+  'Chrome Viper|||Control Signal (Extend)': 'Chrome_Viper_cover.png',
+  'Chrome Viper|||God Mode Disabled': 'Chrome_Viper_cover.png',
+};
+
+function artCacheGet(artist, title) {
+  const key = `${artist}|||${title}`;
+  if (ART_PRESEEDED[key]) return ART_PRESEEDED[key];
+  try {
+    const cache = JSON.parse(localStorage.getItem(ART_CACHE_KEY) || '{}');
+    return cache[key] || null;
+  } catch { return null; }
 }
 
-function showArt(url){
-  if(url){
-    const i=new Image();
-    i.onload=()=>{albumArt.src=url;albumArt.style.display='block';artHolder.style.display='none';artGlow.classList.add('on');};
-    i.onerror=()=>{albumArt.style.display='none';artHolder.style.display='flex';artGlow.classList.remove('on');};
-    i.src=url;
+function artCacheSet(artist, title, url) {
+  if (!url) return;
+  try {
+    const cache = JSON.parse(localStorage.getItem(ART_CACHE_KEY) || '{}');
+    const entries = Object.keys(cache);
+    // Evict oldest entries if over limit
+    if (entries.length >= ART_CACHE_MAX) {
+      delete cache[entries[0]];
+    }
+    cache[`${artist}|||${title}`] = url;
+    localStorage.setItem(ART_CACHE_KEY, JSON.stringify(cache));
+  } catch {}
+}
+
+// Album art via MusicBrainz + Cover Art Archive (free, no key needed)
+async function fetchArt(artist, title) {
+  // Check cache first — instant load
+  const cached = artCacheGet(artist, title);
+  if (cached) return cached;
+
+  try {
+    const q = encodeURIComponent(`artist:"${artist}" AND recording:"${title}"`);
+    const r = await fetch(`https://musicbrainz.org/ws/2/recording/?query=${q}&fmt=json&limit=1`,
+      { headers: { 'User-Agent': 'Mind4MetalRadio/1.0 (mind4metal@hotmail.com)' } });
+    const d = await r.json();
+    const rid = d?.recordings?.[0]?.releases?.[0]?.id;
+    if (!rid) return null;
+    const url = `https://coverartarchive.org/release/${rid}/front`; // full resolution
+    const c = await fetch(url, { method: 'HEAD' });
+    if (c.ok) {
+      artCacheSet(artist, title, url); // Save to cache
+      return url;
+    }
+    return null;
+  } catch { return null; }
+}
+
+function showArt(url) {
+  if (url) {
+    const i = new Image();
+    i.onload = () => { albumArt.src=url; albumArt.style.display='block'; artHolder.style.display='none'; artGlow.classList.add('on'); };
+    i.onerror = () => { albumArt.style.display='none'; artHolder.style.display='flex'; artGlow.classList.remove('on'); };
+    i.src = url;
   } else {
-    albumArt.style.display='none';artHolder.style.display='flex';artGlow.classList.remove('on');
+    albumArt.style.display='none'; artHolder.style.display='flex'; artGlow.classList.remove('on');
   }
 }
 
