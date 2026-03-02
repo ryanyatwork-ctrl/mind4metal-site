@@ -342,22 +342,23 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <button class="panel-close" id="panelClose">✕</button>
   </div>
 
+  <div class="panel-inner">
+
   <!-- Navigation links -->
-  <div class="panel-section-title" style="margin-top:0">🔗 Links</div>
+  <div class="panel-section-title">🔗 Links</div>
   <nav class="panel-nav">
     <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
     <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">📷</span> Instagram</a>
     <a href="https://x.com/mind4metal" target="_blank"><span class="nav-icon">𝕏</span> X / Twitter</a>
-    <a href="/blog"><span class="nav-icon">📝</span> Blog</a>
+    <a href="blog.html"><span class="nav-icon">📝</span> Blog</a>
     <a href="community.html"><span class="nav-icon">🤘</span> Community</a>
     <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">✉️</span> Email Us</a>
   </nav>
 
-  <!-- Divider -->
-  <div style="height:1px;background:linear-gradient(90deg,rgba(255,85,0,0.4),transparent);margin:20px 0;"></div>
+  <div class="panel-divider"></div>
 
   <!-- Request Form -->
-  <div class="panel-section-title" style="margin-top:0">🎸 Song Request</div>
+  <div class="panel-section-title">🎸 Song Request</div>
   <form id="reqform">
     <label class="field-label">Your Name</label>
     <input name="name" required placeholder="Your name">
@@ -371,6 +372,8 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
     <button type="submit" class="submit-btn">Send Request 🤘</button>
   </form>
+
+  </div><!-- /panel-inner -->
 </aside>
 
 <!-- ── MAIN ── -->
@@ -431,6 +434,47 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
         <tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>
       </tbody>
     </table>
+  </section>
+
+  <div class="flame-divider"><hr></div>
+
+  <!-- COMMUNITY TEASER -->
+  <section class="section">
+    <div class="sec-head">
+      <span style="font-size:17px">🤘</span>
+      <h3 class="sec-title">Community</h3>
+      <div class="sec-line"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
+
+      <a href="community.html" style="text-decoration:none;">
+        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
+          <div style="font-size:28px;margin-bottom:10px;">📖</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Guestbook</div>
+          <div style="font-size:14px;color:var(--text-muted);">Tell us where you're tuning in from. Leave your mark on the wall.</div>
+          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Sign the Book →</div>
+        </div>
+      </a>
+
+      <a href="community.html#signup" style="text-decoration:none;">
+        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
+          <div style="font-size:28px;margin-bottom:10px;">🔥</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Stay in the Fire</div>
+          <div style="font-size:14px;color:var(--text-muted);">Sign up for updates on new shows, events and announcements.</div>
+          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Get Updates →</div>
+        </div>
+      </a>
+
+      <a href="admin.html" style="text-decoration:none;">
+        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
+          <div style="font-size:28px;margin-bottom:10px;">📡</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Station Stats</div>
+          <div style="font-size:14px;color:var(--text-muted);">Live listener map, stream analytics and broadcast dashboard.</div>
+          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">View Dashboard →</div>
+        </div>
+      </a>
+
+    </div>
   </section>
 
   <div class="flame-divider"><hr></div>
