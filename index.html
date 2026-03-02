@@ -135,16 +135,20 @@ nav{
 .panel-close:hover{background:rgba(255,85,0,.2);}
 
 /* Panel nav links */
-.panel-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06);}
+.panel-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:0;}
 .panel-nav a{
-  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:4px;
-  font-family:'Oswald',sans-serif;font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:5px;
+  font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
   color:var(--silver2);text-decoration:none;transition:all .18s;
+  background:rgba(0,0,0,0.25);border:1px solid transparent;
 }
-.panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);}
-.panel-nav a .nav-icon{font-size:18px;width:24px;text-align:center;}
+.panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);border-color:rgba(255,85,0,.2);}
+.panel-nav a .nav-icon{font-size:19px;width:26px;text-align:center;flex-shrink:0;}
 
-.panel-section-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
+.panel-section-title{
+  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-muted);margin-bottom:10px;margin-top:18px;
+}
 
 .field-label{display:block;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;margin-top:14px;}
 .slide-panel input,.slide-panel textarea{
@@ -339,6 +343,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </div>
 
   <!-- Navigation links -->
+  <div class="panel-section-title" style="margin-top:0">🔗 Links</div>
   <nav class="panel-nav">
     <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
     <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">📷</span> Instagram</a>
@@ -348,8 +353,11 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">✉️</span> Email Us</a>
   </nav>
 
+  <!-- Divider -->
+  <div style="height:1px;background:linear-gradient(90deg,rgba(255,85,0,0.4),transparent);margin:20px 0;"></div>
+
   <!-- Request Form -->
-  <div class="panel-section-title">🎸 Song Request</div>
+  <div class="panel-section-title" style="margin-top:0">🎸 Song Request</div>
   <form id="reqform">
     <label class="field-label">Your Name</label>
     <input name="name" required placeholder="Your name">
