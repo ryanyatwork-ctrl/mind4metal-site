@@ -39,33 +39,35 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
 
 /* ── GEAR BG ── */
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-
-/* Watermark dragon image — fixed, centered, very subtle */
-.bg-fixed::before{
-  content:'';position:absolute;inset:0;
-  background-image:url('Mind4Metal_banner.png');
-  background-size:85% auto;
-  background-position:center center;
-  background-repeat:no-repeat;
-  opacity:0.07;
-  filter:grayscale(30%);
-}
-
-/* Gear pattern on top */
+.bg-fixed::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(255,85,0,0.05) 0%,transparent 60%);}
 .bg-fixed::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='22' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1.2'/%3E%3Ccircle cx='50' cy='50' r='14' fill='none' stroke='rgba(255,255,255,0.015)' stroke-width='.8'/%3E%3Crect x='46' y='24' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='46' y='70' width='8' height='6' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='24' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3Crect x='70' y='46' width='6' height='8' rx='1' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");opacity:.5;}
 .wrapper{position:relative;z-index:1;}
 
 /* ── NAV ── */
 nav{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:72px;
-  background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);
-  border-bottom:1px solid rgba(255,85,0,0.25);
-  box-shadow:0 4px 20px rgba(0,0,0,0.8);
-  position:-webkit-sticky;position:sticky;top:0;z-index:100;
-  -webkit--webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  padding:0 20px;height:90px;
+  background-image:url('Mind4Metal_Banner.png');
+  background-size:cover;
+  background-position:left center;
+  border-bottom:2px solid rgba(255,85,0,0.35);
+  box-shadow:0 4px 24px rgba(0,0,0,0.8);
+  position:sticky;top:0;z-index:100;
 }
 
+/* Overlay: clear left (show dragon), dark right (readable menu) */
+nav::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.55) 30%,
+    rgba(0,0,0,0.82) 55%,
+    rgba(0,0,0,0.93) 100%);
+  z-index:0;
+}
+
+/* All direct nav children float above overlay */
+nav > *{position:relative;z-index:1;}
 
 .nav-tagline{
   font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;
@@ -87,7 +89,7 @@ nav{
   background:var(--fire);box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,0.5);
   animation:flicker 1.8s ease-in-out infinite;
 }
-@-webkit-keyframes flicker{0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}25%{opacity:.7;box-shadow:0 0 5px var(--fire);}75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}}@keyframes flicker{
+@keyframes flicker{
   0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}
   25%{opacity:.7;box-shadow:0 0 5px var(--fire);}
   75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}
@@ -117,7 +119,7 @@ nav{
 
 
 /* ── SLIDE PANEL ── */
-.request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;-webkit--webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px);}
 .request-overlay.open{opacity:1;pointer-events:all;}
 
 .slide-panel{
@@ -135,20 +137,16 @@ nav{
 .panel-close:hover{background:rgba(255,85,0,.2);}
 
 /* Panel nav links */
-.panel-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:0;}
+.panel-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.06);}
 .panel-nav a{
-  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:5px;
-  font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:4px;
+  font-family:'Oswald',sans-serif;font-size:16px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
   color:var(--silver2);text-decoration:none;transition:all .18s;
-  background:rgba(0,0,0,0.25);border:1px solid transparent;
 }
-.panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);border-color:rgba(255,85,0,.2);}
-.panel-nav a .nav-icon{font-size:19px;width:26px;text-align:center;flex-shrink:0;}
+.panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);}
+.panel-nav a .nav-icon{font-size:18px;width:24px;text-align:center;}
 
-.panel-section-title{
-  font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--text-muted);margin-bottom:10px;margin-top:18px;
-}
+.panel-section-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;}
 
 .field-label{display:block;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;margin-top:14px;}
 .slide-panel input,.slide-panel textarea{
@@ -173,9 +171,9 @@ nav{
 .now-playing-section{
   max-width:1100px;margin:0 auto;padding:44px 28px 20px;
   display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;
-  -webkit-animation:fadeUp .7s ease both;animation:fadeUp .7s ease both;
+  animation:fadeUp .7s ease both;
 }
-@-webkit-keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
 /* Album art */
 .art-frame{
@@ -186,7 +184,7 @@ nav{
 .art-frame::before,.art-frame::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--fire2);border-style:solid;z-index:2;}
 .art-frame::before{top:0;left:0;border-width:2px 0 0 2px;}
 .art-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;}
-.art-frame img#albumArt{width:100%;height:100%;object-fit:cover;display:none;position:absolute;top:0;left:0;right:0;bottom:0;}
+.art-frame img#albumArt{width:100%;height:100%;object-fit:cover;display:none;position:absolute;inset:0;}
 .art-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(135deg,var(--steel),var(--steel2));opacity:.45;}
 /* Subtle glow behind art when art is loaded */
 .art-glow{position:absolute;inset:-12px;border-radius:12px;background:radial-gradient(circle,rgba(255,85,0,.18),transparent 70%);opacity:0;transition:opacity 1s;pointer-events:none;}
@@ -216,7 +214,7 @@ nav{
 }
 .waveform.on .bar{opacity:1;}
 .waveform:not(.on) .bar{animation:none;height:3px!important;}
-@-webkit-keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}@keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
+@keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
 
 .controls{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
 #listen-btn{
@@ -300,9 +298,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   .footer-left span{display:none;}
 }
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-EVLV2T57J8");</script>
 </head>
 
 <body>
@@ -342,20 +337,14 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <button class="panel-close" id="panelClose">✕</button>
   </div>
 
-  <div class="panel-inner">
-
   <!-- Navigation links -->
-  <div class="panel-section-title">🔗 Links</div>
   <nav class="panel-nav">
     <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
     <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">📷</span> Instagram</a>
     <a href="https://x.com/mind4metal" target="_blank"><span class="nav-icon">𝕏</span> X / Twitter</a>
-    <a href="blog.html"><span class="nav-icon">📝</span> Blog</a>
-    <a href="community.html"><span class="nav-icon">🤘</span> Community</a>
+    <a href="/blog" ><span class="nav-icon">📝</span> Blog</a>
     <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">✉️</span> Email Us</a>
   </nav>
-
-  <div class="panel-divider"></div>
 
   <!-- Request Form -->
   <div class="panel-section-title">🎸 Song Request</div>
@@ -372,8 +361,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
     <button type="submit" class="submit-btn">Send Request 🤘</button>
   </form>
-
-  </div><!-- /panel-inner -->
 </aside>
 
 <!-- ── MAIN ── -->
@@ -438,47 +425,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
   <div class="flame-divider"><hr></div>
 
-  <!-- COMMUNITY TEASER -->
-  <section class="section">
-    <div class="sec-head">
-      <span style="font-size:17px">🤘</span>
-      <h3 class="sec-title">Community</h3>
-      <div class="sec-line"></div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-
-      <a href="community.html" style="text-decoration:none;">
-        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
-          <div style="font-size:28px;margin-bottom:10px;">📖</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Guestbook</div>
-          <div style="font-size:14px;color:var(--text-muted);">Tell us where you're tuning in from. Leave your mark on the wall.</div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Sign the Book →</div>
-        </div>
-      </a>
-
-      <a href="community.html#signup" style="text-decoration:none;">
-        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
-          <div style="font-size:28px;margin-bottom:10px;">🔥</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Stay in the Fire</div>
-          <div style="font-size:14px;color:var(--text-muted);">Sign up for updates on new shows, events and announcements.</div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Get Updates →</div>
-        </div>
-      </a>
-
-      <a href="admin.html" style="text-decoration:none;">
-        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
-          <div style="font-size:28px;margin-bottom:10px;">📡</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Station Stats</div>
-          <div style="font-size:14px;color:var(--text-muted);">Live listener map, stream analytics and broadcast dashboard.</div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">View Dashboard →</div>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <div class="flame-divider"><hr></div>
-
   <!-- SOCIAL -->
   <section class="social-section">
     <div class="sec-head">
@@ -529,7 +475,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 </div><!-- /wrapper -->
 
 <div class="toast" id="toast"></div>
-<audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
+<audio id="audio" preload="none"></audio>
 
 <script async src="https://platform.twitter.com/widgets.js"></script>
 <script>
@@ -698,7 +644,7 @@ function renderHist(){
 // Poll Icecast every 15s
 async function poll(){
   try{
-    const r=await fetch(STATUS_URL+'?_='+Date.now());
+    const r=await fetch(STATUS_URL,{cache:'no-store'});
     const j=await r.json();
     const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
     if(!src)return;
