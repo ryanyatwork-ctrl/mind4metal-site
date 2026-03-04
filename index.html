@@ -136,6 +136,7 @@ nav{
 
 /* Panel nav links */
 .panel-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:0;}
+.panel-divider{height:1px;background:linear-gradient(90deg,rgba(255,85,0,.3),transparent);margin:20px 0;}
 .panel-nav a{
   display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:5px;
   font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
@@ -341,7 +342,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   <div class="panel-inner">
 
   <!-- Navigation links -->
-  <div class="panel-section-title">🔗 Links</div>
+  <div class="panel-section-title" style="margin-top:0;">🔗 Links</div>
   <nav class="panel-nav">
     <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
     <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">📷</span> Instagram</a>
@@ -447,9 +448,18 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
         <div style="padding:14px 18px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);">
           <span>📖</span> Guestbook
         </div>
-        <div style="padding:16px;">
-          <!-- Bravenet Embedded Service Code -->
-          <script src="https://apps.bravenet.com/go.js?service=guestbook;id=1;usernum=4023659867" type="text/javascript" charset="utf-8"></script>
+        <div style="padding:22px;">
+          <div style="font-size:14px;color:var(--text-muted);margin-bottom:18px;">Tell us where you're tuning in from. Leave your mark on the wall.</div>
+          <a href="https://pub.bravenet.com/guestbook/show.php?usernum=4023659867&cpv=1" target="_blank"
+            style="display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:3px;box-shadow:0 4px 18px rgba(255,85,0,.3);transition:all .2s;"
+            onmouseover="this.style.boxShadow='0 4px 28px rgba(255,85,0,.6)';this.style.transform='translateY(-1px)'"
+            onmouseout="this.style.boxShadow='0 4px 18px rgba(255,85,0,.3)';this.style.transform='translateY(0)'">
+            📖 Sign the Guestbook
+          </a>
+          <div id="guestbook-embed" style="margin-top:18px;">
+            <!-- Bravenet Embedded Service Code -->
+            <script src="https://apps.bravenet.com/go.js?service=guestbook;id=1;usernum=4023659867" type="text/javascript" charset="utf-8"></script>
+          </div>
         </div>
       </div>
 
