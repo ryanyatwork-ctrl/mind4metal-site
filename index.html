@@ -443,14 +443,15 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
 
-      <a href="community.html" style="text-decoration:none;">
-        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
-          <div style="font-size:28px;margin-bottom:10px;">📖</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Guestbook</div>
-          <div style="font-size:14px;color:var(--text-muted);">Tell us where you're tuning in from. Leave your mark on the wall.</div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Sign the Book →</div>
+      <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;">
+        <div style="padding:14px 18px;background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);">
+          <span>📖</span> Guestbook
         </div>
-      </a>
+        <div style="padding:16px;">
+          <!-- Bravenet Embedded Service Code -->
+          <script src="https://apps.bravenet.com/go.js?service=guestbook;id=1;usernum=4023659867" type="text/javascript" charset="utf-8"></script>
+        </div>
+      </div>
 
       <a href="community.html#signup" style="text-decoration:none;">
         <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
