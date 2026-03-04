@@ -288,6 +288,21 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   nav{padding:0 12px;height:70px;background-size:cover;}
   .listener-badge{padding:4px 8px;font-size:10px;}
 
+  /* On mobile: show dragon larger, centered, slightly more visible */
+  .bg-fixed::before{
+    background-size:280% auto;
+    background-position:15% top;
+    opacity:0.22;
+  }
+  .bg-fixed::after{
+    background:linear-gradient(to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(7,8,10,0.6) 45%,
+      rgba(7,8,10,0.92) 65%,
+      rgba(7,8,10,1) 80%);
+  }
+
 
 
   .now-playing-section{
