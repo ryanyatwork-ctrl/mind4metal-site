@@ -602,15 +602,20 @@ const ART_CACHE_KEY = 'm4m_art_cache';
 const ART_CACHE_MAX = 500; // max entries to store
 
 // Pre-seeded covers — add known local or remote URLs here
+// Song-specific overrides
 const ART_PRESEEDED = {
   'Chrome Viper|||Neurocore Reign': 'Chrome_Viper_cover.png',
-  'Chrome Viper|||Neurcore Reign (canon)': 'Chrome_Viper_cover.png',
-  'Chrome Viper|||Control Signal (Extend)': 'Chrome_Viper_cover.png',
-  'Chrome Viper|||God Mode Disabled': 'Chrome_Viper_cover.png',
+};
+
+// Artist-level fallbacks — any song by these artists gets this image
+// if no specific art is found
+const ART_ARTIST_FALLBACK = {
+  'Chrome Viper': 'Chrome_Viper_cover.png',
 };
 
 function artCacheGet(artist, title) {
   const key = `${artist}|||${title}`;
+  // Check song-specific preseeds first
   if (ART_PRESEEDED[key]) return ART_PRESEEDED[key];
   try {
     const cache = JSON.parse(localStorage.getItem(ART_CACHE_KEY) || '{}');
@@ -672,8 +677,14 @@ async function fetchArt(artist, title) {
         return url;
       }
     }
+    // Last resort: use artist-level fallback image if we have one
+    if (ART_ARTIST_FALLBACK[artist]) return ART_ARTIST_FALLBACK[artist];
     return null;
-  } catch { return null; }
+  } catch {
+    // Even on error, try artist fallback
+    if (ART_ARTIST_FALLBACK[artist]) return ART_ARTIST_FALLBACK[artist];
+    return null;
+  }
 }
 
 function showArt(url) {
