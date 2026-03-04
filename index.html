@@ -40,6 +40,23 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
 /* ── GEAR BG ── */
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
 
+/* Right edge smoke — shows only the smoke/right portion of the banner image */
+.smoke-right{
+  position:fixed;
+  top:0;right:0;
+  width:320px;height:100%;
+  z-index:0;
+  background-image:url('Mind4Metal_Background.png');
+  background-size:auto 60%;
+  background-position:right 30%;
+  background-repeat:no-repeat;
+  opacity:0.13;
+  /* Fade out on the left so it blends into the page */
+  -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
+  mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
+  pointer-events:none;
+}
+
 /* Background dragon image — anchored to top, full width, fades naturally */
 .bg-fixed::before{
   content:'';position:absolute;inset:0;
@@ -287,6 +304,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 }
 @media(max-width:600px){
   nav{padding:0 12px;height:64px;}
+  .smoke-right{display:none;}
   .nav-tagline strong{font-size:13px;letter-spacing:.08em;}
   .listener-badge{padding:4px 8px;font-size:10px;}
 
@@ -324,6 +342,8 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
 <body>
 <div class="bg-fixed"></div>
+<!-- Right edge smoke effect -->
+<div class="smoke-right"></div>
 <div class="wrapper">
 
 <!-- ── NAV ── -->
