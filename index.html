@@ -576,15 +576,62 @@ for(let i=0;i<32;i++){
 listenBtn.addEventListener('click', async()=>{
   try{
     if(!playing){
-      await audio.play(); playing=true;
-      listenBtn.classList.add('on'); playIcon.textContent='⏸'; btnText.textContent='Pause';
-      waveform.classList.add('on');
+      await startStream(); 
     } else {
-      audio.pause(); playing=false;
-      listenBtn.classList.remove('on'); playIcon.textContent='▶'; btnText.textContent='Listen Live';
-      waveform.classList.remove('on');
+      stopStream();
     }
   }catch(e){}
+});
+
+function stopStream(){
+  audio.pause();
+  audio.src = '';
+  playing = false;
+  listenBtn.classList.remove('on'); playIcon.textContent='▶'; btnText.textContent='Listen Live';
+  waveform.classList.remove('on');
+}
+
+async function startStream(){
+  audio.src = STREAM_URL;
+  audio.load();
+  await audio.play();
+  playing = true;
+  listenBtn.classList.add('on'); playIcon.textContent='⏸'; btnText.textContent='Pause';
+  waveform.classList.add('on');
+}
+
+// Auto-reconnect on stream error or stall
+let reconnectTimer = null;
+function scheduleReconnect(){
+  if(!playing) return;
+  if(reconnectTimer) return; // already scheduled
+  reconnectTimer = setTimeout(async()=>{
+    reconnectTimer = null;
+    if(!playing) return;
+    try{
+      audio.src = '';
+      audio.src = STREAM_URL;
+      audio.load();
+      await audio.play();
+    } catch(e){ scheduleReconnect(); } // retry again if still failing
+  }, 3000);
+}
+
+audio.addEventListener('error', ()=>{ if(playing) scheduleReconnect(); });
+audio.addEventListener('stalled', ()=>{ if(playing) scheduleReconnect(); });
+audio.addEventListener('ended', ()=>{ if(playing) scheduleReconnect(); });
+
+// Resume on tab becoming visible again (handles browser audio suspension)
+document.addEventListener('visibilitychange', async()=>{
+  if(document.visibilityState === 'visible' && playing){
+    if(audio.paused){
+      try{
+        audio.src = STREAM_URL;
+        audio.load();
+        await audio.play();
+      } catch(e){}
+    }
+  }
 });
 
 // Elapsed timer
