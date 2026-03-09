@@ -531,6 +531,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
 
+<script src="m4m-art.js"></script>
 <script>
 // ── CONFIG ──
 const STREAM_URL  = "https://radio.mind4metal.com/stream.mp3";
@@ -564,9 +565,12 @@ const overlay    = document.getElementById('overlay');
 const panelClose = document.getElementById('panelClose');
 const toast      = document.getElementById('toast');
 
+const artState = {
+  currentKey: '',
+};
+
 audio.src = STREAM_URL;
 
-// Waveform bars
 for(let i=0;i<32;i++){
   const b=document.createElement('div');
   b.className='bar';
@@ -576,11 +580,18 @@ for(let i=0;i<32;i++){
   waveform.appendChild(b);
 }
 
-// Play / Pause
+M4MArt.init({
+  manifestUrl: 'art-manifest.json'
+}).then(() => {
+  M4MArt.primeCache([
+    { artist: 'Chrome Viper', title: 'Neurocore Reign' }
+  ]).catch(() => {});
+}).catch(() => {});
+
 listenBtn.addEventListener('click', async()=>{
   try{
     if(!playing){
-      await startStream(); 
+      await startStream();
     } else {
       stopStream();
     }
@@ -604,11 +615,10 @@ async function startStream(){
   waveform.classList.add('on');
 }
 
-// Auto-reconnect on stream error or stall
 let reconnectTimer = null;
 function scheduleReconnect(){
   if(!playing) return;
-  if(reconnectTimer) return; // already scheduled
+  if(reconnectTimer) return;
   reconnectTimer = setTimeout(async()=>{
     reconnectTimer = null;
     if(!playing) return;
@@ -617,7 +627,7 @@ function scheduleReconnect(){
       audio.src = STREAM_URL;
       audio.load();
       await audio.play();
-    } catch(e){ scheduleReconnect(); } // retry again if still failing
+    } catch(e){ scheduleReconnect(); }
   }, 3000);
 }
 
@@ -625,7 +635,6 @@ audio.addEventListener('error', ()=>{ if(playing) scheduleReconnect(); });
 audio.addEventListener('stalled', ()=>{ if(playing) scheduleReconnect(); });
 audio.addEventListener('ended', ()=>{ if(playing) scheduleReconnect(); });
 
-// Resume on tab becoming visible again (handles browser audio suspension)
 document.addEventListener('visibilitychange', async()=>{
   if(document.visibilityState === 'visible' && playing){
     if(audio.paused){
@@ -638,120 +647,53 @@ document.addEventListener('visibilitychange', async()=>{
   }
 });
 
-// Elapsed timer
 setInterval(()=>{
   const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
   elapsedEl.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
 },1000);
 
-// Parse "Artist - Title" from Icecast
-function parseTrack(raw){
-  if(!raw)return{title:'Unknown',artist:''};
-  const p=raw.split(' - ');
-  if(p.length>=2)return{artist:p[0].trim(),title:p.slice(1).join(' - ').trim()};
-  return{title:raw.trim(),artist:''};
-}
-
-// ── ART CACHE (localStorage) ──────────────────────────────
-// Stores { "Artist|||Title": "https://url-to-art" }
-// Speeds up repeat plays — art loads instantly from cache
-const ART_CACHE_KEY = 'm4m_art_cache';
-const ART_CACHE_MAX = 500; // max entries to store
-
-// Pre-seeded covers — add known local or remote URLs here
-// Song-specific overrides
-const ART_PRESEEDED = {
-  'Chrome Viper|||Neurocore Reign': 'Chrome_Viper_cover.png',
-};
-
-// Artist-level fallbacks — any song by these artists gets this image
-// if no specific art is found
-const ART_ARTIST_FALLBACK = {
-  'Chrome Viper': 'Chrome_Viper_cover.png',
-};
-
-function artCacheGet(artist, title) {
-  const key = `${artist}|||${title}`;
-  // Check song-specific preseeds first
-  if (ART_PRESEEDED[key]) return ART_PRESEEDED[key];
-  try {
-    const cache = JSON.parse(localStorage.getItem(ART_CACHE_KEY) || '{}');
-    return cache[key] || null;
-  } catch { return null; }
-}
-
-function artCacheSet(artist, title, url) {
-  if (!url) return;
-  try {
-    const cache = JSON.parse(localStorage.getItem(ART_CACHE_KEY) || '{}');
-    const entries = Object.keys(cache);
-    // Evict oldest entries if over limit
-    if (entries.length >= ART_CACHE_MAX) {
-      delete cache[entries[0]];
-    }
-    cache[`${artist}|||${title}`] = url;
-    localStorage.setItem(ART_CACHE_KEY, JSON.stringify(cache));
-  } catch {}
-}
-
-// Album art via MusicBrainz + Cover Art Archive (free, no key needed)
-async function fetchArt(artist, title) {
-  // Check cache first — instant load
-  const cached = artCacheGet(artist, title);
-  if (cached) return cached;
-
-  try {
-    // Try exact artist + title match first
-    const q = encodeURIComponent(`artist:"${artist}" AND recording:"${title}"`);
-    const r = await fetch(`https://musicbrainz.org/ws/2/recording/?query=${q}&fmt=json&limit=5`,
-      { headers: { 'User-Agent': 'Mind4MetalRadio/1.0 (mind4metal@hotmail.com)' } });
-    const d = await r.json();
-
-    // Try each result until we find one with cover art
-    const releases = d?.recordings?.flatMap(rec => rec.releases || []) || [];
-    for (const rel of releases) {
-      if (!rel?.id) continue;
-      const url = `https://coverartarchive.org/release/${rel.id}/front`;
-      const c = await fetch(url, { method: 'HEAD' });
-      if (c.ok) {
-        artCacheSet(artist, title, url);
-        return url;
-      }
-    }
-
-    // Fallback: search by artist only, grab first release with art
-    await new Promise(r => setTimeout(r, 500)); // rate limit
-    const q2 = encodeURIComponent(`artist:"${artist}"`);
-    const r2 = await fetch(`https://musicbrainz.org/ws/2/release/?query=${q2}&fmt=json&limit=10`,
-      { headers: { 'User-Agent': 'Mind4MetalRadio/1.0 (mind4metal@hotmail.com)' } });
-    const d2 = await r2.json();
-    for (const rel of (d2?.releases || [])) {
-      if (!rel?.id) continue;
-      const url = `https://coverartarchive.org/release/${rel.id}/front`;
-      const c = await fetch(url, { method: 'HEAD' });
-      if (c.ok) {
-        artCacheSet(artist, title, url); // cache under song title too
-        return url;
-      }
-    }
-    // Last resort: use artist-level fallback image if we have one
-    if (ART_ARTIST_FALLBACK[artist]) return ART_ARTIST_FALLBACK[artist];
-    return null;
-  } catch {
-    // Even on error, try artist fallback
-    if (ART_ARTIST_FALLBACK[artist]) return ART_ARTIST_FALLBACK[artist];
-    return null;
+function showArt(url, altText) {
+  if (!url) {
+    albumArt.removeAttribute('src');
+    albumArt.style.display='none';
+    artHolder.style.display='flex';
+    artGlow.classList.remove('on');
+    return;
   }
+
+  const img = new Image();
+  img.onload = () => {
+    albumArt.src = url;
+    albumArt.alt = altText || 'Album Art';
+    albumArt.style.display='block';
+    artHolder.style.display='none';
+    artGlow.classList.add('on');
+  };
+  img.onerror = () => {
+    albumArt.removeAttribute('src');
+    albumArt.style.display='none';
+    artHolder.style.display='flex';
+    artGlow.classList.remove('on');
+  };
+  img.src = url;
 }
 
-function showArt(url) {
-  if (url) {
-    const i = new Image();
-    i.onload = () => { albumArt.src=url; albumArt.style.display='block'; artHolder.style.display='none'; artGlow.classList.add('on'); };
-    i.onerror = () => { albumArt.style.display='none'; artHolder.style.display='flex'; artGlow.classList.remove('on'); };
-    i.src = url;
-  } else {
-    albumArt.style.display='none'; artHolder.style.display='flex'; artGlow.classList.remove('on');
+async function updateAlbumArt(artist, title) {
+  const currentKey = `${artist}|||${title}`;
+  artState.currentKey = currentKey;
+
+  if (!artist && !title) {
+    showArt(null);
+    return;
+  }
+
+  try {
+    const resolved = await M4MArt.resolveArt({ artist, title });
+    if (artState.currentKey !== currentKey) return;
+    showArt(resolved?.url || null, [artist, title].filter(Boolean).join(' — '));
+  } catch {
+    if (artState.currentKey !== currentKey) return;
+    showArt(null);
   }
 }
 
@@ -769,10 +711,9 @@ function renderHist(){
     </tr>`).join('');
 }
 
-// Poll Icecast every 15s
 async function poll(){
   try{
-    const r=await fetch(STATUS_URL+'?_='+Date.now());
+    const r=await fetch(STATUS_URL+'?_='+Date.now(), { cache: 'no-store' });
     const j=await r.json();
     const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
     if(!src)return;
@@ -780,41 +721,43 @@ async function poll(){
     listenerEl.textContent=src.listeners??'—';
 
     const raw=src.title||src.yp_currently_playing||'';
-    const{title,artist}=parseTrack(raw);
+    const parsed = M4MArt.parseTrack(raw);
+    const title = parsed.title || 'Unknown';
+    const artist = parsed.artist || '';
     const combo=`${artist}|||${title}`;
 
-    if(combo&&combo!==lastCombo){
-      if(lastCombo&&titleEl.textContent!=='—'){
+    if(combo && combo!==lastCombo){
+      if(lastCombo && titleEl.textContent!=='—'){
         hist.unshift({title:titleEl.textContent,artist:artistEl.textContent,at:startedAt});
         if(hist.length>MAX_HIST)hist.pop();
         renderHist();
       }
       titleEl.classList.add('dim'); artistEl.classList.add('dim');
       await new Promise(r=>setTimeout(r,280));
-      titleEl.textContent=title||'—'; artistEl.textContent=artist||'—';
-      startedAt=Date.now(); lastCombo=combo;
-      titleEl.classList.remove('dim'); artistEl.classList.remove('dim');
-      if(artist&&title) setTimeout(async()=>showArt(await fetchArt(artist,title)),700);
+      titleEl.textContent=title||'—';
+      artistEl.textContent=artist||'—';
+      startedAt=Date.now();
+      lastCombo=combo;
+      titleEl.classList.remove('dim');
+      artistEl.classList.remove('dim');
+      setTimeout(()=>updateAlbumArt(artist, title), 120);
     }
   }catch(e){}
 }
 poll(); setInterval(poll,15000);
 
-// Panel
 const openPanel =()=>{ hamburger.classList.add('open'); panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; };
 const closePanel=()=>{ hamburger.classList.remove('open'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; };
 hamburger.addEventListener('click',()=>panel.classList.contains('open')?closePanel():openPanel());
 overlay.addEventListener('click',closePanel);
 panelClose.addEventListener('click',closePanel);
 
-// Toast
 function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),3200); }
 
-// Request form — posts to Formspree if ID set, otherwise mailto fallback
 document.getElementById('reqform').addEventListener('submit', async e=>{
   e.preventDefault();
   const fd=new FormData(e.target);
-  if(fd.get('website'))return; // honeypot
+  if(fd.get('website'))return;
 
   const data=Object.fromEntries(fd.entries());
 
@@ -828,9 +771,12 @@ document.getElementById('reqform').addEventListener('submit', async e=>{
       e.target.reset(); closePanel(); showToast('Request sent! 🤘 Horns up!');
     }catch{ showToast("Couldn't send — try again."); }
   } else {
-    // mailto fallback — opens email client
     const subject=encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
-    const body=encodeURIComponent(`From: ${data.name}\nArtist: ${data.artist}\nSong: ${data.song}\n\n${data.message||''}`);
+    const body=encodeURIComponent(`From: ${data.name}
+Artist: ${data.artist}
+Song: ${data.song}
+
+${data.message||''}`);
     window.location.href=`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
     e.target.reset(); closePanel();
   }

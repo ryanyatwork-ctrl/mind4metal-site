@@ -300,23 +300,21 @@ header{
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="m4m-art.js"></script>
 <script>
-// ── CONFIG ──────────────────────────────────────────────
-const ADMIN_PASSWORD = "d8V@#bz>nhCL9+y$%<";        // ← replace with your password
+const ADMIN_PASSWORD = "d8V@#bz>nhCL9+y$%<";
 const STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
-const GEO_API    = "https://ip-api.com/json/"; // free, 45 req/min
-const POLL_MS    = 20000; // 20 seconds
+const GEO_API    = "https://ip-api.com/json/";
+const POLL_MS    = 20000;
 
-// ── STATE ────────────────────────────────────────────────
-let listenerHistory = []; // [{t, count}]
+let listenerHistory = [];
 let peakListeners   = 0;
-let geoCache        = {}; // ip → geo data
+let geoCache        = {};
 let chart           = null;
-let listeners       = []; // current listener geo data
 let countries       = new Set();
 let lastTitle       = '';
+let currentArtKey   = '';
 
-// ── AUTH ─────────────────────────────────────────────────
 document.getElementById('pwInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPw();
 });
@@ -334,15 +332,14 @@ function checkPw() {
   }
 }
 
-// ── INIT ─────────────────────────────────────────────────
 function init() {
+  M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {});
   initChart();
   initMap();
   poll();
   setInterval(poll, POLL_MS);
 }
 
-// ── CHART ─────────────────────────────────────────────────
 function initChart() {
   const ctx = document.getElementById('listenerChart').getContext('2d');
   chart = new Chart(ctx, {
@@ -383,18 +380,16 @@ function initChart() {
 function updateChart(count) {
   const now = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
   listenerHistory.push({ t: now, count });
-  if (listenerHistory.length > 60) listenerHistory.shift(); // keep 60 points = 20 min
+  if (listenerHistory.length > 60) listenerHistory.shift();
 
   chart.data.labels = listenerHistory.map(h => h.t);
   chart.data.datasets[0].data = listenerHistory.map(h => h.count);
   chart.update('none');
 }
 
-// ── SIMPLE WORLD MAP (canvas) ─────────────────────────────
 const mapCanvas = document.getElementById('world-map');
 const mapCtx    = mapCanvas.getContext('2d');
 
-// Approximate lon/lat → canvas pixel (equirectangular)
 function latlonToXY(lat, lon, w, h) {
   const x = ((lon + 180) / 360) * w;
   const y = ((90 - lat) / 180) * h;
@@ -411,29 +406,18 @@ function drawMap(points) {
   const w = mapCanvas.width, h = mapCanvas.height;
   mapCtx.clearRect(0, 0, w, h);
 
-  // Dark ocean background
   mapCtx.fillStyle = '#0a0d12';
   mapCtx.fillRect(0, 0, w, h);
 
-  // Simple continent outlines (rough rectangles as placeholders for a real SVG map)
   mapCtx.fillStyle = 'rgba(30,36,46,0.9)';
-
-  // Very rough continent blobs — good enough for a private admin page
   const landmasses = [
-    // North America
     {x:.08,y:.15,w:.18,h:.35},
-    // South America
     {x:.14,y:.50,w:.10,h:.35},
-    // Europe
     {x:.45,y:.12,w:.08,h:.22},
-    // Africa
     {x:.46,y:.32,w:.10,h:.38},
-    // Asia
     {x:.53,y:.08,w:.28,h:.38},
-    // Australia
     {x:.76,y:.58,w:.10,h:.18},
-    // Greenland
-    {x:.24,y:.05,w:.06,h:.12},
+    {x:.24,y:.05,w:.06,h:.12}
   ];
 
   landmasses.forEach(l => {
@@ -442,18 +426,15 @@ function drawMap(points) {
     mapCtx.fill();
   });
 
-  // Grid lines
   mapCtx.strokeStyle = 'rgba(255,255,255,0.04)';
   mapCtx.lineWidth = 1;
   for(let x=0;x<=w;x+=w/12){mapCtx.beginPath();mapCtx.moveTo(x,0);mapCtx.lineTo(x,h);mapCtx.stroke();}
   for(let y=0;y<=h;y+=h/6){mapCtx.beginPath();mapCtx.moveTo(0,y);mapCtx.lineTo(w,y);mapCtx.stroke();}
 
-  // Plot listener points
   points.forEach(p => {
-    if (!p.lat || !p.lon) return;
+    if (typeof p.lat !== 'number' || typeof p.lon !== 'number') return;
     const {x, y} = latlonToXY(p.lat, p.lon, w, h);
 
-    // Glow
     const grd = mapCtx.createRadialGradient(x,y,0,x,y,20);
     grd.addColorStop(0,'rgba(255,85,0,0.5)');
     grd.addColorStop(1,'rgba(255,85,0,0)');
@@ -462,7 +443,6 @@ function drawMap(points) {
     mapCtx.arc(x,y,20,0,Math.PI*2);
     mapCtx.fill();
 
-    // Dot
     mapCtx.fillStyle = '#ff5500';
     mapCtx.beginPath();
     mapCtx.arc(x,y,5,0,Math.PI*2);
@@ -475,10 +455,49 @@ function drawMap(points) {
   });
 }
 
-// ── POLL ICECAST ──────────────────────────────────────────
+function showAdminArt(url, artist, title) {
+  const ph = document.getElementById('adminArtPh');
+  const img = document.getElementById('adminArt');
+
+  if (!url) {
+    img.removeAttribute('src');
+    img.style.display = 'none';
+    ph.style.display = 'flex';
+    return;
+  }
+
+  const probe = new Image();
+  probe.onload = () => {
+    img.src = url;
+    img.alt = [artist, title].filter(Boolean).join(' — ') || 'Album Art';
+    img.style.display = 'block';
+    ph.style.display = 'none';
+  };
+  probe.onerror = () => {
+    img.removeAttribute('src');
+    img.style.display = 'none';
+    ph.style.display = 'flex';
+  };
+  probe.src = url;
+}
+
+async function updateNowPlayingArt(artist, title) {
+  const key = `${artist}|||${title}`;
+  currentArtKey = key;
+
+  try {
+    const resolved = await M4MArt.resolveArt({ artist, title });
+    if (currentArtKey !== key) return;
+    showAdminArt(resolved?.url || null, artist, title);
+  } catch {
+    if (currentArtKey !== key) return;
+    showAdminArt(null, artist, title);
+  }
+}
+
 async function poll() {
   try {
-    const r    = await fetch(STATUS_URL, {cache:'no-store'});
+    const r    = await fetch(`${STATUS_URL}?_=${Date.now()}`, {cache:'no-store'});
     const j    = await r.json();
     const src  = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
     if (!src) return;
@@ -486,24 +505,27 @@ async function poll() {
     const count = parseInt(src.listeners) || 0;
     if (count > peakListeners) peakListeners = count;
 
-    // Update stats
     document.getElementById('statListeners').textContent = count;
     document.getElementById('statPeak').textContent = peakListeners;
     document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
 
-    // Track + artist
-    const raw = src.title || '';
-    const parts = raw.split(' - ');
-    const title  = parts.length >= 2 ? parts.slice(1).join(' - ').trim() : raw;
-    const artist = parts.length >= 2 ? parts[0].trim() : '';
-    document.getElementById('adminTitle').textContent  = title  || '—';
-    document.getElementById('adminArtist').textContent = artist || '—';
-    document.getElementById('statTrack').textContent   = title  || '—';
-    document.getElementById('statArtist').textContent  = artist || '—';
+    const parsed = M4MArt.parseTrack(src.title || src.yp_currently_playing || '');
+    const title  = parsed.title || '—';
+    const artist = parsed.artist || '—';
+    const trackKey = `${artist}|||${title}`;
+
+    document.getElementById('adminTitle').textContent  = title;
+    document.getElementById('adminArtist').textContent = artist;
+    document.getElementById('statTrack').textContent   = title;
+    document.getElementById('statArtist').textContent  = artist;
+
+    if (trackKey !== lastTitle) {
+      lastTitle = trackKey;
+      updateNowPlayingArt(parsed.artist || '', parsed.title || '');
+    }
 
     updateChart(count);
 
-    // Geolocate listener IPs if available
     const listenerIPs = src.listener_ip ? [src.listener_ip] :
                         (src.listeners_list?.listener?.map(l => l.ip) || []);
     await geolocateListeners(listenerIPs);
@@ -511,16 +533,18 @@ async function poll() {
   } catch(e) { console.warn('Poll error:', e); }
 }
 
-// ── GEO LOCATE ───────────────────────────────────────────
 async function geolocateListeners(ips) {
   const results = [];
 
   for (const ip of ips) {
     if (!ip || ip === '127.0.0.1') continue;
-    if (geoCache[ip]) { results.push(geoCache[ip]); continue; }
+    if (geoCache[ip]) {
+      results.push(geoCache[ip]);
+      continue;
+    }
 
     try {
-      await new Promise(r => setTimeout(r, 300)); // respect rate limit
+      await new Promise(r => setTimeout(r, 300));
       const r = await fetch(`${GEO_API}${ip}?fields=status,country,countryCode,regionName,city,lat,lon,isp`);
       const d = await r.json();
       if (d.status === 'success') {
@@ -530,7 +554,6 @@ async function geolocateListeners(ips) {
     } catch {}
   }
 
-  // Update countries count
   countries = new Set(results.map(r => r.countryCode).filter(Boolean));
   document.getElementById('statCountries').textContent = countries.size || '—';
   document.getElementById('locationBadge').textContent = `${results.length} located`;
