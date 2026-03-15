@@ -1,15 +1,20 @@
 (function () {
-  const VERSION = '1.0.0';
-  const MANIFEST_CACHE_KEY = 'm4m_art_manifest_cache_v1';
-  const RESOLVE_CACHE_KEY = 'm4m_art_resolve_cache_v1';
+  const VERSION = '2.0.0';
+  const MANIFEST_CACHE_KEY = 'm4m_art_manifest_cache_v2';
+  const RESOLVE_CACHE_KEY = 'm4m_art_resolve_cache_v2';
   const MANIFEST_TTL_MS = 6 * 60 * 60 * 1000;
-  const RESOLVE_CACHE_LIMIT = 500;
+  const RESOLVE_CACHE_LIMIT = 1000;
+  const REMOTE_TIMEOUT_MS = 7000;
 
   const state = {
     config: {
       manifestUrl: 'art-manifest.json',
+      resolverEndpoint: '/api/art/resolve',
       fallbackImage: null,
+      fallbackImages: [],
+      enableRemoteLookup: true,
       cacheManifest: true,
+      corsMode: 'cors',
     },
     manifest: null,
     manifestLoadedAt: 0,
@@ -23,6 +28,9 @@
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/&/g, ' and ')
+      .replace(/\bfeat\.?\b/g, ' featuring ')
+      .replace(/\bft\.?\b/g, ' featuring ')
+      .replace(/\bvs\.?\b/g, ' versus ')
       .replace(/[^a-z0-9]+/g, ' ')
       .trim()
       .replace(/\s+/g, ' ');
@@ -30,6 +38,28 @@
 
   function keyFor(artist, title) {
     return `${normalize(artist)}|||${normalize(title)}`;
+  }
+
+  function hashString(input) {
+    const text = String(input || '');
+    let h = 2166136261;
+    for (let i = 0; i < text.length; i += 1) {
+      h ^= text.charCodeAt(i);
+      h += (h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24);
+    }
+    return Math.abs(h >>> 0);
+  }
+
+  function pickFallback(artist, title) {
+    const candidates = [
+      ...(state.config.fallbackImages || []),
+      ...(state.manifest?.fallbackImages || []),
+      ...(state.config.fallbackImage ? [state.config.fallbackImage] : []),
+    ].filter(Boolean);
+
+    if (!candidates.length) return null;
+    const idx = hashString(keyFor(artist, title)) % candidates.length;
+    return absolutizeAssetPath(candidates[idx]);
   }
 
   function readJsonStorage(key, fallback) {
@@ -63,6 +93,7 @@
     const img = new Image();
     img.decoding = 'async';
     img.loading = 'eager';
+    img.referrerPolicy = 'no-referrer';
     img.src = url;
   }
 
@@ -102,6 +133,7 @@
     return {
       generatedAt: manifest?.generatedAt || null,
       imageBasePath: manifest?.imageBasePath || '',
+      fallbackImages: Array.isArray(manifest?.fallbackImages) ? manifest.fallbackImages : [],
       tracks,
       artists,
       albums,
@@ -128,7 +160,6 @@
     if (canUseCached) {
       state.manifest = buildManifestIndex(cached.data);
       state.manifestLoadedAt = cached.savedAt;
-      // refresh in background, but don't block
       fetchManifest(true).catch(() => {});
       return state.manifest;
     }
@@ -136,7 +167,7 @@
     return fetchManifest(false);
   }
 
-  async function fetchManifest(background) {
+  async function fetchManifest() {
     const response = await fetch(`${state.config.manifestUrl}?v=${Date.now()}`, { cache: 'no-store' });
     if (!response.ok) throw new Error(`Manifest load failed: ${response.status}`);
     const json = await response.json();
@@ -215,15 +246,48 @@
       };
     }
 
-    if (state.config.fallbackImage) {
-      return {
-        url: absolutizeAssetPath(state.config.fallbackImage),
-        source: 'fallback-image',
-        entry: null,
-      };
-    }
-
     return null;
+  }
+
+  async function fetchWithTimeout(url, options) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REMOTE_TIMEOUT_MS);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+
+  async function resolveFromRemote(input) {
+    if (!state.config.enableRemoteLookup || !state.config.resolverEndpoint) return null;
+
+    const artist = input?.artist || '';
+    const title = input?.title || '';
+    const album = input?.album || '';
+    if (!artist || !title) return null;
+
+    const params = new URLSearchParams({ artist, title });
+    if (album) params.set('album', album);
+
+    try {
+      const response = await fetchWithTimeout(`${state.config.resolverEndpoint}?${params.toString()}`, {
+        method: 'GET',
+        cache: 'no-store',
+        mode: state.config.corsMode || 'cors',
+      });
+      if (!response.ok) return null;
+      const json = await response.json();
+      if (!json || !json.url) return null;
+      return {
+        url: absolutizeAssetPath(json.url),
+        source: json.source || 'remote',
+        entry: json.entry || null,
+        remote: true,
+      };
+    } catch {
+      return null;
+    }
   }
 
   async function resolveArt(input) {
@@ -239,7 +303,18 @@
       return cached;
     }
 
-    const resolved = resolveFromManifest(artist, title, album) || { url: null, source: 'miss', entry: null };
+    let resolved = resolveFromManifest(artist, title, album);
+    if (!resolved) {
+      resolved = await resolveFromRemote({ artist, title, album });
+    }
+
+    if (!resolved) {
+      const fallbackUrl = pickFallback(artist, title);
+      resolved = fallbackUrl
+        ? { url: fallbackUrl, source: 'fallback-rotating', entry: null }
+        : { url: null, source: 'miss', entry: null };
+    }
+
     setResolveCacheEntry(artist, title, resolved);
     if (resolved.url) preloadImage(resolved.url);
     return resolved;

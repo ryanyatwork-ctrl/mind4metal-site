@@ -1,8 +1,12 @@
 {
-  "version": 1,
-  "generatedAt": "2026-03-09T00:00:00-08:00",
-  "notes": "Seed known album art here. Add track-specific entries first, then artist-level fallbacks.",
+  "version": 2,
+  "generatedAt": "2026-03-14T00:00:00-08:00",
+  "notes": "Manual seeds first. Unknown tracks now try the Cloudflare Worker resolver endpoint and then fall back to rotating dragon images.",
   "imageBasePath": "./",
+  "fallbackImages": [
+    "art/fallback-dragon-1.png",
+    "art/fallback-dragon-2.png"
+  ],
   "tracks": [
     {
       "artist": "Chrome Viper",

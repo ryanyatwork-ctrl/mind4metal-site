@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mind4metal-art-worker",
+  "main": "mind4metal-art-worker.js",
+  "compatibility_date": "2026-03-14",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "ART_CACHE",
+      "id": "PUT_YOUR_PRODUCTION_KV_NAMESPACE_ID_HERE",
+      "preview_id": "PUT_YOUR_PREVIEW_KV_NAMESPACE_ID_HERE"
+    }
+  ]
+}
