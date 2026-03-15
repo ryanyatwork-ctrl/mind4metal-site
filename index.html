@@ -451,7 +451,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
       <div class="waveform" id="waveform"></div>
 
       <div class="controls">
-        <button id="listen-btn" type="button">
+        <button id="listen-btn">
           <span id="playIcon">▶</span>
           <span id="btnText">Listen Live</span>
         </button>
@@ -528,7 +528,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 </div><!-- /wrapper -->
 
 <div class="toast" id="toast"></div>
-<audio id="audio" preload="none" playsinline x-webkit-airplay="allow" crossorigin="anonymous"></audio>
+<audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
 
 <script src="m4m-art.js"></script>
@@ -588,101 +588,61 @@ M4MArt.init({
   ]).catch(() => {});
 }).catch(() => {});
 
-listenBtn.addEventListener('click', async () => {
-  console.log('[M4M] Listen button clicked. playing =', playing);
-  try {
-    if (!playing) {
+listenBtn.addEventListener('click', async()=>{
+  try{
+    if(!playing){
       await startStream();
     } else {
       stopStream();
     }
-  } catch (e) {
-    console.error('[M4M] Listen button failed:', e);
-    showToast('Stream failed to start. Open console for details.');
-  }
+  }catch(e){}
 });
 
-function stopStream() {
-  console.log('[M4M] Stopping stream');
-  try { audio.pause(); } catch {}
-  audio.removeAttribute('src');
-  audio.load();
+function stopStream(){
+  audio.pause();
+  audio.src = '';
   playing = false;
-  listenBtn.classList.remove('on');
-  playIcon.textContent = '▶';
-  btnText.textContent = 'Listen Live';
+  listenBtn.classList.remove('on'); playIcon.textContent='▶'; btnText.textContent='Listen Live';
   waveform.classList.remove('on');
 }
 
-async function startStream() {
-  console.log('[M4M] Starting stream:', STREAM_URL);
-  audio.crossOrigin = 'anonymous';
-  audio.preload = 'none';
-  audio.src = STREAM_URL + (STREAM_URL.includes('?') ? '&' : '?') + '_=' + Date.now();
+async function startStream(){
+  audio.src = STREAM_URL;
   audio.load();
-
-  const playPromise = audio.play();
-  if (playPromise && typeof playPromise.then === 'function') {
-    await playPromise;
-  }
-
+  await audio.play();
   playing = true;
-  listenBtn.classList.add('on');
-  playIcon.textContent = '⏸';
-  btnText.textContent = 'Pause';
+  listenBtn.classList.add('on'); playIcon.textContent='⏸'; btnText.textContent='Pause';
   waveform.classList.add('on');
-  console.log('[M4M] Stream started');
 }
 
 let reconnectTimer = null;
-function scheduleReconnect() {
-  if (!playing) return;
-  if (reconnectTimer) return;
-
-  console.warn('[M4M] Scheduling reconnect');
-  reconnectTimer = setTimeout(async () => {
+function scheduleReconnect(){
+  if(!playing) return;
+  if(reconnectTimer) return;
+  reconnectTimer = setTimeout(async()=>{
     reconnectTimer = null;
-    if (!playing) return;
-    try {
-      audio.pause();
-      audio.removeAttribute('src');
-      audio.src = STREAM_URL + (STREAM_URL.includes('?') ? '&' : '?') + '_=' + Date.now();
+    if(!playing) return;
+    try{
+      audio.src = '';
+      audio.src = STREAM_URL;
       audio.load();
       await audio.play();
-      console.log('[M4M] Reconnect successful');
-    } catch (e) {
-      console.error('[M4M] Reconnect failed:', e);
-      scheduleReconnect();
-    }
+    } catch(e){ scheduleReconnect(); }
   }, 3000);
 }
 
-audio.addEventListener('play', () => console.log('[M4M] audio play event'));
-audio.addEventListener('playing', () => console.log('[M4M] audio playing event'));
-audio.addEventListener('pause', () => console.log('[M4M] audio pause event'));
-audio.addEventListener('waiting', () => console.log('[M4M] audio waiting event'));
-audio.addEventListener('stalled', () => {
-  console.warn('[M4M] audio stalled');
-  if (playing) scheduleReconnect();
-});
-audio.addEventListener('ended', () => {
-  console.warn('[M4M] audio ended');
-  if (playing) scheduleReconnect();
-});
-audio.addEventListener('error', (e) => {
-  console.error('[M4M] audio error event:', e, audio.error);
-  if (playing) scheduleReconnect();
-});
+audio.addEventListener('error', ()=>{ if(playing) scheduleReconnect(); });
+audio.addEventListener('stalled', ()=>{ if(playing) scheduleReconnect(); });
+audio.addEventListener('ended', ()=>{ if(playing) scheduleReconnect(); });
 
-document.addEventListener('visibilitychange', async () => {
-  if (document.visibilityState === 'visible' && playing && audio.paused) {
-    console.warn('[M4M] Page visible and audio paused; trying resume');
-    try {
-      audio.src = STREAM_URL + (STREAM_URL.includes('?') ? '&' : '?') + '_=' + Date.now();
-      audio.load();
-      await audio.play();
-    } catch (e) {
-      console.error('[M4M] Resume failed:', e);
+document.addEventListener('visibilitychange', async()=>{
+  if(document.visibilityState === 'visible' && playing){
+    if(audio.paused){
+      try{
+        audio.src = STREAM_URL;
+        audio.load();
+        await audio.play();
+      } catch(e){}
     }
   }
 });
