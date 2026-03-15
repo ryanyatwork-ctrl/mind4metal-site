@@ -691,24 +691,29 @@ function showArt(url, altText) {
   img.src = url;
 }
 
-async function updateAlbumArt(artist, title) {
-  const currentKey = `${artist}|||${title}`;
-  artState.currentKey = currentKey;
+async function updateAlbumArt(artist,title){
 
-  if (!artist && !title) {
-    showArt(null);
-    return;
-  }
+    const img = document.getElementById("albumArt");
 
-  try {
-    const resolved = await M4MArt.resolveArt({ artist, title });
-    if (artState.currentKey !== currentKey) return;
-    showArt(resolved?.url || null, [artist, title].filter(Boolean).join(' — '));
-  } catch {
-    if (artState.currentKey !== currentKey) return;
-    showArt('art/fallback-dragon-1.png', 'Mind4Metal fallback art');
-  }
+    try{
+
+        const result = await M4MArt.resolveArt({artist,title});
+
+        if(result.url){
+            img.src = result.url;
+            return;
+        }
+
+    }catch(e){}
+
+    const fallback = [
+        "art/fallback-dragon-1.png",
+        "art/fallback-dragon-2.png"
+    ];
+
+    img.src = fallback[Math.floor(Math.random()*fallback.length)];
 }
+
 
 function renderHist(){
   if(!hist.length){
