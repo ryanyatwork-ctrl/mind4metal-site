@@ -1,29 +1,9 @@
 {
-  "version": 2,
-  "generatedAt": "2026-03-14T00:00:00-08:00",
-  "notes": "Manual seeds first. Unknown tracks now try the Cloudflare Worker resolver endpoint and then fall back to rotating dragon images.",
-  "imageBasePath": "./",
-  "fallbackImages": [
-    "art/fallback-dragon-1.png",
-    "art/fallback-dragon-2.png"
-  ],
-  "tracks": [
-    {
-      "artist": "Chrome Viper",
-      "artistAliases": [],
-      "title": "Neurocore Reign",
-      "titleAliases": [],
-      "art": "Chrome_Viper_cover.png",
-      "notes": "Manual seed"
-    }
-  ],
-  "albums": [],
-  "artists": [
-    {
-      "artist": "Chrome Viper",
-      "artistAliases": [],
-      "art": "Chrome_Viper_cover.png",
-      "notes": "Fallback artist image"
-    }
-  ]
+ "version":2,
+ "tracks":[],
+ "artists":[],
+ "fallback":[
+  "art/fallback-dragon-1.png",
+  "art/fallback-dragon-2.png"
+ ]
 }
