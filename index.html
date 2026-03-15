@@ -531,7 +531,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
 
-<script src="m4m-art.js"></script>
+<script src="m4m-art.js?v=2"></script>
 <script>
 // ── CONFIG ──
 const STREAM_URL  = "https://radio.mind4metal.com/stream.mp3";
@@ -581,12 +581,22 @@ for(let i=0;i<32;i++){
 }
 
 M4MArt.init({
-  manifestUrl: 'art-manifest.json'
+  manifestUrl: 'art-manifest.json',
+  resolverEndpoint: '/api/art/resolve',
+  fallbackImages: [
+    'art/fallback-dragon-1.png',
+    'art/fallback-dragon-2.png'
+  ],
+  enableRemoteLookup: true,
+  cacheManifest: true,
+  corsMode: 'cors'
 }).then(() => {
   M4MArt.primeCache([
     { artist: 'Chrome Viper', title: 'Neurocore Reign' }
   ]).catch(() => {});
-}).catch(() => {});
+}).catch(() => {
+  showArt('art/fallback-dragon-1.png', 'Mind4Metal fallback art');
+});
 
 listenBtn.addEventListener('click', async()=>{
   try{
@@ -662,6 +672,9 @@ function showArt(url, altText) {
   }
 
   const img = new Image();
+  img.decoding = 'async';
+  img.loading = 'eager';
+  img.referrerPolicy = 'no-referrer';
   img.onload = () => {
     albumArt.src = url;
     albumArt.alt = altText || 'Album Art';
@@ -693,7 +706,7 @@ async function updateAlbumArt(artist, title) {
     showArt(resolved?.url || null, [artist, title].filter(Boolean).join(' — '));
   } catch {
     if (artState.currentKey !== currentKey) return;
-    showArt(null);
+    showArt('art/fallback-dragon-1.png', 'Mind4Metal fallback art');
   }
 }
 
