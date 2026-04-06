@@ -87,7 +87,7 @@ nav{
   border-bottom:1px solid rgba(255,85,0,0.25);
   box-shadow:0 4px 20px rgba(0,0,0,0.8);
   position:-webkit-sticky;position:sticky;top:0;z-index:100;
-  -webkit--webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
 }
 
 
@@ -108,7 +108,7 @@ nav{
   background:var(--fire);box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,0.5);
   animation:flicker 1.8s ease-in-out infinite;
 }
-@-webkit-keyframes flicker{0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}25%{opacity:.7;box-shadow:0 0 5px var(--fire);}75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}}@keyframes flicker{
+@keyframes flicker{
   0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}
   25%{opacity:.7;box-shadow:0 0 5px var(--fire);}
   75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}
@@ -138,7 +138,7 @@ nav{
 
 
 /* ── SLIDE PANEL ── */
-.request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;-webkit--webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
+.request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
 .request-overlay.open{opacity:1;pointer-events:all;}
 
 .slide-panel{
@@ -195,9 +195,9 @@ nav{
 .now-playing-section{
   max-width:1100px;margin:0 auto;padding:44px 28px 20px;
   display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;
-  -webkit-animation:fadeUp .7s ease both;animation:fadeUp .7s ease both;
+  animation:fadeUp .7s ease both;
 }
-@-webkit-keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
 /* Album art */
 .art-frame{
@@ -238,7 +238,7 @@ nav{
 }
 .waveform.on .bar{opacity:1;}
 .waveform:not(.on) .bar{animation:none;height:3px!important;}
-@-webkit-keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}@keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
+@keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
 
 .controls{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
 #listen-btn{
@@ -274,9 +274,6 @@ nav{
 .td-ti{color:var(--text);font-weight:600;}
 .td-ar{color:var(--silver2);font-weight:300;}
 .td-tm{color:var(--text-muted);font-size:11px;font-family:'Oswald';letter-spacing:.06em;white-space:nowrap;width:64px;}
-
-/* ── SOCIAL ── */
-
 
 /* ── FOOTER ── */
 footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
@@ -317,8 +314,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   .bg-fixed::after{
     background:none;
   }
-
-
 
   .now-playing-section{
     grid-template-columns:1fr;
@@ -504,8 +499,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
         </div>
       </a>
 
-
-
     </div>
   </section>
 
@@ -521,7 +514,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <a href="https://facebook.com/Mind4Metal" target="_blank">Facebook</a>
     <a href="https://instagram.com/mind4metalradio" target="_blank">Instagram</a>
     <a href="https://x.com/mind4metal" target="_blank">X</a>
-    <a href="/blog">Blog</a>
+    <a href="blog.html">Blog</a>
     <a href="mailto:mind4metal@hotmail.com">Email</a>
   </div>
 </footer>
@@ -531,20 +524,139 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
 
-<script src="m4m-art.js"></script>
 <script>
-// ── CONFIG ──
-const STREAM_URL  = "https://radio.mind4metal.com/stream.mp3";
-const STATUS_URL  = "https://radio.mind4metal.com/status-json.xsl";
-const CONTACT_EMAIL = "mind4metal@hotmail.com";
-const MAX_HIST    = 10;
+// ══════════════════════════════════════════════════════════════
+// MIND4METAL RADIO — Main Script
+// Album art powered by Last.fm API (replaces old m4m-art.js)
+// ══════════════════════════════════════════════════════════════
 
-// Formspree: sign up free at formspree.io and replace with your form ID
-// OR leave blank to use mailto fallback
+// ── CONFIG ──
+const STREAM_URL    = "https://radio.mind4metal.com/stream.mp3";
+const STATUS_URL    = "https://radio.mind4metal.com/status-json.xsl";
+const CONTACT_EMAIL = "mind4metal@hotmail.com";
+const MAX_HIST      = 10;
+
+// Formspree form ID (sign up free at formspree.io)
 const FORMSPREE_ID = "xgolbjen";
 
-let playing=false, startedAt=Date.now(), lastCombo="";
-const hist=[];
+// ── LAST.FM API KEY ──
+// Get a free key at: https://www.last.fm/api/account/create
+// Paste your key between the quotes below:
+const LASTFM_API_KEY = "486c7335b86e6c3922c334f50ed28019";
+
+// ══════════════════════════════════════════════════════════════
+// TRACK PARSER — extracts Artist / Title from Icecast metadata
+// ══════════════════════════════════════════════════════════════
+function parseTrack(raw) {
+  if (!raw || typeof raw !== 'string') return { artist: '', title: '' };
+  const str = raw.trim();
+
+  // Try common separators: " - ", " — ", " – "
+  const separators = [' - ', ' — ', ' – ', ' − '];
+  for (const sep of separators) {
+    const idx = str.indexOf(sep);
+    if (idx > 0) {
+      return {
+        artist: str.substring(0, idx).trim(),
+        title:  str.substring(idx + sep.length).trim()
+      };
+    }
+  }
+
+  // No separator found — treat entire string as title
+  return { artist: '', title: str };
+}
+
+// ══════════════════════════════════════════════════════════════
+// ALBUM ART — Last.fm lookup with in-memory cache
+// ══════════════════════════════════════════════════════════════
+const artCache = new Map();       // "artist|||title" → url or null
+const ART_CACHE_MAX = 100;        // keep cache bounded
+
+async function fetchAlbumArt(artist, title) {
+  if (!artist || !LASTFM_API_KEY) return null;
+
+  const cacheKey = `${artist}|||${title}`.toLowerCase();
+  if (artCache.has(cacheKey)) return artCache.get(cacheKey);
+
+  try {
+    // Strategy 1: track.getInfo — best match when we have both artist + title
+    if (title) {
+      const url = `https://ws.audioscrobbler.com/2.0/?method=track.getInfo`
+        + `&api_key=${encodeURIComponent(LASTFM_API_KEY)}`
+        + `&artist=${encodeURIComponent(artist)}`
+        + `&track=${encodeURIComponent(title)}`
+        + `&format=json`;
+
+      const r = await fetch(url);
+      if (r.ok) {
+        const d = await r.json();
+        const images = d?.track?.album?.image;
+        if (images && images.length) {
+          // Pick "extralarge" (300x300) or the largest available
+          const artUrl = (
+            images.find(i => i.size === 'extralarge') ||
+            images.find(i => i.size === 'large') ||
+            images.find(i => i.size === 'medium') ||
+            images[images.length - 1]
+          )?.['#text'];
+
+          if (artUrl && artUrl.length > 0) {
+            cacheArt(cacheKey, artUrl);
+            return artUrl;
+          }
+        }
+      }
+    }
+
+    // Strategy 2: artist.getInfo — fall back to artist image
+    const url2 = `https://ws.audioscrobbler.com/2.0/?method=artist.getInfo`
+      + `&api_key=${encodeURIComponent(LASTFM_API_KEY)}`
+      + `&artist=${encodeURIComponent(artist)}`
+      + `&format=json`;
+
+    const r2 = await fetch(url2);
+    if (r2.ok) {
+      const d2 = await r2.json();
+      const images2 = d2?.artist?.image;
+      if (images2 && images2.length) {
+        const artUrl2 = (
+          images2.find(i => i.size === 'extralarge') ||
+          images2.find(i => i.size === 'large') ||
+          images2[images2.length - 1]
+        )?.['#text'];
+
+        if (artUrl2 && artUrl2.length > 0) {
+          cacheArt(cacheKey, artUrl2);
+          return artUrl2;
+        }
+      }
+    }
+
+    // Nothing found
+    cacheArt(cacheKey, null);
+    return null;
+
+  } catch {
+    // Network error — don't cache so we retry next time
+    return null;
+  }
+}
+
+function cacheArt(key, url) {
+  if (artCache.size >= ART_CACHE_MAX) {
+    // Evict oldest entry
+    const first = artCache.keys().next().value;
+    artCache.delete(first);
+  }
+  artCache.set(key, url);
+}
+
+// ══════════════════════════════════════════════════════════════
+// DOM REFS
+// ══════════════════════════════════════════════════════════════
+let playing = false, startedAt = Date.now(), lastCombo = "";
+const hist = [];
 
 const audio      = document.getElementById('audio');
 const listenBtn  = document.getElementById('listen-btn');
@@ -565,98 +677,99 @@ const overlay    = document.getElementById('overlay');
 const panelClose = document.getElementById('panelClose');
 const toast      = document.getElementById('toast');
 
-const artState = {
-  currentKey: '',
-};
+const artState = { currentKey: '' };
 
+// ── INIT AUDIO ──
 audio.src = STREAM_URL;
 
-for(let i=0;i<32;i++){
-  const b=document.createElement('div');
-  b.className='bar';
-  b.style.height=(Math.random()*26+4)+'px';
-  b.style.animationDelay=(i*0.04)+'s';
-  b.style.animationDuration=(0.7+Math.random()*0.85)+'s';
+// ── WAVEFORM BARS ──
+for (let i = 0; i < 32; i++) {
+  const b = document.createElement('div');
+  b.className = 'bar';
+  b.style.height = (Math.random() * 26 + 4) + 'px';
+  b.style.animationDelay = (i * 0.04) + 's';
+  b.style.animationDuration = (0.7 + Math.random() * 0.85) + 's';
   waveform.appendChild(b);
 }
 
-M4MArt.init({
-  manifestUrl: 'art-manifest.json'
-}).then(() => {
-  M4MArt.primeCache([
-    { artist: 'Chrome Viper', title: 'Neurocore Reign' }
-  ]).catch(() => {});
-}).catch(() => {});
-
-listenBtn.addEventListener('click', async()=>{
-  try{
-    if(!playing){
-      await startStream();
-    } else {
-      stopStream();
-    }
-  }catch(e){}
+// ══════════════════════════════════════════════════════════════
+// PLAYBACK CONTROLS
+// ══════════════════════════════════════════════════════════════
+listenBtn.addEventListener('click', async () => {
+  try {
+    if (!playing) { await startStream(); }
+    else { stopStream(); }
+  } catch(e) {}
 });
 
-function stopStream(){
+function stopStream() {
   audio.pause();
   audio.src = '';
   playing = false;
-  listenBtn.classList.remove('on'); playIcon.textContent='▶'; btnText.textContent='Listen Live';
+  listenBtn.classList.remove('on');
+  playIcon.textContent = '▶';
+  btnText.textContent = 'Listen Live';
   waveform.classList.remove('on');
 }
 
-async function startStream(){
+async function startStream() {
   audio.src = STREAM_URL;
   audio.load();
   await audio.play();
   playing = true;
-  listenBtn.classList.add('on'); playIcon.textContent='⏸'; btnText.textContent='Pause';
+  listenBtn.classList.add('on');
+  playIcon.textContent = '⏸';
+  btnText.textContent = 'Pause';
   waveform.classList.add('on');
 }
 
+// ── AUTO-RECONNECT ──
 let reconnectTimer = null;
-function scheduleReconnect(){
-  if(!playing) return;
-  if(reconnectTimer) return;
-  reconnectTimer = setTimeout(async()=>{
+function scheduleReconnect() {
+  if (!playing) return;
+  if (reconnectTimer) return;
+  reconnectTimer = setTimeout(async () => {
     reconnectTimer = null;
-    if(!playing) return;
-    try{
+    if (!playing) return;
+    try {
       audio.src = '';
       audio.src = STREAM_URL;
       audio.load();
       await audio.play();
-    } catch(e){ scheduleReconnect(); }
+    } catch(e) { scheduleReconnect(); }
   }, 3000);
 }
 
-audio.addEventListener('error', ()=>{ if(playing) scheduleReconnect(); });
-audio.addEventListener('stalled', ()=>{ if(playing) scheduleReconnect(); });
-audio.addEventListener('ended', ()=>{ if(playing) scheduleReconnect(); });
+audio.addEventListener('error',   () => { if (playing) scheduleReconnect(); });
+audio.addEventListener('stalled', () => { if (playing) scheduleReconnect(); });
+audio.addEventListener('ended',   () => { if (playing) scheduleReconnect(); });
 
-document.addEventListener('visibilitychange', async()=>{
-  if(document.visibilityState === 'visible' && playing){
-    if(audio.paused){
-      try{
+document.addEventListener('visibilitychange', async () => {
+  if (document.visibilityState === 'visible' && playing) {
+    if (audio.paused) {
+      try {
         audio.src = STREAM_URL;
         audio.load();
         await audio.play();
-      } catch(e){}
+      } catch(e) {}
     }
   }
 });
 
-setInterval(()=>{
-  const s=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
-  elapsedEl.textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
-},1000);
+// ── ELAPSED TIMER ──
+setInterval(() => {
+  const s = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
+  elapsedEl.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}, 1000);
 
+// ══════════════════════════════════════════════════════════════
+// ALBUM ART DISPLAY
+// ══════════════════════════════════════════════════════════════
 function showArt(url, altText) {
   if (!url) {
     albumArt.removeAttribute('src');
-    albumArt.style.display='none';
-    artHolder.style.display='flex';
+    albumArt.style.display = 'none';
+    artHolder.style.display = 'flex';
     artGlow.classList.remove('on');
     return;
   }
@@ -665,14 +778,14 @@ function showArt(url, altText) {
   img.onload = () => {
     albumArt.src = url;
     albumArt.alt = altText || 'Album Art';
-    albumArt.style.display='block';
-    artHolder.style.display='none';
+    albumArt.style.display = 'block';
+    artHolder.style.display = 'none';
     artGlow.classList.add('on');
   };
   img.onerror = () => {
     albumArt.removeAttribute('src');
-    albumArt.style.display='none';
-    artHolder.style.display='flex';
+    albumArt.style.display = 'none';
+    artHolder.style.display = 'flex';
     artGlow.classList.remove('on');
   };
   img.src = url;
@@ -688,99 +801,130 @@ async function updateAlbumArt(artist, title) {
   }
 
   try {
-    const resolved = await M4MArt.resolveArt({ artist, title });
+    const url = await fetchAlbumArt(artist, title);
+    // Guard: if song changed while we were fetching, discard result
     if (artState.currentKey !== currentKey) return;
-    showArt(resolved?.url || null, [artist, title].filter(Boolean).join(' — '));
+    showArt(url, [artist, title].filter(Boolean).join(' — '));
   } catch {
     if (artState.currentKey !== currentKey) return;
     showArt(null);
   }
 }
 
-function renderHist(){
-  if(!hist.length){
-    histBody.innerHTML=`<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>`;
+// ══════════════════════════════════════════════════════════════
+// RECENTLY PLAYED
+// ══════════════════════════════════════════════════════════════
+function renderHist() {
+  if (!hist.length) {
+    histBody.innerHTML = `<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>`;
     return;
   }
-  histBody.innerHTML=hist.map((t,i)=>`
+  histBody.innerHTML = hist.map((t, i) => `
     <tr>
-      <td class="td-n">${i+1}</td>
+      <td class="td-n">${i + 1}</td>
       <td class="td-ti">${t.title}</td>
       <td class="td-ar">${t.artist}</td>
-      <td class="td-tm">${new Date(t.at).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}</td>
+      <td class="td-tm">${new Date(t.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
     </tr>`).join('');
 }
 
-async function poll(){
-  try{
-    const r=await fetch(STATUS_URL+'?_='+Date.now(), { cache: 'no-store' });
-    const j=await r.json();
-    const src=Array.isArray(j?.icestats?.source)?j.icestats.source[0]:j?.icestats?.source;
-    if(!src)return;
+// ══════════════════════════════════════════════════════════════
+// METADATA POLLING
+// ══════════════════════════════════════════════════════════════
+async function poll() {
+  try {
+    const r = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
+    const j = await r.json();
+    const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
+    if (!src) return;
 
-    listenerEl.textContent=src.listeners??'—';
+    listenerEl.textContent = src.listeners ?? '—';
 
-    const raw=src.title||src.yp_currently_playing||'';
-    const parsed = M4MArt.parseTrack(raw);
-    const title = parsed.title || 'Unknown';
+    const raw = src.title || src.yp_currently_playing || '';
+    const parsed = parseTrack(raw);
+    const title  = parsed.title || 'Unknown';
     const artist = parsed.artist || '';
-    const combo=`${artist}|||${title}`;
+    const combo  = `${artist}|||${title}`;
 
-    if(combo && combo!==lastCombo){
-      if(lastCombo && titleEl.textContent!=='—'){
-        hist.unshift({title:titleEl.textContent,artist:artistEl.textContent,at:startedAt});
-        if(hist.length>MAX_HIST)hist.pop();
+    if (combo && combo !== lastCombo) {
+      if (lastCombo && titleEl.textContent !== '—') {
+        hist.unshift({ title: titleEl.textContent, artist: artistEl.textContent, at: startedAt });
+        if (hist.length > MAX_HIST) hist.pop();
         renderHist();
       }
-      titleEl.classList.add('dim'); artistEl.classList.add('dim');
-      await new Promise(r=>setTimeout(r,280));
-      titleEl.textContent=title||'—';
-      artistEl.textContent=artist||'—';
-      startedAt=Date.now();
-      lastCombo=combo;
+      titleEl.classList.add('dim');
+      artistEl.classList.add('dim');
+      await new Promise(r => setTimeout(r, 280));
+      titleEl.textContent  = title || '—';
+      artistEl.textContent = artist || '—';
+      startedAt = Date.now();
+      lastCombo = combo;
       titleEl.classList.remove('dim');
       artistEl.classList.remove('dim');
-      setTimeout(()=>updateAlbumArt(artist, title), 120);
+      setTimeout(() => updateAlbumArt(artist, title), 120);
     }
-  }catch(e){}
+  } catch(e) {}
 }
-poll(); setInterval(poll,15000);
+poll();
+setInterval(poll, 15000);
 
-const openPanel =()=>{ hamburger.classList.add('open'); panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow='hidden'; };
-const closePanel=()=>{ hamburger.classList.remove('open'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow=''; };
-hamburger.addEventListener('click',()=>panel.classList.contains('open')?closePanel():openPanel());
-overlay.addEventListener('click',closePanel);
-panelClose.addEventListener('click',closePanel);
+// ══════════════════════════════════════════════════════════════
+// SLIDE PANEL
+// ══════════════════════════════════════════════════════════════
+const openPanel  = () => { hamburger.classList.add('open'); panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
+const closePanel = () => { hamburger.classList.remove('open'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
+hamburger.addEventListener('click', () => panel.classList.contains('open') ? closePanel() : openPanel());
+overlay.addEventListener('click', closePanel);
+panelClose.addEventListener('click', closePanel);
 
-function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),3200); }
+// ══════════════════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════════════════
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3200);
+}
 
-document.getElementById('reqform').addEventListener('submit', async e=>{
+// ══════════════════════════════════════════════════════════════
+// REQUEST FORM
+// ══════════════════════════════════════════════════════════════
+document.getElementById('reqform').addEventListener('submit', async e => {
   e.preventDefault();
-  const fd=new FormData(e.target);
-  if(fd.get('website'))return;
+  const fd = new FormData(e.target);
+  if (fd.get('website')) return; // honeypot
 
-  const data=Object.fromEntries(fd.entries());
+  const data = Object.fromEntries(fd.entries());
 
-  if(FORMSPREE_ID){
-    try{
-      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({...data,_replyto:CONTACT_EMAIL})
+  if (FORMSPREE_ID) {
+    try {
+      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, _replyto: CONTACT_EMAIL })
       });
-      e.target.reset(); closePanel(); showToast('Request sent! 🤘 Horns up!');
-    }catch{ showToast("Couldn't send — try again."); }
+      e.target.reset();
+      closePanel();
+      showToast('Request sent! 🤘 Horns up!');
+    } catch {
+      showToast("Couldn't send — try again.");
+    }
   } else {
-    const subject=encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
-    const body=encodeURIComponent(`From: ${data.name}
-Artist: ${data.artist}
-Song: ${data.song}
-
-${data.message||''}`);
-    window.location.href=`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    e.target.reset(); closePanel();
+    // Fallback: open mailto
+    const subject = encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
+    const body    = encodeURIComponent(`Name: ${data.name}\nArtist: ${data.artist}\nSong: ${data.song}\nMessage: ${data.message || '(none)'}`);
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    e.target.reset();
+    closePanel();
+    showToast('Opening your email app...');
   }
 });
+
+// ── API KEY WARNING ──
+if (!LASTFM_API_KEY) {
+  console.warn('[Mind4Metal] No Last.fm API key set — album art will not load. Get a free key at https://www.last.fm/api/account/create and set LASTFM_API_KEY in index.html');
+}
 </script>
+
 </body>
 </html>
