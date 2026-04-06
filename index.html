@@ -40,7 +40,7 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
 /* ── GEAR BG ── */
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
 
-/* Right edge smoke — shows only the smoke/right portion of the banner image */
+/* Right edge smoke */
 .smoke-right{
   position:fixed;
   top:0;right:0;
@@ -51,13 +51,12 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
   background-position:right 30%;
   background-repeat:no-repeat;
   opacity:0.13;
-  /* Fade out on the left so it blends into the page */
   -webkit-mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
   mask-image:linear-gradient(to right, transparent 0%, rgba(0,0,0,0.5) 40%, black 100%);
   pointer-events:none;
 }
 
-/* Background dragon image — anchored to top, full width, fades naturally */
+/* Background dragon image */
 .bg-fixed::before{
   content:'';position:absolute;inset:0;
   background-image:url('Mind4Metal_Background.png');
@@ -67,7 +66,7 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
   opacity:0.18;
 }
 
-/* Dark fade at bottom so lower page content stays readable */
+/* Dark fade at bottom */
 .bg-fixed::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to bottom,
@@ -89,7 +88,6 @@ nav{
   position:-webkit-sticky;position:sticky;top:0;z-index:100;
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
 }
-
 
 .nav-tagline{display:flex;flex-direction:column;gap:1px;}
 .nav-tagline strong{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px rgba(255,85,0,0.5);}
@@ -135,8 +133,6 @@ nav{
 .hamburger-btn.open span:nth-child(2){opacity:0;}
 .hamburger-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-
-
 /* ── SLIDE PANEL ── */
 .request-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);}
 .request-overlay.open{opacity:1;pointer-events:all;}
@@ -155,7 +151,6 @@ nav{
 .panel-close{width:34px;height:34px;border-radius:3px;background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.25);color:var(--fire2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .panel-close:hover{background:rgba(255,85,0,.2);}
 
-/* Panel nav links */
 .panel-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:0;}
 .panel-divider{height:1px;background:linear-gradient(90deg,rgba(255,85,0,.3),transparent);margin:20px 0;}
 .panel-nav a{
@@ -199,7 +194,6 @@ nav{
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
 
-/* Album art */
 .art-frame{
   width:220px;height:220px;border-radius:8px;overflow:hidden;
   border:1px solid rgba(255,85,0,.22);background:var(--steel);
@@ -210,11 +204,9 @@ nav{
 .art-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;}
 .art-frame img#albumArt{width:100%;height:100%;object-fit:cover;display:none;position:absolute;top:0;left:0;right:0;bottom:0;}
 .art-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;background:linear-gradient(135deg,var(--steel),var(--steel2));opacity:.45;}
-/* Subtle glow behind art when art is loaded */
 .art-glow{position:absolute;inset:-12px;border-radius:12px;background:radial-gradient(circle,rgba(255,85,0,.18),transparent 70%);opacity:0;transition:opacity 1s;pointer-events:none;}
 .art-glow.on{opacity:1;}
 
-/* NP info */
 .np-info{min-width:0;}
 .steel-bar{height:2px;background:linear-gradient(90deg,var(--fire),var(--fire2),rgba(255,136,0,.15),transparent);border-radius:2px;margin-bottom:18px;}
 .np-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--fire2);margin-bottom:10px;}
@@ -229,7 +221,6 @@ nav{
 }
 #artist{font-size:18px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);margin-bottom:24px;transition:opacity .4s;}
 
-/* Flame waveform */
 .waveform{display:flex;align-items:flex-end;gap:3px;height:34px;margin-bottom:24px;}
 .waveform .bar{
   width:4px;border-radius:2px 2px 0 0;transform-origin:bottom;
@@ -291,7 +282,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 .fade.dim{opacity:.3;}
 
 /* ── RESPONSIVE ── */
-/* Nav logo group */
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .nav-sub{display:block;}
 
@@ -305,7 +295,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   .nav-tagline strong{font-size:13px;letter-spacing:.08em;}
   .listener-badge{padding:4px 8px;font-size:10px;}
 
-  /* On mobile: hide background image, just use dark bg with subtle fire glow */
   .bg-fixed::before{
     background-image:none;
     background:radial-gradient(ellipse 120% 40% at 50% 0%, rgba(255,85,0,0.07) 0%, transparent 70%);
@@ -341,7 +330,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
 <body>
 <div class="bg-fixed"></div>
-<!-- Right edge smoke effect -->
 <div class="smoke-right"></div>
 <div class="wrapper">
 
@@ -371,7 +359,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </div>
 </nav>
 
-
 <!-- ── SLIDE PANEL ── -->
 <div class="request-overlay" id="overlay"></div>
 <aside class="slide-panel" id="slidePanel">
@@ -382,7 +369,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
   <div class="panel-inner">
 
-  <!-- Request Form — first, most important action -->
   <div class="panel-section-title" style="margin-top:0;">🎸 Song Request</div>
   <form id="reqform">
     <label class="field-label">Your Name</label>
@@ -393,14 +379,12 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <input name="song" required placeholder="Song title">
     <label class="field-label">Message / Shout-Out (optional)</label>
     <textarea name="message" placeholder="Dedication, shout out, anything..."></textarea>
-    <!-- Honeypot -->
     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
     <button type="submit" class="submit-btn">Send Request 🤘</button>
   </form>
 
   <div class="panel-divider"></div>
 
-  <!-- Navigation links — secondary, below the form -->
   <div class="panel-section-title">🔗 Links</div>
   <nav class="panel-nav">
     <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">📘</span> Facebook</a>
@@ -411,16 +395,13 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">✉️</span> Email Us</a>
   </nav>
 
-  </div><!-- /panel-inner -->
+  </div>
 </aside>
 
 <!-- ── MAIN ── -->
 <main>
 
-  <!-- NOW PLAYING -->
   <div class="now-playing-section">
-
-    <!-- Album Art -->
     <div style="position:relative;">
       <div class="art-glow" id="artGlow"></div>
       <div class="art-frame" id="artFrame">
@@ -429,7 +410,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
       </div>
     </div>
 
-    <!-- NP Info -->
     <div class="np-info">
       <div class="steel-bar"></div>
       <div class="np-eyebrow">
@@ -459,7 +439,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
   <div class="flame-divider"><hr></div>
 
-  <!-- RECENTLY PLAYED -->
   <section class="section">
     <div class="sec-head">
       <span style="font-size:17px">🔥</span>
@@ -476,7 +455,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
   <div class="flame-divider"><hr></div>
 
-  <!-- COMMUNITY TEASER -->
   <section class="section">
     <div class="sec-head">
       <span style="font-size:17px">🤘</span>
@@ -486,7 +464,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
 
       <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;">
-          <!-- Bravenet Embedded Service Code -->
           <script src="https://apps.bravenet.com/go.js?service=guestbook;id=1;usernum=4023659867" type="text/javascript" charset="utf-8"></script>
       </div>
 
@@ -501,7 +478,6 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 
     </div>
   </section>
-
 
 </main>
 
@@ -518,16 +494,15 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <a href="mailto:mind4metal@hotmail.com">Email</a>
   </div>
 </footer>
-</div><!-- /wrapper -->
+</div>
 
 <div class="toast" id="toast"></div>
 <audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
-
 <script>
 // ══════════════════════════════════════════════════════════════
 // MIND4METAL RADIO — Main Script
-// Album art powered by Last.fm API (replaces old m4m-art.js)
+// Album art: Last.fm API with placeholder filtering
 // ══════════════════════════════════════════════════════════════
 
 // ── CONFIG ──
@@ -535,23 +510,17 @@ const STREAM_URL    = "https://radio.mind4metal.com/stream.mp3";
 const STATUS_URL    = "https://radio.mind4metal.com/status-json.xsl";
 const CONTACT_EMAIL = "mind4metal@hotmail.com";
 const MAX_HIST      = 10;
-
-// Formspree form ID (sign up free at formspree.io)
-const FORMSPREE_ID = "xgolbjen";
+const FORMSPREE_ID  = "xgolbjen";
 
 // ── LAST.FM API KEY ──
-// Get a free key at: https://www.last.fm/api/account/create
-// Paste your key between the quotes below:
 const LASTFM_API_KEY = "486c7335b86e6c3922c334f50ed28019";
 
 // ══════════════════════════════════════════════════════════════
-// TRACK PARSER — extracts Artist / Title from Icecast metadata
+// TRACK PARSER
 // ══════════════════════════════════════════════════════════════
 function parseTrack(raw) {
   if (!raw || typeof raw !== 'string') return { artist: '', title: '' };
   const str = raw.trim();
-
-  // Try common separators: " - ", " — ", " – "
   const separators = [' - ', ' — ', ' – ', ' − '];
   for (const sep of separators) {
     const idx = str.indexOf(sep);
@@ -562,16 +531,38 @@ function parseTrack(raw) {
       };
     }
   }
-
-  // No separator found — treat entire string as title
   return { artist: '', title: str };
 }
 
 // ══════════════════════════════════════════════════════════════
-// ALBUM ART — Last.fm lookup with in-memory cache
+// ALBUM ART — Last.fm with placeholder filtering + cache
 // ══════════════════════════════════════════════════════════════
-const artCache = new Map();       // "artist|||title" → url or null
-const ART_CACHE_MAX = 100;        // keep cache bounded
+const artCache = new Map();
+const ART_CACHE_MAX = 100;
+
+// Returns false for Last.fm's default "no image" placeholder URLs
+function isValidArtUrl(url) {
+  if (!url || url.length === 0) return false;
+  // Last.fm star/default placeholder hash
+  if (url.includes('2a96cbd8b46e442fc41c2b86b821562f')) return false;
+  // Other known placeholder patterns
+  if (url.includes('/noimage/')) return false;
+  // Tiny tracking pixels / spacer gifs
+  if (url.endsWith('.gif')) return false;
+  return true;
+}
+
+// Pick the best image URL from a Last.fm image array
+function pickBestImage(images) {
+  if (!images || !images.length) return null;
+  const url = (
+    images.find(i => i.size === 'extralarge') ||
+    images.find(i => i.size === 'large') ||
+    images.find(i => i.size === 'medium') ||
+    images[images.length - 1]
+  )?.['#text'];
+  return isValidArtUrl(url) ? url : null;
+}
 
 async function fetchAlbumArt(artist, title) {
   if (!artist || !LASTFM_API_KEY) return null;
@@ -579,73 +570,53 @@ async function fetchAlbumArt(artist, title) {
   const cacheKey = `${artist}|||${title}`.toLowerCase();
   if (artCache.has(cacheKey)) return artCache.get(cacheKey);
 
-  try {
-    // Strategy 1: track.getInfo — best match when we have both artist + title
-    if (title) {
-      const url = `https://ws.audioscrobbler.com/2.0/?method=track.getInfo`
-        + `&api_key=${encodeURIComponent(LASTFM_API_KEY)}`
-        + `&artist=${encodeURIComponent(artist)}`
-        + `&track=${encodeURIComponent(title)}`
-        + `&format=json`;
+  const base = 'https://ws.audioscrobbler.com/2.0/';
+  const key  = encodeURIComponent(LASTFM_API_KEY);
 
-      const r = await fetch(url);
+  try {
+    // Strategy 1: track.getInfo — best when we have artist + title
+    if (title) {
+      const r = await fetch(`${base}?method=track.getInfo&api_key=${key}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`);
       if (r.ok) {
         const d = await r.json();
-        const images = d?.track?.album?.image;
-        if (images && images.length) {
-          // Pick "extralarge" (300x300) or the largest available
-          const artUrl = (
-            images.find(i => i.size === 'extralarge') ||
-            images.find(i => i.size === 'large') ||
-            images.find(i => i.size === 'medium') ||
-            images[images.length - 1]
-          )?.['#text'];
+        const url = pickBestImage(d?.track?.album?.image);
+        if (url) { cacheArt(cacheKey, url); return url; }
+      }
+    }
 
-          if (artUrl && artUrl.length > 0) {
-            cacheArt(cacheKey, artUrl);
-            return artUrl;
-          }
+    // Strategy 2: album.search — catches alternate releases
+    if (title) {
+      const r2 = await fetch(`${base}?method=album.search&api_key=${key}&album=${encodeURIComponent(title + ' ' + artist)}&limit=3&format=json`);
+      if (r2.ok) {
+        const d2 = await r2.json();
+        const matches = d2?.results?.albummatches?.album;
+        if (matches && matches.length) {
+          const match = matches.find(a => a.artist && a.artist.toLowerCase() === artist.toLowerCase()) || matches[0];
+          const url2 = pickBestImage(match?.image);
+          if (url2) { cacheArt(cacheKey, url2); return url2; }
         }
       }
     }
 
-    // Strategy 2: artist.getInfo — fall back to artist image
-    const url2 = `https://ws.audioscrobbler.com/2.0/?method=artist.getInfo`
-      + `&api_key=${encodeURIComponent(LASTFM_API_KEY)}`
-      + `&artist=${encodeURIComponent(artist)}`
-      + `&format=json`;
-
-    const r2 = await fetch(url2);
-    if (r2.ok) {
-      const d2 = await r2.json();
-      const images2 = d2?.artist?.image;
-      if (images2 && images2.length) {
-        const artUrl2 = (
-          images2.find(i => i.size === 'extralarge') ||
-          images2.find(i => i.size === 'large') ||
-          images2[images2.length - 1]
-        )?.['#text'];
-
-        if (artUrl2 && artUrl2.length > 0) {
-          cacheArt(cacheKey, artUrl2);
-          return artUrl2;
-        }
-      }
+    // Strategy 3: artist.getInfo — fall back to artist photo
+    const r3 = await fetch(`${base}?method=artist.getInfo&api_key=${key}&artist=${encodeURIComponent(artist)}&format=json`);
+    if (r3.ok) {
+      const d3 = await r3.json();
+      const url3 = pickBestImage(d3?.artist?.image);
+      if (url3) { cacheArt(cacheKey, url3); return url3; }
     }
 
-    // Nothing found
+    // Nothing found — cache the miss
     cacheArt(cacheKey, null);
     return null;
 
   } catch {
-    // Network error — don't cache so we retry next time
     return null;
   }
 }
 
 function cacheArt(key, url) {
   if (artCache.size >= ART_CACHE_MAX) {
-    // Evict oldest entry
     const first = artCache.keys().next().value;
     artCache.delete(first);
   }
@@ -679,7 +650,6 @@ const toast      = document.getElementById('toast');
 
 const artState = { currentKey: '' };
 
-// ── INIT AUDIO ──
 audio.src = STREAM_URL;
 
 // ── WAVEFORM BARS ──
@@ -693,7 +663,7 @@ for (let i = 0; i < 32; i++) {
 }
 
 // ══════════════════════════════════════════════════════════════
-// PLAYBACK CONTROLS
+// PLAYBACK
 // ══════════════════════════════════════════════════════════════
 listenBtn.addEventListener('click', async () => {
   try {
@@ -723,7 +693,6 @@ async function startStream() {
   waveform.classList.add('on');
 }
 
-// ── AUTO-RECONNECT ──
 let reconnectTimer = null;
 function scheduleReconnect() {
   if (!playing) return;
@@ -756,7 +725,6 @@ document.addEventListener('visibilitychange', async () => {
   }
 });
 
-// ── ELAPSED TIMER ──
 setInterval(() => {
   const s = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
   elapsedEl.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -802,7 +770,6 @@ async function updateAlbumArt(artist, title) {
 
   try {
     const url = await fetchAlbumArt(artist, title);
-    // Guard: if song changed while we were fetching, discard result
     if (artState.currentKey !== currentKey) return;
     showArt(url, [artist, title].filter(Boolean).join(' — '));
   } catch {
@@ -892,7 +859,7 @@ function showToast(msg) {
 document.getElementById('reqform').addEventListener('submit', async e => {
   e.preventDefault();
   const fd = new FormData(e.target);
-  if (fd.get('website')) return; // honeypot
+  if (fd.get('website')) return;
 
   const data = Object.fromEntries(fd.entries());
 
@@ -910,7 +877,6 @@ document.getElementById('reqform').addEventListener('submit', async e => {
       showToast("Couldn't send — try again.");
     }
   } else {
-    // Fallback: open mailto
     const subject = encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
     const body    = encodeURIComponent(`Name: ${data.name}\nArtist: ${data.artist}\nSong: ${data.song}\nMessage: ${data.message || '(none)'}`);
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -920,9 +886,8 @@ document.getElementById('reqform').addEventListener('submit', async e => {
   }
 });
 
-// ── API KEY WARNING ──
 if (!LASTFM_API_KEY) {
-  console.warn('[Mind4Metal] No Last.fm API key set — album art will not load. Get a free key at https://www.last.fm/api/account/create and set LASTFM_API_KEY in index.html');
+  console.warn('[Mind4Metal] No Last.fm API key — album art disabled. Get one at https://www.last.fm/api/account/create');
 }
 </script>
 
