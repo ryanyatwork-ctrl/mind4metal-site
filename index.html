@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mind4Metal">
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal Radio</title>
 <meta name="description" content="Mind4Metal Radio — 24/7 Heavy • Power • Hard Rock">
-
-<!-- Favicon: dragon logo -->
-<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
-<link rel="apple-touch-icon" href="Mind4Metal_Dragon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -328,6 +331,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 
+</script>
 <body>
 <div class="bg-fixed"></div>
 <div class="smoke-right"></div>
@@ -890,6 +894,9 @@ if (!LASTFM_API_KEY) {
   console.warn('[Mind4Metal] No Last.fm API key — album art disabled. Get one at https://www.last.fm/api/account/create');
 }
 </script>
-
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
 </body>
 </html>
