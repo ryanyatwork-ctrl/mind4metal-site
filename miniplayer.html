@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mind4Metal — Now Playing</title>
+<link rel="icon" href="/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:#07080a;color:#dde1e8;font-family:'Barlow Condensed',sans-serif;}
+
+/* ── NORMAL MODE (≥130px tall) ── */
+.player{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 16px;height:100vh;width:100%;
+  background:linear-gradient(135deg,#07080a 0%,#0d0f13 100%);
+  border:1px solid rgba(255,85,0,0.2);
+  user-select:none;
+}
+.art{width:80px;height:80px;border-radius:6px;overflow:hidden;flex-shrink:0;background:#1a1e26;border:1px solid rgba(255,85,0,.2);position:relative;}
+.art img{width:100%;height:100%;object-fit:cover;display:none;}
+.art-ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;background:linear-gradient(135deg,#1a1e26,#222633);opacity:.5;}
+.info{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;}
+.song{font-family:'Oswald',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.15;text-shadow:0 1px 8px rgba(255,85,0,.15);}
+.band{font-size:13px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:#8a94a0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ctrl{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.play-btn{
+  width:32px;height:32px;border-radius:4px;border:1px solid #ff5500;background:transparent;
+  color:#ff8800;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;
+}
+.play-btn:hover,.play-btn.on{background:linear-gradient(135deg,#ff5500,#ff8800);color:#fff;box-shadow:0 0 16px rgba(255,85,0,.4);}
+.dots{display:flex;gap:2px;align-items:flex-end;height:16px;}
+.dots .d{width:3px;border-radius:1px;background:linear-gradient(to top,#ff5500,#ff8800);animation:wav 1s ease-in-out infinite;opacity:.2;}
+.dots.on .d{opacity:1;}
+@keyframes wav{0%,100%{height:3px;}50%{height:14px;}}
+.time{font-family:'Oswald';font-size:11px;color:rgba(221,225,232,.3);letter-spacing:.08em;}
+.expand-btn{width:24px;height:24px;border:none;background:none;color:#8a94a0;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;opacity:.5;transition:opacity .2s;flex-shrink:0;}
+.expand-btn:hover{opacity:1;color:#ff8800;}
+
+/* ── COMPACT MODE (<130px tall) ── */
+.player.compact{gap:10px;padding:6px 12px;}
+.player.compact .art{width:44px;height:44px;border-radius:4px;}
+.player.compact .art-ph{font-size:16px;}
+.player.compact .song{font-size:14px;}
+.player.compact .band{font-size:11px;}
+.player.compact .ctrl{margin-top:2px;}
+.player.compact .play-btn{width:26px;height:26px;font-size:11px;}
+.player.compact .dots{height:12px;}
+.player.compact .dots .d{width:2px;}
+
+/* ── ULTRA COMPACT (<80px tall) ── */
+.player.ultra{gap:8px;padding:4px 10px;flex-wrap:nowrap;}
+.player.ultra .art{width:32px;height:32px;border-radius:3px;}
+.player.ultra .art-ph{font-size:12px;}
+.player.ultra .info{gap:0;}
+.player.ultra .song{font-size:12px;}
+.player.ultra .band{display:none;}
+.player.ultra .ctrl{display:none;}
+</style>
+</head>
+<body>
+<div class="player" id="player">
+  <div class="art">
+    <div class="art-ph" id="artPh">🎸</div>
+    <img id="artImg" alt="">
+  </div>
+  <div class="info">
+    <div class="song" id="song">—</div>
+    <div class="band" id="band">—</div>
+    <div class="ctrl">
+      <button class="play-btn" id="playBtn">▶</button>
+      <div class="dots" id="dots"></div>
+      <span class="time" id="time">0:00</span>
+    </div>
+  </div>
+  <button class="expand-btn" id="expandBtn" title="Open full site">⛶</button>
+</div>
+
+<audio id="audio" preload="none"></audio>
+<script>
+const STREAM_URL = "https://radio.mind4metal.com/stream.mp3";
+const STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
+const LASTFM_API_KEY = "486c7335b86e6c3922c334f50ed28019";
+
+const audio   = document.getElementById('audio');
+const player  = document.getElementById('player');
+const songEl  = document.getElementById('song');
+const bandEl  = document.getElementById('band');
+const playBtn = document.getElementById('playBtn');
+const dots    = document.getElementById('dots');
+const timeEl  = document.getElementById('time');
+const artImg  = document.getElementById('artImg');
+const artPh   = document.getElementById('artPh');
+
+let playing = false, startedAt = Date.now(), lastCombo = '';
+
+audio.src = STREAM_URL;
+
+// Waveform dots
+for (let i = 0; i < 12; i++) {
+  const d = document.createElement('div');
+  d.className = 'd';
+  d.style.animationDelay = (i * 0.07) + 's';
+  d.style.animationDuration = (0.6 + Math.random() * 0.6) + 's';
+  dots.appendChild(d);
+}
+
+// Responsive resize detection
+function checkSize() {
+  const h = window.innerHeight;
+  player.classList.remove('compact', 'ultra');
+  if (h < 80) player.classList.add('ultra');
+  else if (h < 130) player.classList.add('compact');
+}
+checkSize();
+window.addEventListener('resize', checkSize);
+new ResizeObserver(checkSize).observe(document.body);
+
+// Play/pause
+playBtn.addEventListener('click', async () => {
+  if (!playing) {
+    audio.src = STREAM_URL; audio.load(); await audio.play();
+    playing = true; playBtn.textContent = '⏸'; playBtn.classList.add('on'); dots.classList.add('on');
+  } else {
+    audio.pause(); audio.src = '';
+    playing = false; playBtn.textContent = '▶'; playBtn.classList.remove('on'); dots.classList.remove('on');
+  }
+});
+
+// Reconnect
+audio.addEventListener('error', () => { if (playing) setTimeout(async () => { audio.src = STREAM_URL; audio.load(); try { await audio.play(); } catch {} }, 3000); });
+
+// Timer
+setInterval(() => {
+  const s = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
+  timeEl.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}, 1000);
+
+// Track parser
+function parseTrack(raw) {
+  if (!raw) return { artist: '', title: '' };
+  for (const sep of [' - ', ' — ', ' – ', ' − ']) {
+    const i = raw.indexOf(sep);
+    if (i > 0) return { artist: raw.substring(0, i).trim(), title: raw.substring(i + sep.length).trim() };
+  }
+  return { artist: '', title: raw.trim() };
+}
+
+// Album art
+function isValid(url) { return url && !url.includes('2a96cbd8b46e442fc41c2b86b821562f') && !url.includes('/noimage/') && !url.endsWith('.gif'); }
+function pickImg(imgs) { if (!imgs?.length) return null; const u = (imgs.find(i => i.size === 'large') || imgs.find(i => i.size === 'medium') || imgs[imgs.length - 1])?.['#text']; return isValid(u) ? u : null; }
+
+async function fetchArt(artist, title) {
+  if (!artist) return null;
+  const base = 'https://ws.audioscrobbler.com/2.0/';
+  const k = encodeURIComponent(LASTFM_API_KEY);
+  try {
+    if (title) { const r = await fetch(`${base}?method=track.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`); if (r.ok) { const d = await r.json(); const u = pickImg(d?.track?.album?.image); if (u) return u; } }
+    const r2 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`); if (r2.ok) { const d2 = await r2.json(); const u2 = pickImg(d2?.artist?.image); if (u2) return u2; }
+  } catch {}
+  return null;
+}
+
+function showArt(url) {
+  if (!url) { artImg.style.display = 'none'; artPh.style.display = 'flex'; return; }
+  const img = new Image();
+  img.onload = () => { artImg.src = url; artImg.style.display = 'block'; artPh.style.display = 'none'; };
+  img.onerror = () => { artImg.style.display = 'none'; artPh.style.display = 'flex'; };
+  img.src = url;
+}
+
+// Poll metadata
+async function poll() {
+  try {
+    const r = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
+    const j = await r.json();
+    const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
+    if (!src) return;
+    const parsed = parseTrack(src.title || src.yp_currently_playing || '');
+    const title = parsed.title || 'Unknown';
+    const artist = parsed.artist || '';
+    const combo = `${artist}|||${title}`;
+    if (combo !== lastCombo) {
+      songEl.textContent = title;
+      bandEl.textContent = artist || '—';
+      document.title = `${title} — ${artist || 'Mind4Metal'}`;
+      startedAt = Date.now();
+      lastCombo = combo;
+      const url = await fetchArt(artist, title);
+      showArt(url);
+    }
+  } catch {}
+}
+poll();
+setInterval(poll, 15000);
+
+// Expand button opens full site
+document.getElementById('expandBtn').addEventListener('click', () => {
+  window.open('https://mind4metal.com', '_blank');
+});
+</script>
+</body>
+</html>
