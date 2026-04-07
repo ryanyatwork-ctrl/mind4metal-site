@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mind4Metal — Now Playing</title>
+<title>Mind4Metal &mdash; Now Playing</title>
 <link rel="icon" href="/favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;background:#07080a;color:#dde1e8;font-family:'Barlow Condensed',sans-serif;}
 
-/* ── NORMAL MODE (≥130px tall) ── */
+/* ── NORMAL MODE (>=130px tall) ── */
 .player{
   display:flex;align-items:center;gap:14px;
   padding:12px 16px;height:100vh;width:100%;
@@ -63,26 +63,27 @@ html,body{height:100%;overflow:hidden;background:#07080a;color:#dde1e8;font-fami
 <body>
 <div class="player" id="player">
   <div class="art">
-    <div class="art-ph" id="artPh">🎸</div>
+    <div class="art-ph" id="artPh">&#x1F3B8;</div>
     <img id="artImg" alt="">
   </div>
   <div class="info">
-    <div class="song" id="song">—</div>
-    <div class="band" id="band">—</div>
+    <div class="song" id="song">&mdash;</div>
+    <div class="band" id="band">&mdash;</div>
     <div class="ctrl">
-      <button class="play-btn" id="playBtn">▶</button>
+      <button class="play-btn" id="playBtn">&#x25B6;</button>
       <div class="dots" id="dots"></div>
       <span class="time" id="time">0:00</span>
     </div>
   </div>
-  <button class="expand-btn" id="expandBtn" title="Open full site">⛶</button>
+  <button class="expand-btn" id="expandBtn" title="Open full site">&#x26F6;</button>
 </div>
 
 <audio id="audio" preload="none"></audio>
 <script>
-const STREAM_URL = "https://radio.mind4metal.com/stream.mp3";
-const STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
-const LASTFM_API_KEY = "486c7335b86e6c3922c334f50ed28019";
+const STREAM_URL  = 'https://radio.mind4metal.com/stream.mp3';
+const STATUS_URL  = 'https://radio.mind4metal.com/status-json.xsl';
+const ART_API_URL = '/api/art/resolve';
+const LASTFM_KEY  = '486c7335b86e6c3922c334f50ed28019';
 
 const audio   = document.getElementById('audio');
 const player  = document.getElementById('player');
@@ -94,109 +95,235 @@ const timeEl  = document.getElementById('time');
 const artImg  = document.getElementById('artImg');
 const artPh   = document.getElementById('artPh');
 
-let playing = false, startedAt = Date.now(), lastCombo = '';
+let playing   = false;
+let startedAt = Date.now();
+let lastCombo = '';
+const artCache = new Map();
+const artState = { currentKey: '' };
 
 audio.src = STREAM_URL;
 
-// Waveform dots
+// ── Waveform dots ─────────────────────────────────────────────────────────────
 for (let i = 0; i < 12; i++) {
   const d = document.createElement('div');
   d.className = 'd';
-  d.style.animationDelay = (i * 0.07) + 's';
+  d.style.animationDelay    = (i * 0.07) + 's';
   d.style.animationDuration = (0.6 + Math.random() * 0.6) + 's';
   dots.appendChild(d);
 }
 
-// Responsive resize detection
+// ── Responsive sizing ─────────────────────────────────────────────────────────
 function checkSize() {
   const h = window.innerHeight;
   player.classList.remove('compact', 'ultra');
-  if (h < 80) player.classList.add('ultra');
+  if (h < 80)  player.classList.add('ultra');
   else if (h < 130) player.classList.add('compact');
 }
 checkSize();
 window.addEventListener('resize', checkSize);
 new ResizeObserver(checkSize).observe(document.body);
 
-// Play/pause
-playBtn.addEventListener('click', async () => {
-  if (!playing) {
-    audio.src = STREAM_URL; audio.load(); await audio.play();
-    playing = true; playBtn.textContent = '⏸'; playBtn.classList.add('on'); dots.classList.add('on');
-  } else {
-    audio.pause(); audio.src = '';
-    playing = false; playBtn.textContent = '▶'; playBtn.classList.remove('on'); dots.classList.remove('on');
+// ── Playback ──────────────────────────────────────────────────────────────────
+function setPlayState(on) {
+  playing = on;
+  playBtn.textContent = on ? '\u23F8' : '\u25B6';
+  playBtn.classList.toggle('on', on);
+  dots.classList.toggle('on', on);
+}
+
+async function startStream() {
+  audio.src = STREAM_URL;
+  audio.load();
+  try {
+    await audio.play();
+    setPlayState(true);
+  } catch (e) {
+    setPlayState(false);
+    console.warn('[M4M mini] play() failed:', e.name);
   }
+}
+
+function stopStream() {
+  audio.pause();
+  audio.src = '';
+  setPlayState(false);
+}
+
+playBtn.addEventListener('click', () => {
+  if (!playing) startStream(); else stopStream();
 });
 
-// Reconnect
-audio.addEventListener('error', () => { if (playing) setTimeout(async () => { audio.src = STREAM_URL; audio.load(); try { await audio.play(); } catch {} }, 3000); });
+// Reconnect on drop
+audio.addEventListener('error', () => {
+  if (!playing) return;
+  setTimeout(async () => {
+    audio.src = STREAM_URL;
+    audio.load();
+    try { await audio.play(); } catch {}
+  }, 3000);
+});
+audio.addEventListener('stalled', () => { if (playing) audio.load(); });
 
-// Timer
+// ── Elapsed timer ─────────────────────────────────────────────────────────────
 setInterval(() => {
   const s = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
   timeEl.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }, 1000);
 
-// Track parser
+// ── Track parser ──────────────────────────────────────────────────────────────
 function parseTrack(raw) {
   if (!raw) return { artist: '', title: '' };
-  for (const sep of [' - ', ' — ', ' – ', ' − ']) {
-    const i = raw.indexOf(sep);
-    if (i > 0) return { artist: raw.substring(0, i).trim(), title: raw.substring(i + sep.length).trim() };
+  const str  = String(raw).trim();
+  const seps = [' - ', ' \u2014 ', ' \u2013 ', ' \u2012 '];
+  for (const sep of seps) {
+    const idx = str.indexOf(sep);
+    if (idx > 0) return {
+      artist: str.substring(0, idx).trim(),
+      title:  str.substring(idx + sep.length).trim(),
+    };
   }
-  return { artist: '', title: raw.trim() };
+  return { artist: '', title: str };
 }
 
-// Album art
-function isValid(url) { return url && !url.includes('2a96cbd8b46e442fc41c2b86b821562f') && !url.includes('/noimage/') && !url.endsWith('.gif'); }
-function pickImg(imgs) { if (!imgs?.length) return null; const u = (imgs.find(i => i.size === 'large') || imgs.find(i => i.size === 'medium') || imgs[imgs.length - 1])?.['#text']; return isValid(u) ? u : null; }
+// ── Album art ─────────────────────────────────────────────────────────────────
+function isValidArtUrl(url) {
+  if (!url) return false;
+  if (url.includes('2a96cbd8b46e442fc41c2b86b821562f')) return false;
+  if (url.includes('/noimage/')) return false;
+  if (url.endsWith('.gif')) return false;
+  return true;
+}
 
-async function fetchArt(artist, title) {
-  if (!artist) return null;
+function pickBestLastFmImage(images) {
+  if (!Array.isArray(images) || !images.length) return null;
+  const img = images.find(i => i.size === 'extralarge')
+           || images.find(i => i.size === 'large')
+           || images.find(i => i.size === 'medium')
+           || images[images.length - 1];
+  const url = img?.['#text'];
+  return isValidArtUrl(url) ? url : null;
+}
+
+// Last.fm: track info → artist image
+async function fetchArtLastFm(artist, title) {
+  if (!artist || !LASTFM_KEY) return null;
   const base = 'https://ws.audioscrobbler.com/2.0/';
-  const k = encodeURIComponent(LASTFM_API_KEY);
+  const k    = encodeURIComponent(LASTFM_KEY);
   try {
-    if (title) { const r = await fetch(`${base}?method=track.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`); if (r.ok) { const d = await r.json(); const u = pickImg(d?.track?.album?.image); if (u) return u; } }
-    const r2 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`); if (r2.ok) { const d2 = await r2.json(); const u2 = pickImg(d2?.artist?.image); if (u2) return u2; }
+    if (title) {
+      const r = await fetch(`${base}?method=track.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`);
+      if (r.ok) {
+        const d   = await r.json();
+        const url = pickBestLastFmImage(d?.track?.album?.image);
+        if (url) return url;
+      }
+    }
+    const r2 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`);
+    if (r2.ok) {
+      const d2  = await r2.json();
+      const url2 = pickBestLastFmImage(d2?.artist?.image);
+      if (url2) return url2;
+    }
   } catch {}
   return null;
 }
 
+// Full art chain: Cloudflare Worker (iTunes) → Last.fm
+async function resolveArt(artist, title) {
+  const key = `${artist}|||${title}`.toLowerCase();
+  if (artCache.has(key)) return artCache.get(key);
+
+  let url = null;
+
+  // 1. Cloudflare Worker (iTunes-backed, KV-cached)
+  try {
+    const r = await fetch(
+      `${ART_API_URL}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`,
+      { cache: 'no-store' }
+    );
+    if (r.ok) {
+      const d = await r.json();
+      if (d?.ok && d?.url) url = d.url;
+    }
+  } catch {}
+
+  // 2. Last.fm fallback
+  if (!url) {
+    url = await fetchArtLastFm(artist, title);
+  }
+
+  if (artCache.size >= 100) artCache.delete(artCache.keys().next().value);
+  artCache.set(key, url);
+  return url;
+}
+
 function showArt(url) {
-  if (!url) { artImg.style.display = 'none'; artPh.style.display = 'flex'; return; }
+  if (!url) {
+    artImg.style.display = 'none';
+    artPh.style.display  = 'flex';
+    return;
+  }
   const img = new Image();
-  img.onload = () => { artImg.src = url; artImg.style.display = 'block'; artPh.style.display = 'none'; };
+  img.onload  = () => { artImg.src = url; artImg.style.display = 'block'; artPh.style.display = 'none'; };
   img.onerror = () => { artImg.style.display = 'none'; artPh.style.display = 'flex'; };
   img.src = url;
 }
 
-// Poll metadata
+async function updateArt(artist, title) {
+  const key = `${artist}|||${title}`;
+  artState.currentKey = key;
+  if (!artist && !title) { showArt(null); return; }
+  try {
+    const url = await resolveArt(artist, title);
+    if (artState.currentKey !== key) return; // track changed while fetching
+    showArt(url);
+  } catch {
+    if (artState.currentKey !== key) return;
+    showArt(null);
+  }
+}
+
+// ── Metadata poll ─────────────────────────────────────────────────────────────
+// Uses windows-1252 fallback decode — same as index.html.
+// Icecast on Windows sends ICY metadata as CP1252 bytes. response.json()
+// defaults to UTF-8 and corrupts smart quotes, umlauts, etc. We read the
+// raw buffer and try strict UTF-8 first, falling back to windows-1252.
 async function poll() {
   try {
     const r = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
-    const j = await r.json();
+    if (!r.ok) return;
+    const buf = await r.arrayBuffer();
+    let text;
+    try {
+      text = new TextDecoder('utf-8', { fatal: true }).decode(buf);
+    } catch {
+      text = new TextDecoder('windows-1252').decode(buf);
+    }
+    const j   = JSON.parse(text);
     const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
     if (!src) return;
+
     const parsed = parseTrack(src.title || src.yp_currently_playing || '');
-    const title = parsed.title || 'Unknown';
+    const title  = parsed.title  || 'Unknown';
     const artist = parsed.artist || '';
-    const combo = `${artist}|||${title}`;
+    const combo  = `${artist}|||${title}`;
+
     if (combo !== lastCombo) {
-      songEl.textContent = title;
-      bandEl.textContent = artist || '—';
-      document.title = `${title} — ${artist || 'Mind4Metal'}`;
+      songEl.textContent  = title;
+      bandEl.textContent  = artist || '\u2014';
+      document.title      = artist ? `${title} \u2014 ${artist}` : `${title} \u2014 Mind4Metal`;
       startedAt = Date.now();
       lastCombo = combo;
-      const url = await fetchArt(artist, title);
-      showArt(url);
+      setTimeout(() => updateArt(artist, title), 150);
     }
-  } catch {}
+  } catch (e) {
+    console.warn('[M4M mini] poll error:', e);
+  }
 }
 poll();
 setInterval(poll, 15000);
 
-// Expand button opens full site
+// ── Expand button ─────────────────────────────────────────────────────────────
 document.getElementById('expandBtn').addEventListener('click', () => {
   window.open('https://mind4metal.com', '_blank');
 });
