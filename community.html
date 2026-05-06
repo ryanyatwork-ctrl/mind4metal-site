@@ -80,6 +80,7 @@ nav{
 .card{
   background:var(--bg2);border:1px solid var(--border2);border-radius:8px;
   margin-bottom:28px;overflow:hidden;
+  scroll-margin-top:92px;
 }
 .card-head{
   padding:18px 24px;border-bottom:1px solid rgba(255,85,0,0.14);
@@ -198,7 +199,8 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
   </a>
   <div class="nav-links">
     <a href="index.html">← Listen Live</a>
-    <a href="community.html" class="active">Community</a>
+    <a href="#signup" class="active">Updates</a>
+    <a href="#guestbook">Guestbook</a>
     <a href="blog.html">Blog</a>
   </div>
 </nav>
@@ -211,7 +213,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 <main class="main">
 
   <!-- EMAIL SIGNUP -->
-  <div class="card">
+  <div class="card" id="signup">
     <div class="card-head">
       <span class="card-icon">🔥</span>
       <div>
@@ -257,7 +259,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
   </div>
 
   <!-- GUESTBOOK -->
-  <div class="card">
+  <div class="card" id="guestbook">
     <div class="card-head">
       <span class="card-icon">📖</span>
       <div>

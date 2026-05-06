@@ -76,9 +76,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .slide-panel textarea{height:86px;resize:none;}
 .submit-btn{width:100%;margin-top:18px;padding:13px;background:linear-gradient(135deg,var(--fire) 0%,var(--fire2) 100%);color:#fff;font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .2s;text-shadow:0 1px 2px rgba(0,0,0,.4);box-shadow:0 4px 20px rgba(255,85,0,.32);}
 .submit-btn:hover{background:linear-gradient(135deg,var(--fire2),#ffaa00);box-shadow:0 4px 28px rgba(255,85,0,.6);transform:translateY(-1px);}
-.now-playing-section{max-width:1100px;margin:0 auto;padding:44px 28px 20px;display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;animation:fadeUp .7s ease both;position:relative;}
+.now-playing-section{max-width:1180px;margin:0 auto;padding:44px 28px 24px;display:grid;grid-template-columns:240px minmax(0,1fr) 280px;gap:34px;align-items:center;animation:fadeUp .7s ease both;position:relative;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-.art-frame{width:220px;height:220px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,85,0,.22);background:var(--steel);position:relative;flex-shrink:0;}
+.art-frame{width:240px;height:240px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,85,0,.22);background:var(--steel);position:relative;flex-shrink:0;}
 .art-frame::before,.art-frame::after{content:'';position:absolute;width:18px;height:18px;border-color:var(--fire2);border-style:solid;z-index:2;}
 .art-frame::before{top:0;left:0;border-width:2px 0 0 2px;}
 .art-frame::after{bottom:0;right:0;border-width:0 2px 2px 0;}
@@ -109,6 +109,17 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .stream-status.ok{color:#9fcf9b;border-color:rgba(120,220,120,.2);}
 .stream-status.warn{color:#ffbf69;border-color:rgba(255,136,0,.28);}
 .stream-status.bad{color:#ff8a8a;border-color:rgba(255,80,80,.28);}
+.station-rail{align-self:stretch;display:flex;flex-direction:column;gap:12px;padding:16px;background:linear-gradient(180deg,rgba(13,15,19,.92),rgba(7,8,10,.76));border:1px solid rgba(255,255,255,.09);border-radius:7px;box-shadow:inset 0 1px 0 rgba(255,255,255,.03);}
+.rail-label{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
+.rail-stat{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.rail-stat strong{font-family:'Oswald',sans-serif;font-size:22px;line-height:1;color:#fff;}
+.rail-stat span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);}
+.rail-actions{display:grid;gap:8px;margin-top:auto;}
+.action-btn{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--border2);border-radius:5px;background:rgba(0,0,0,.36);color:var(--silver);font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:all .18s;}
+.action-btn:hover,.action-btn:focus-visible{color:var(--fire2);border-color:rgba(255,85,0,.42);background:rgba(255,85,0,.08);outline:none;}
+.action-btn.primary{background:linear-gradient(135deg,rgba(255,85,0,.88),rgba(255,136,0,.88));border-color:rgba(255,136,0,.55);color:#fff;box-shadow:0 4px 18px rgba(255,85,0,.25);}
+.action-btn.primary:hover{box-shadow:0 4px 26px rgba(255,85,0,.45);color:#fff;}
+.action-btn svg{width:14px;height:14px;fill:currentColor;flex-shrink:0;}
 .volume-group{display:flex;align-items:center;gap:8px;padding:6px 9px;background:rgba(0,0,0,.32);border:1px solid var(--border);border-radius:4px;}
 .icon-btn{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border2);border-radius:4px;background:rgba(0,0,0,.42);color:var(--silver2);font-size:15px;cursor:pointer;transition:all .18s;}
 .icon-btn:hover,.icon-btn:focus-visible{color:var(--fire2);border-color:rgba(255,85,0,.4);background:rgba(255,85,0,.08);outline:none;}
@@ -118,7 +129,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .popout-btn svg{width:14px;height:14px;fill:currentColor;}
 .flame-divider{max-width:1100px;margin:0 auto 0;padding:0 28px;}
 .flame-divider hr{border:none;border-top:1px solid rgba(255,85,0,.14);margin:0;}
-.section{max-width:1100px;margin:0 auto;padding:32px 28px 60px;}
+.section{max-width:1180px;margin:0 auto;padding:32px 28px 52px;}
 .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid rgba(255,85,0,.12);}
 .sec-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--silver);}
 .sec-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(255,85,0,.25),transparent);}
@@ -131,6 +142,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .td-ti{color:var(--text);font-weight:600;}
 .td-ar{color:var(--silver2);font-weight:300;}
 .td-tm{color:var(--text-muted);font-size:11px;font-family:'Oswald';letter-spacing:.06em;white-space:nowrap;width:64px;}
+.home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.home-card{display:flex;flex-direction:column;min-height:170px;padding:20px;background:linear-gradient(180deg,rgba(13,15,19,.92),rgba(9,10,13,.92));border:1px solid var(--border2);border-radius:7px;text-decoration:none;color:var(--text);transition:all .18s;text-align:left;font-family:inherit;cursor:pointer;}
+.home-card:hover,.home-card:focus-visible{transform:translateY(-2px);border-color:rgba(255,85,0,.38);box-shadow:0 10px 26px rgba(0,0,0,.35);outline:none;}
+.home-card-icon{font-size:24px;margin-bottom:12px;color:var(--fire2);}
+.home-card-title{font-family:'Oswald',sans-serif;font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:7px;}
+.home-card-copy{font-size:14px;line-height:1.45;color:var(--text-dim);}
+.home-card-cta{margin-top:auto;padding-top:16px;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--fire2);}
 footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
 .footer-dragon{height:28px;opacity:.55;}
@@ -152,8 +170,8 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 .fade.dim{opacity:.3;}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .nav-sub{display:block;}
-@media(max-width:900px){.nav-sub{display:none;}.nav-social{display:none;}}
-@media(max-width:600px){body{padding-bottom:76px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
+@media(max-width:980px){.nav-sub{display:none;}.nav-social{display:none;}.now-playing-section{grid-template-columns:220px minmax(0,1fr);}.art-frame{width:220px;height:220px;}.station-rail{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;}.rail-actions{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0;}.home-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){body{padding-bottom:76px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.station-rail{width:100%;grid-column:auto;display:flex;text-align:left;}.rail-actions{grid-template-columns:1fr;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}.home-grid{grid-template-columns:1fr;}.home-card{min-height:150px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}.waveform .bar{animation:none!important;height:5px!important;}}
 </style>
 <!-- Google Analytics -->
@@ -216,6 +234,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <a href="https://x.com/mind4metal" target="_blank"><span class="nav-icon">&#x1D54F;</span> X / Twitter</a>
     <a href="blog.html"><span class="nav-icon">&#x1F4DD;</span> Blog</a>
     <a href="community.html"><span class="nav-icon">&#x1F918;</span> Community</a>
+    <a href="community.html#guestbook"><span class="nav-icon">&#x1F4D6;</span> Guestbook</a>
     <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">&#x2709;&#xFE0F;</span> Email Us</a>
   </nav>
   </div>
@@ -247,6 +266,25 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
       <div class="stream-meta">192 kbps &middot; Hard Rock / Heavy Metal &middot; 24/7 Live</div>
       <div class="stream-status warn" id="streamStatus" role="status">Loading station status</div>
     </div>
+    <aside class="station-rail" aria-label="Station actions">
+      <div>
+        <div class="rail-label">Station Console</div>
+        <div class="rail-stat">
+          <span>Listeners</span>
+          <strong id="railListenerCount">&mdash;</strong>
+        </div>
+        <div class="rail-stat">
+          <span>Stream</span>
+          <strong>192</strong>
+        </div>
+        <div class="rail-label">kbps MP3 &middot; worldwide</div>
+      </div>
+      <div class="rail-actions">
+        <button class="action-btn primary" type="button" id="railRequestBtn">Request Song <span>&rarr;</span></button>
+        <a class="action-btn" href="community.html">Community <span>&rarr;</span></a>
+        <button class="action-btn" type="button" id="shareTrackBtn">Share Track <span>&rarr;</span></button>
+      </div>
+    </aside>
   </div>
   <div class="flame-divider"><hr></div>
   <section class="section">
@@ -258,18 +296,25 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </section>
   <div class="flame-divider"><hr></div>
   <section class="section">
-    <div class="sec-head"><span style="font-size:17px">&#x1F918;</span><h3 class="sec-title">Community</h3><div class="sec-line"></div></div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;overflow:hidden;">
-        <script src="https://apps.bravenet.com/go.js?service=guestbook;id=1;usernum=4023659867" type="text/javascript" charset="utf-8"></script>
-      </div>
-      <a href="community.html#signup" style="text-decoration:none;">
-        <div style="background:var(--bg2);border:1px solid var(--border2);border-radius:6px;padding:22px;transition:all .2s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(255,85,0,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.13)'">
-          <div style="font-size:28px;margin-bottom:10px;">&#x1F525;</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);margin-bottom:6px;">Stay in the Fire</div>
-          <div style="font-size:14px;color:var(--text-muted);">Sign up for updates on new shows, events and announcements.</div>
-          <div style="margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fire2);">Get Updates &rarr;</div>
-        </div>
+    <div class="sec-head"><span style="font-size:17px">&#x1F918;</span><h3 class="sec-title">Get Involved</h3><div class="sec-line"></div></div>
+    <div class="home-grid">
+      <button class="home-card" type="button" id="requestCardBtn">
+        <div class="home-card-icon">&#x1F3B8;</div>
+        <div class="home-card-title">Request a Song</div>
+        <div class="home-card-copy">Send a track, artist, and shout-out straight to the station without leaving the live player.</div>
+        <div class="home-card-cta">Open request form</div>
+      </button>
+      <a class="home-card" href="community.html#signup">
+        <div class="home-card-icon">&#x1F525;</div>
+        <div class="home-card-title">Community</div>
+        <div class="home-card-copy">Sign up for station updates, leave a guestbook note, and keep up with the Mind4Metal crowd.</div>
+        <div class="home-card-cta">Visit community</div>
+      </a>
+      <a class="home-card" href="miniplayer.html" target="mind4metal_mini">
+        <div class="home-card-icon">&#x25F1;</div>
+        <div class="home-card-title">Mini Player</div>
+        <div class="home-card-copy">Pop out a compact player for the corner of your screen while you work, game, or browse.</div>
+        <div class="home-card-cta">Launch player</div>
       </a>
     </div>
   </section>
@@ -561,6 +606,10 @@ const mobileArtist = document.getElementById('mobileArtist');
 const mobileArt = document.getElementById('mobileArt');
 const mobileArtPh = document.getElementById('mobileArtPh');
 const submitRequestBtn = document.getElementById('submitRequestBtn');
+const railListenerEl = document.getElementById('railListenerCount');
+const railRequestBtn = document.getElementById('railRequestBtn');
+const requestCardBtn = document.getElementById('requestCardBtn');
+const shareTrackBtn = document.getElementById('shareTrackBtn');
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let playing   = false;
@@ -802,7 +851,9 @@ async function poll() {
     pollDelay = 15000;
     setStreamStatus(playing ? 'Live stream playing' : 'Station metadata online', playing ? 'ok' : 'warn');
 
-    listenerEl.textContent = src.listeners ?? '\u2014';
+    const listenerCount = src.listeners ?? '\u2014';
+    listenerEl.textContent = listenerCount;
+    railListenerEl.textContent = listenerCount;
 
     const raw    = src.title || src.yp_currently_playing || '';
     const parsed = parseTrack(raw);
@@ -835,6 +886,7 @@ async function poll() {
   } catch (e) {
     pollDelay = Math.min(pollDelay * 1.5, 60000);
     listenerEl.textContent = '\u2014';
+    railListenerEl.textContent = '\u2014';
     setStreamStatus('Station metadata unavailable. Retrying...', 'bad');
     console.warn('[M4M] poll error:', e);
   } finally {
@@ -898,6 +950,27 @@ function showToast(msg) {
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 3200);
 }
+
+async function shareCurrentTrack() {
+  const title = titleEl.textContent && titleEl.textContent !== '\u2014' ? titleEl.textContent : 'Mind4Metal Radio';
+  const artist = artistEl.textContent && artistEl.textContent !== '\u2014' ? artistEl.textContent : 'Live Broadcast';
+  const text = `Listening to ${artist} - ${title} on Mind4Metal Radio`;
+  const url = 'https://www.mind4metal.com/';
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'Mind4Metal Radio', text, url });
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(`${text} ${url}`);
+      showToast('Now playing copied to clipboard');
+    } else {
+      showToast(text);
+    }
+  } catch {}
+}
+
+railRequestBtn.addEventListener('click', openPanel);
+requestCardBtn.addEventListener('click', openPanel);
+shareTrackBtn.addEventListener('click', shareCurrentTrack);
 
 // ── Song request form ─────────────────────────────────────────────────────────
 document.getElementById('reqform').addEventListener('submit', async e => {
