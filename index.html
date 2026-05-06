@@ -364,7 +364,20 @@ function artistKey(str) {
 function repairMetadataText(str) {
   let out = String(str || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
   for (const [bad, good] of MOJIBAKE_FIXES) out = out.split(bad).join(good);
+  out = repairQuestionMarkApostrophes(out);
   return out.replace(/\s+/g, ' ');
+}
+
+function repairQuestionMarkApostrophes(str) {
+  return String(str || '')
+    // Guns ?N Roses -> Guns 'N Roses
+    .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
+    // Guns N? Roses -> Guns N' Roses
+    .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
+    // Don?t, Knockin?On, Rock ?N? Roll-style metadata damage.
+    .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")
+    // Stompin? -> Stompin', but leave normal sentence/title questions alone.
+    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");
 }
 
 function normalizeArtistDisplay(artist) {
