@@ -335,20 +335,79 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+const ARTIST_DISPLAY_ALIASES = new Map([
+  ['motleycrue', 'M\u00F6tley Cr\u00FCe']
+]);
+
+const MOJIBAKE_FIXES = [
+  ['M\u00C3\u00B6tley Cr\u00C3\u00BCe', 'M\u00F6tley Cr\u00FCe'],
+  ['Motley Crue', 'M\u00F6tley Cr\u00FCe'],
+  ['Mot\u00C3\u00B6rhead', 'Mot\u00F6rhead'],
+  ['Queensr\u00C3\u00BFche', 'Queensr\u00FFche'],
+  ['Blue \u00C3\u2013yster Cult', 'Blue \u00D6yster Cult'],
+  ['\u00E2\u20AC\u201D', '\u2014'],
+  ['\u00E2\u20AC\u201C', '\u2013'],
+  ['\u00E2\u20AC\u2122', '\u2019'],
+  ['\u00E2\u20AC\u0153', '\u201C'],
+  ['\u00E2\u20AC\u009D', '\u201D'],
+  ['\u00C2\u00A0', ' ']
+];
+
+function stripDiacritics(str) {
+  return String(str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function artistKey(str) {
+  return stripDiacritics(str).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function repairMetadataText(str) {
+  let out = String(str || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
+  for (const [bad, good] of MOJIBAKE_FIXES) out = out.split(bad).join(good);
+  return out.replace(/\s+/g, ' ');
+}
+
+function normalizeArtistDisplay(artist) {
+  const repaired = repairMetadataText(artist);
+  return ARTIST_DISPLAY_ALIASES.get(artistKey(repaired)) || repaired;
+}
+
+function toSearchAlias(str) {
+  return stripDiacritics(repairMetadataText(str));
+}
+
+function parseIcecastJson(buffer) {
+  const encodings = ['utf-8', 'windows-1252', 'iso-8859-1'];
+  let lastError = null;
+  for (const encoding of encodings) {
+    try {
+      const decoder = encoding === 'utf-8'
+        ? new TextDecoder(encoding, { fatal: true })
+        : new TextDecoder(encoding);
+      const text = decoder.decode(buffer)
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+      return JSON.parse(text);
+    } catch (e) {
+      lastError = e;
+    }
+  }
+  throw lastError || new Error('Unable to decode Icecast status');
+}
+
 // Parse "Artist - Title" from Icecast metadata.
 // Handles standard hyphen and em/en dash variants.
 function parseTrack(raw) {
   if (!raw || typeof raw !== 'string') return { artist: '', title: '' };
-  const str = raw.trim();
+  const str = repairMetadataText(raw);
   const seps = [' - ', ' \u2014 ', ' \u2013 ', ' \u2012 '];
   for (const sep of seps) {
     const idx = str.indexOf(sep);
     if (idx > 0) return {
-      artist: str.substring(0, idx).trim(),
-      title:  str.substring(idx + sep.length).trim(),
+      artist: normalizeArtistDisplay(str.substring(0, idx)),
+      title:  repairMetadataText(str.substring(idx + sep.length)),
     };
   }
-  return { artist: '', title: str };
+  return { artist: '', title: repairMetadataText(str) };
 }
 
 // ── Album art ─────────────────────────────────────────────────────────────────
@@ -426,11 +485,14 @@ async function resolveArtUrl(artist, title) {
   if (artCache.has(key)) return artCache.get(key);
 
   let url = null;
+  const searchArtist = toSearchAlias(artist);
+  const searchTitle = repairMetadataText(title);
 
   // 1. Manifest
   if (window.M4MArt) {
     try {
-      const res = await window.M4MArt.resolveArt({ artist, title });
+      const res = await window.M4MArt.resolveArt({ artist, title })
+        || await window.M4MArt.resolveArt({ artist: searchArtist, title: searchTitle });
       if (res?.url) url = res.url;
     } catch {}
   }
@@ -439,7 +501,7 @@ async function resolveArtUrl(artist, title) {
   if (!url) {
     try {
       const r = await fetch(
-        `${ART_API_URL}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`,
+        `${ART_API_URL}?artist=${encodeURIComponent(searchArtist)}&title=${encodeURIComponent(searchTitle)}`,
         { cache: 'no-store' }
       );
       if (r.ok) {
@@ -451,7 +513,7 @@ async function resolveArtUrl(artist, title) {
 
   // 3. Last.fm
   if (!url) {
-    url = await fetchArtLastFm(artist, title);
+    url = await fetchArtLastFm(searchArtist, searchTitle);
   }
 
   cacheArt(key, url);
@@ -720,13 +782,7 @@ async function poll() {
     const r = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
     if (!r.ok) throw new Error(`Status ${r.status}`);
     const buf = await r.arrayBuffer();
-    let text;
-    try {
-      text = new TextDecoder('utf-8', { fatal: true }).decode(buf);
-    } catch {
-      text = new TextDecoder('windows-1252').decode(buf);
-    }
-    const j   = JSON.parse(text);
+    const j   = parseIcecastJson(buf);
     const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
     if (!src) throw new Error('No stream source in status payload');
 
