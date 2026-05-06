@@ -7,11 +7,21 @@
     "directory": ".",
     "binding": "ASSETS"
   },
+  "triggers": {
+    "crons": [
+      "*/1 * * * *"
+    ]
+  },
   "kv_namespaces": [
     {
       "binding": "ART_CACHE",
       "id": "PUT_YOUR_PRODUCTION_KV_NAMESPACE_ID_HERE",
       "preview_id": "PUT_YOUR_PREVIEW_KV_NAMESPACE_ID_HERE"
+    },
+    {
+      "binding": "RECENT_TRACKS",
+      "id": "PUT_YOUR_PRODUCTION_RECENT_TRACKS_KV_NAMESPACE_ID_HERE",
+      "preview_id": "PUT_YOUR_PREVIEW_RECENT_TRACKS_KV_NAMESPACE_ID_HERE"
     }
   ]
 }

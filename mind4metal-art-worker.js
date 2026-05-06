@@ -10,16 +10,32 @@ export default {
       return handleResolve(request, env, url);
     }
 
+    if (url.pathname === '/api/recent') {
+      return handleRecent(env);
+    }
+
+    if (url.pathname === '/api/recent/poll') {
+      return handleRecentPoll(env);
+    }
+
     if (env.ASSETS) {
       return env.ASSETS.fetch(request);
     }
 
     return new Response('Not found', { status: 404, headers: corsHeaders() });
   },
+
+  async scheduled(_event, env, ctx) {
+    ctx.waitUntil(updateRecentTracks(env));
+  },
 };
 
 const POSITIVE_TTL_SECONDS = 60 * 60 * 24 * 180; // 180 days
 const MISS_TTL_SECONDS     = 60 * 60 * 24 * 3;   // 3 days
+const STATUS_URL           = 'https://radio.mind4metal.com/status-json.xsl';
+const RECENT_KEY           = 'recent:tracks';
+const RECENT_LAST_KEY      = 'recent:last-combo';
+const RECENT_MAX           = 15;
 
 function corsHeaders() {
   return {
@@ -39,6 +55,165 @@ function json(data, init = {}) {
 }
 
 // Normalize for fuzzy matching — strips diacritics, punctuation, feat. variants
+function recentStore(env) {
+  return env.RECENT_TRACKS || env.ART_CACHE;
+}
+
+const ARTIST_DISPLAY_ALIASES = new Map([
+  ['motleycrue', 'M\u00F6tley Cr\u00FCe'],
+]);
+
+const MOJIBAKE_FIXES = [
+  ['M\u00C3\u00B6tley Cr\u00C3\u00BCe', 'M\u00F6tley Cr\u00FCe'],
+  ['Motley Crue', 'M\u00F6tley Cr\u00FCe'],
+  ['Mot\u00C3\u00B6rhead', 'Mot\u00F6rhead'],
+  ['Queensr\u00C3\u00BFche', 'Queensr\u00FFche'],
+  ['Blue \u00C3\u2013yster Cult', 'Blue \u00D6yster Cult'],
+  ['\u00E2\u20AC\u201D', '\u2014'],
+  ['\u00E2\u20AC\u201C', '\u2013'],
+  ['\u00E2\u20AC\u2122', '\u2019'],
+  ['\u00E2\u20AC\u0153', '\u201C'],
+  ['\u00E2\u20AC\u009D', '\u201D'],
+  ['\u00C2\u00A0', ' '],
+];
+
+function stripDiacritics(str) {
+  return String(str || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function compactArtistKey(str) {
+  return stripDiacritics(str).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function repairQuestionMarkApostrophes(str) {
+  return String(str || '')
+    .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
+    .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
+    .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")
+    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");
+}
+
+function repairMetadataText(str) {
+  let out = String(str || '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '').trim();
+  for (const [bad, good] of MOJIBAKE_FIXES) out = out.split(bad).join(good);
+  out = repairQuestionMarkApostrophes(out);
+  return out.replace(/\s+/g, ' ');
+}
+
+function normalizeArtistDisplay(artist) {
+  const repaired = repairMetadataText(artist);
+  return ARTIST_DISPLAY_ALIASES.get(compactArtistKey(repaired)) || repaired;
+}
+
+function parseTrack(raw) {
+  if (!raw || typeof raw !== 'string') return { artist: '', title: '' };
+  const str = repairMetadataText(raw);
+  const seps = [' - ', ' \u2014 ', ' \u2013 ', ' \u2012 '];
+  for (const sep of seps) {
+    const idx = str.indexOf(sep);
+    if (idx > 0) {
+      return {
+        artist: normalizeArtistDisplay(str.substring(0, idx)),
+        title:  repairMetadataText(str.substring(idx + sep.length)),
+      };
+    }
+  }
+  return { artist: '', title: repairMetadataText(str) };
+}
+
+async function parseIcecastResponse(response) {
+  const buf = await response.arrayBuffer();
+  const encodings = ['utf-8', 'windows-1252', 'iso-8859-1'];
+  let lastError = null;
+  for (const encoding of encodings) {
+    try {
+      const decoder = encoding === 'utf-8'
+        ? new TextDecoder(encoding, { fatal: true })
+        : new TextDecoder(encoding);
+      const text = decoder.decode(buf)
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, '');
+      return JSON.parse(text);
+    } catch (e) {
+      lastError = e;
+    }
+  }
+  throw lastError || new Error('Unable to decode Icecast status');
+}
+
+async function readCurrentTrack() {
+  const response = await fetch(`${STATUS_URL}?_=${Date.now()}`, {
+    cache: 'no-store',
+    headers: { 'Accept': 'application/json' },
+  });
+  if (!response.ok) throw new Error(`Icecast status ${response.status}`);
+
+  const payload = await parseIcecastResponse(response);
+  const src = Array.isArray(payload?.icestats?.source)
+    ? payload.icestats.source[0]
+    : payload?.icestats?.source;
+  if (!src) throw new Error('No stream source in status payload');
+
+  const parsed = parseTrack(src.title || src.yp_currently_playing || '');
+  const title = parsed.title || '';
+  const artist = parsed.artist || '';
+  if (!title && !artist) throw new Error('No track metadata in status payload');
+
+  return {
+    artist,
+    title: title || 'Unknown',
+    listeners: src.listeners ?? null,
+    raw: src.title || src.yp_currently_playing || '',
+    at: new Date().toISOString(),
+  };
+}
+
+function recentCombo(track) {
+  return `${track.artist || ''}|||${track.title || ''}`.toLowerCase();
+}
+
+async function updateRecentTracks(env) {
+  const store = recentStore(env);
+  if (!store) return { ok: false, error: 'recent_store_not_configured' };
+
+  const track = await readCurrentTrack();
+  const combo = recentCombo(track);
+  const lastCombo = await store.get(RECENT_LAST_KEY);
+  if (combo && combo === lastCombo) {
+    return { ok: true, changed: false, current: track };
+  }
+
+  const recent = await store.get(RECENT_KEY, { type: 'json' }) || [];
+  const next = [
+    track,
+    ...recent.filter(item => recentCombo(item) !== combo),
+  ].slice(0, RECENT_MAX);
+
+  await store.put(RECENT_KEY, JSON.stringify(next));
+  await store.put(RECENT_LAST_KEY, combo);
+  return { ok: true, changed: true, current: track, recent: next };
+}
+
+async function handleRecent(env) {
+  const store = recentStore(env);
+  if (!store) {
+    return json({ ok: false, error: 'recent_store_not_configured', recent: [] }, { status: 503 });
+  }
+  const recent = await store.get(RECENT_KEY, { type: 'json' }) || [];
+  return json({ ok: true, recent: Array.isArray(recent) ? recent.slice(0, RECENT_MAX) : [] });
+}
+
+async function handleRecentPoll(env) {
+  try {
+    const result = await updateRecentTracks(env);
+    return json(result);
+  } catch (error) {
+    return json(
+      { ok: false, error: 'recent_poll_failed', detail: String(error?.message || error) },
+      { status: 502 }
+    );
+  }
+}
+
 function normalize(input) {
   return String(input || '')
     .replace(/[\u2018\u2019\u201A\u201B]/g, "'")  // curly single quotes

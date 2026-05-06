@@ -18,6 +18,14 @@
 3. Deploy the Worker so it serves both your site assets and the `/api/art/resolve` route.
 4. Keep your current `index.html` as-is. The new `m4m-art.js` defaults to `/api/art/resolve` automatically.
 
+## Shared Recently Played
+- The same Worker now serves `/api/recent` for the public recent-track list.
+- It also serves `/api/recent/poll` to manually poll Icecast and seed/update the list.
+- A scheduled trigger runs every minute and keeps the shared list current.
+- Create a second KV namespace named something like `mind4metal-recent-tracks`, then put its IDs into the `RECENT_TRACKS` binding in `wrangler.jsonc`.
+- The Worker can fall back to `ART_CACHE` if `RECENT_TRACKS` is not bound, but a dedicated namespace is cleaner.
+- After deploying, visit `/api/recent/poll` once to seed the list immediately.
+
 ## Optional index.html hardening
 If you want the config to be explicit, change the init block to:
 

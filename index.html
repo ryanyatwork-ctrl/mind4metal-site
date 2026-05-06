@@ -366,6 +366,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 const STREAM_URL    = 'https://radio.mind4metal.com/stream.mp3';
 const STATUS_URL    = 'https://radio.mind4metal.com/status-json.xsl';
 const ART_API_URL   = '/api/art/resolve';   // Cloudflare Worker (iTunes-backed)
+const RECENT_API_URL = '/api/recent';
 const CONTACT_EMAIL = 'mind4metal@hotmail.com';
 const MAX_HIST      = 10;
 const FORMSPREE_ID  = 'xgolbjen';
@@ -620,6 +621,7 @@ const artState = { currentKey: '' };
 let pollTimer = null;
 let pollDelay = 15000;
 let lastFocusedEl = null;
+let recentSource = 'local';
 
 audio.src = STREAM_URL;
 audio.volume = Number(localStorage.getItem('m4mVolume') || 85) / 100;
@@ -815,6 +817,61 @@ function renderHist() {
 }
 renderHist();
 
+function normalizeRecentTrack(track) {
+  return {
+    title:  repairMetadataText(track?.title || ''),
+    artist: normalizeArtistDisplay(track?.artist || ''),
+    at:     track?.at || Date.now(),
+  };
+}
+
+function mergeRecentTracks(tracks, source = 'local') {
+  const seen = new Set();
+  const next = [];
+  for (const item of tracks) {
+    const track = normalizeRecentTrack(item);
+    if (!track.title && !track.artist) continue;
+    const key = `${track.artist}|||${track.title}`.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    next.push(track);
+    if (next.length >= MAX_HIST) break;
+  }
+  hist.splice(0, hist.length, ...next);
+  recentSource = source;
+  renderHist();
+}
+
+function addRecentTrack(track) {
+  const normalized = normalizeRecentTrack(track);
+  if (!normalized.title && !normalized.artist) return;
+  const key = `${normalized.artist}|||${normalized.title}`.toLowerCase();
+  const next = [
+    normalized,
+    ...hist.filter(item => `${item.artist}|||${item.title}`.toLowerCase() !== key),
+  ].slice(0, MAX_HIST);
+  hist.splice(0, hist.length, ...next);
+  recentSource = 'local';
+  renderHist();
+}
+
+async function loadGlobalRecentTracks() {
+  try {
+    const response = await fetch(`${RECENT_API_URL}?_=${Date.now()}`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`Recent ${response.status}`);
+    const payload = await response.json();
+    if (!payload?.ok || !Array.isArray(payload.recent) || !payload.recent.length) return false;
+    mergeRecentTracks(payload.recent, 'global');
+    return true;
+  } catch (e) {
+    console.warn('[M4M] recent history unavailable:', e);
+    return false;
+  }
+}
+
+loadGlobalRecentTracks();
+setInterval(loadGlobalRecentTracks, 60000);
+
 function updateMediaSession(artist, title, artUrl) {
   if (!('mediaSession' in navigator)) return;
   navigator.mediaSession.metadata = new MediaMetadata({
@@ -864,9 +921,7 @@ async function poll() {
     if (combo && combo !== lastCombo) {
       // Push previous track to history
       if (lastCombo && titleEl.textContent !== '\u2014') {
-        hist.unshift({ title: titleEl.textContent, artist: artistEl.textContent, at: startedAt });
-        if (hist.length > MAX_HIST) hist.pop();
-        renderHist();
+        addRecentTrack({ title: titleEl.textContent, artist: artistEl.textContent, at: startedAt });
       }
       // Fade transition
       titleEl.classList.add('dim');
