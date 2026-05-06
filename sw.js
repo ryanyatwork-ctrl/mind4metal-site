@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mind4metal-v1';
+const CACHE_NAME = 'mind4metal-v2';
 const PRECACHE_URLS = [
   '/',
   '/index.html',

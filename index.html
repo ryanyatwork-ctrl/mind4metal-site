@@ -12,6 +12,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal Radio</title>
 <meta name="description" content="Mind4Metal Radio &mdash; 24/7 Heavy &bull; Power &bull; Hard Rock">
+<link rel="canonical" href="https://www.mind4metal.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mind4Metal Radio">
+<meta property="og:title" content="Mind4Metal Radio">
+<meta property="og:description" content="24/7 heavy metal, power metal, and hard rock from the 80s to now.">
+<meta property="og:url" content="https://www.mind4metal.com/">
+<meta property="og:image" content="https://www.mind4metal.com/Mind4Metal_Banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mind4Metal Radio">
+<meta name="twitter:description" content="24/7 heavy metal, power metal, and hard rock from the 80s to now.">
+<meta name="twitter:image" content="https://www.mind4metal.com/Mind4Metal_Banner.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,6 +105,14 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 #listen-btn span{position:relative;z-index:1;}
 .elapsed{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--text-muted);}
 .stream-meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+.stream-status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:5px 9px;border:1px solid rgba(255,255,255,.08);border-radius:4px;background:rgba(0,0,0,.28);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);}
+.stream-status.ok{color:#9fcf9b;border-color:rgba(120,220,120,.2);}
+.stream-status.warn{color:#ffbf69;border-color:rgba(255,136,0,.28);}
+.stream-status.bad{color:#ff8a8a;border-color:rgba(255,80,80,.28);}
+.volume-group{display:flex;align-items:center;gap:8px;padding:6px 9px;background:rgba(0,0,0,.32);border:1px solid var(--border);border-radius:4px;}
+.icon-btn{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border2);border-radius:4px;background:rgba(0,0,0,.42);color:var(--silver2);font-size:15px;cursor:pointer;transition:all .18s;}
+.icon-btn:hover,.icon-btn:focus-visible{color:var(--fire2);border-color:rgba(255,85,0,.4);background:rgba(255,85,0,.08);outline:none;}
+.volume-slider{width:96px;accent-color:var(--fire2);}
 .popout-btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:5px 12px;background:rgba(0,0,0,.45);border:1px solid var(--border2);border-radius:3px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);cursor:pointer;transition:all .18s;}
 .popout-btn:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);background:rgba(255,85,0,.08);}
 .popout-btn svg{width:14px;height:14px;fill:currentColor;}
@@ -120,12 +139,22 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 .footer-links a:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--steel2);border:1px solid rgba(255,85,0,.35);border-radius:4px;padding:11px 22px;font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--fire2);z-index:999;transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 36px rgba(0,0,0,.8);}
 .toast.show{transform:translateX(-50%) translateY(0);}
+.mobile-player{position:fixed;left:10px;right:10px;bottom:10px;z-index:120;display:none;align-items:center;gap:10px;padding:9px 10px;background:rgba(10,12,16,.96);border:1px solid rgba(255,85,0,.28);border-radius:7px;box-shadow:0 10px 36px rgba(0,0,0,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);}
+.mobile-art{width:44px;height:44px;border-radius:5px;object-fit:cover;background:var(--steel);display:none;border:1px solid rgba(255,85,0,.18);}
+.mobile-art-ph{width:44px;height:44px;border-radius:5px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--steel),var(--steel2));color:var(--text-muted);font-size:20px;border:1px solid rgba(255,85,0,.18);flex-shrink:0;}
+.mobile-copy{min-width:0;flex:1;}
+.mobile-title{font-family:'Oswald',sans-serif;font-size:14px;font-weight:700;line-height:1.1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#fff;}
+.mobile-artist{font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--silver2);margin-top:2px;}
+.mobile-play{width:40px;height:40px;border-radius:5px;border:1px solid var(--fire);background:rgba(255,85,0,.1);color:var(--fire2);font-size:16px;flex-shrink:0;}
+.mobile-play.on{background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;box-shadow:0 0 18px rgba(255,85,0,.4);}
+.field-error{min-height:15px;margin-top:4px;font-size:12px;color:#ff9c7a;letter-spacing:.04em;}
 .fade{transition:opacity .4s;}
 .fade.dim{opacity:.3;}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
 .nav-sub{display:block;}
 @media(max-width:900px){.nav-sub{display:none;}.nav-social{display:none;}}
-@media(max-width:600px){nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.section,.social-section{padding:24px 16px 48px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}}
+@media(max-width:600px){body{padding-bottom:76px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}.waveform .bar{animation:none!important;height:5px!important;}}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
@@ -153,28 +182,31 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
       <a href="https://x.com/mind4metal" target="_blank">X</a>
       <a href="mailto:mind4metal@hotmail.com">Email</a>
     </nav>
-    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="slidePanel"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="request-overlay" id="overlay"></div>
-<aside class="slide-panel" id="slidePanel">
+<aside class="slide-panel" id="slidePanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true" tabindex="-1">
   <div class="panel-header">
-    <div class="panel-brand">&#x1F918; Mind4Metal</div>
-    <button class="panel-close" id="panelClose">&#x2715;</button>
+    <div class="panel-brand" id="panelTitle">&#x1F918; Mind4Metal</div>
+    <button class="panel-close" id="panelClose" aria-label="Close menu">&#x2715;</button>
   </div>
   <div class="panel-inner">
   <div class="panel-section-title" style="margin-top:0;">&#x1F3B8; Song Request</div>
-  <form id="reqform">
-    <label class="field-label">Your Name</label>
-    <input name="name" required placeholder="Your name">
-    <label class="field-label">Artist</label>
-    <input name="artist" required placeholder="Artist">
-    <label class="field-label">Song Title</label>
-    <input name="song" required placeholder="Song title">
-    <label class="field-label">Message / Shout-Out (optional)</label>
-    <textarea name="message" placeholder="Dedication, shout out, anything..."></textarea>
+  <form id="reqform" novalidate>
+    <label class="field-label" for="reqName">Your Name</label>
+    <input id="reqName" name="name" required autocomplete="name" placeholder="Your name">
+    <div class="field-error" id="reqNameError" aria-live="polite"></div>
+    <label class="field-label" for="reqArtist">Artist</label>
+    <input id="reqArtist" name="artist" required autocomplete="off" placeholder="Artist">
+    <div class="field-error" id="reqArtistError" aria-live="polite"></div>
+    <label class="field-label" for="reqSong">Song Title</label>
+    <input id="reqSong" name="song" required autocomplete="off" placeholder="Song title">
+    <div class="field-error" id="reqSongError" aria-live="polite"></div>
+    <label class="field-label" for="reqMessage">Message / Shout-Out (optional)</label>
+    <textarea id="reqMessage" name="message" maxlength="500" placeholder="Dedication, shout out, anything..."></textarea>
     <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
-    <button type="submit" class="submit-btn">Send Request &#x1F918;</button>
+    <button type="submit" class="submit-btn" id="submitRequestBtn">Send Request &#x1F918;</button>
   </form>
   <div class="panel-divider"></div>
   <div class="panel-section-title">&#x1F517; Links</div>
@@ -204,11 +236,16 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
       <p id="artist" class="fade">&mdash;</p>
       <div class="waveform" id="waveform"></div>
       <div class="controls">
-        <button id="listen-btn"><span id="playIcon">&#x25B6;</span><span id="btnText">Listen Live</span></button>
+        <button id="listen-btn" aria-label="Listen live"><span id="playIcon">&#x25B6;</span><span id="btnText">Listen Live</span></button>
         <span class="elapsed" id="elapsed">0:00</span>
+        <div class="volume-group" aria-label="Playback volume">
+          <button class="icon-btn" id="muteBtn" type="button" aria-label="Mute stream" title="Mute">&#x1F50A;</button>
+          <input class="volume-slider" id="volumeSlider" type="range" min="0" max="100" value="85" aria-label="Volume">
+        </div>
         <button class="popout-btn" id="popoutBtn" title="Pop out mini player"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg><span>Mini Player</span></button>
       </div>
       <div class="stream-meta">192 kbps &middot; Hard Rock / Heavy Metal &middot; 24/7 Live</div>
+      <div class="stream-status warn" id="streamStatus" role="status">Loading station status</div>
     </div>
   </div>
   <div class="flame-divider"><hr></div>
@@ -249,10 +286,35 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 </footer>
 </div>
 <div class="toast" id="toast"></div>
+<div class="mobile-player" id="mobilePlayer" aria-label="Sticky mobile player">
+  <div class="mobile-art-ph" id="mobileArtPh">&#x1F3B8;</div>
+  <img class="mobile-art" id="mobileArt" alt="">
+  <div class="mobile-copy">
+    <div class="mobile-title" id="mobileTitle">&mdash;</div>
+    <div class="mobile-artist" id="mobileArtist">&mdash;</div>
+  </div>
+  <button class="mobile-play" id="mobilePlayBtn" type="button" aria-label="Listen live">&#x25B6;</button>
+</div>
 <audio id="audio" preload="none" playsinline x-webkit-airplay="allow"></audio>
 
 <!-- Art manifest resolver — must load before main script -->
 <script src="m4m-art.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RadioStation",
+  "name": "Mind4Metal Radio",
+  "url": "https://www.mind4metal.com/",
+  "image": "https://www.mind4metal.com/Mind4Metal_Banner.png",
+  "description": "24/7 heavy metal, power metal, and hard rock from the 80s to now.",
+  "areaServed": "Worldwide",
+  "sameAs": [
+    "https://facebook.com/Mind4Metal",
+    "https://instagram.com/mind4metalradio",
+    "https://x.com/mind4metal"
+  ]
+}
+</script>
 
 <script>
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -415,6 +477,15 @@ const panel      = document.getElementById('slidePanel');
 const overlay    = document.getElementById('overlay');
 const panelClose = document.getElementById('panelClose');
 const toast      = document.getElementById('toast');
+const streamStatus = document.getElementById('streamStatus');
+const muteBtn    = document.getElementById('muteBtn');
+const volumeSlider = document.getElementById('volumeSlider');
+const mobilePlayBtn = document.getElementById('mobilePlayBtn');
+const mobileTitle = document.getElementById('mobileTitle');
+const mobileArtist = document.getElementById('mobileArtist');
+const mobileArt = document.getElementById('mobileArt');
+const mobileArtPh = document.getElementById('mobileArtPh');
+const submitRequestBtn = document.getElementById('submitRequestBtn');
 
 // ── State ─────────────────────────────────────────────────────────────────────
 let playing   = false;
@@ -422,8 +493,19 @@ let startedAt = Date.now();
 let lastCombo = '';
 const hist    = [];
 const artState = { currentKey: '' };
+let pollTimer = null;
+let pollDelay = 15000;
+let lastFocusedEl = null;
 
 audio.src = STREAM_URL;
+audio.volume = Number(localStorage.getItem('m4mVolume') || 85) / 100;
+volumeSlider.value = String(Math.round(audio.volume * 100));
+audio.muted = localStorage.getItem('m4mMuted') === 'true';
+
+try {
+  const storedHist = JSON.parse(localStorage.getItem('m4mRecentTracks') || '[]');
+  if (Array.isArray(storedHist)) hist.push(...storedHist.slice(0, MAX_HIST));
+} catch {}
 
 // ── Waveform bars ─────────────────────────────────────────────────────────────
 for (let i = 0; i < 32; i++) {
@@ -441,23 +523,60 @@ function setPlayState(on) {
   listenBtn.classList.toggle('on', on);
   playIcon.textContent = on ? '\u23F8' : '\u25B6';
   btnText.textContent  = on ? 'Pause'  : 'Listen Live';
+  listenBtn.setAttribute('aria-label', on ? 'Pause live stream' : 'Listen live');
   waveform.classList.toggle('on', on);
+  mobilePlayBtn.classList.toggle('on', on);
+  mobilePlayBtn.textContent = on ? '\u23F8' : '\u25B6';
+  mobilePlayBtn.setAttribute('aria-label', on ? 'Pause live stream' : 'Listen live');
 }
+
+function setStreamStatus(message, tone = 'warn') {
+  streamStatus.textContent = message;
+  streamStatus.classList.remove('ok', 'warn', 'bad');
+  streamStatus.classList.add(tone);
+}
+
+function updateMuteButton() {
+  const muted = audio.muted || audio.volume === 0;
+  muteBtn.textContent = muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
+  muteBtn.setAttribute('aria-label', muted ? 'Unmute stream' : 'Mute stream');
+  muteBtn.title = muted ? 'Unmute' : 'Mute';
+}
+
+volumeSlider.addEventListener('input', () => {
+  audio.volume = Number(volumeSlider.value) / 100;
+  audio.muted = audio.volume === 0;
+  localStorage.setItem('m4mVolume', volumeSlider.value);
+  localStorage.setItem('m4mMuted', String(audio.muted));
+  updateMuteButton();
+});
+
+muteBtn.addEventListener('click', () => {
+  audio.muted = !audio.muted;
+  localStorage.setItem('m4mMuted', String(audio.muted));
+  updateMuteButton();
+});
+
+updateMuteButton();
 
 function stopStream() {
   audio.pause();
   audio.src = '';
   setPlayState(false);
+  setStreamStatus('Live stream paused', 'warn');
 }
 
 async function startStream() {
   audio.src = STREAM_URL;
   audio.load();
+  setStreamStatus('Connecting to live stream', 'warn');
   try {
     await audio.play();
     setPlayState(true);
+    setStreamStatus('Live stream playing', 'ok');
   } catch (e) {
     setPlayState(false);
+    setStreamStatus('Tap listen to start audio', 'warn');
     console.warn('[M4M] play() failed:', e.name, e.message);
     if (e.name === 'NotAllowedError') showToast('Tap Listen Live again to start the stream');
   }
@@ -466,11 +585,15 @@ async function startStream() {
 listenBtn.addEventListener('click', () => {
   if (!playing) startStream(); else stopStream();
 });
+mobilePlayBtn.addEventListener('click', () => {
+  if (!playing) startStream(); else stopStream();
+});
 
 // ── Reconnect on stream drop ──────────────────────────────────────────────────
 let reconnectTimer = null;
 function scheduleReconnect() {
   if (!playing || reconnectTimer) return;
+  setStreamStatus('Stream interrupted. Reconnecting...', 'bad');
   reconnectTimer = setTimeout(async () => {
     reconnectTimer = null;
     if (!playing) return;
@@ -479,6 +602,7 @@ function scheduleReconnect() {
       audio.src = STREAM_URL;
       audio.load();
       await audio.play();
+      setStreamStatus('Live stream playing', 'ok');
     } catch { scheduleReconnect(); }
   }, 3000);
 }
@@ -489,7 +613,7 @@ audio.addEventListener('ended',   () => { if (playing) scheduleReconnect(); });
 // Resume after tab becomes visible again
 document.addEventListener('visibilitychange', async () => {
   if (document.visibilityState === 'visible' && playing && audio.paused) {
-    try { audio.src = STREAM_URL; audio.load(); await audio.play(); } catch {}
+    try { audio.src = STREAM_URL; audio.load(); await audio.play(); setStreamStatus('Live stream playing', 'ok'); } catch {}
   }
 });
 
@@ -504,6 +628,9 @@ function showArt(url, alt) {
   if (!url) {
     albumArt.removeAttribute('src');
     albumArt.style.display = 'none';
+    mobileArt.removeAttribute('src');
+    mobileArt.style.display = 'none';
+    mobileArtPh.style.display = 'flex';
     artHolder.style.display = 'flex';
     artGlow.classList.remove('on');
     return;
@@ -513,12 +640,19 @@ function showArt(url, alt) {
     albumArt.src = url;
     albumArt.alt = alt || 'Album Art';
     albumArt.style.display = 'block';
+    mobileArt.src = url;
+    mobileArt.alt = alt || 'Album Art';
+    mobileArt.style.display = 'block';
+    mobileArtPh.style.display = 'none';
     artHolder.style.display = 'none';
     artGlow.classList.add('on');
   };
   img.onerror = () => {
     albumArt.removeAttribute('src');
     albumArt.style.display = 'none';
+    mobileArt.removeAttribute('src');
+    mobileArt.style.display = 'none';
+    mobileArtPh.style.display = 'flex';
     artHolder.style.display = 'flex';
     artGlow.classList.remove('on');
   };
@@ -533,9 +667,11 @@ async function updateAlbumArt(artist, title) {
     const url = await resolveArtUrl(artist, title);
     if (artState.currentKey !== key) return; // track changed while fetching
     showArt(url, [artist, title].filter(Boolean).join(' \u2014 '));
+    updateMediaSession(artist, title, url);
   } catch {
     if (artState.currentKey !== key) return;
     showArt(null);
+    updateMediaSession(artist, title, null);
   }
 }
 
@@ -545,12 +681,29 @@ function renderHist() {
     histBody.innerHTML = `<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>`;
     return;
   }
+  localStorage.setItem('m4mRecentTracks', JSON.stringify(hist.slice(0, MAX_HIST)));
   histBody.innerHTML = hist.map((t, i) => `<tr>
     <td class="td-n">${i + 1}</td>
     <td class="td-ti">${escapeHtml(t.title)}</td>
     <td class="td-ar">${escapeHtml(t.artist)}</td>
     <td class="td-tm">${new Date(t.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
   </tr>`).join('');
+}
+renderHist();
+
+function updateMediaSession(artist, title, artUrl) {
+  if (!('mediaSession' in navigator)) return;
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: title || 'Mind4Metal Radio',
+    artist: artist || 'Live Broadcast',
+    album: 'Mind4Metal Radio',
+    artwork: artUrl ? [{ src: artUrl, sizes: '512x512', type: 'image/png' }] : [
+      { src: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/icon-512x512.png', sizes: '512x512', type: 'image/png' }
+    ]
+  });
+  navigator.mediaSession.setActionHandler('play', startStream);
+  navigator.mediaSession.setActionHandler('pause', stopStream);
 }
 
 // ── Metadata polling ──────────────────────────────────────────────────────────
@@ -565,7 +718,7 @@ function renderHist() {
 async function poll() {
   try {
     const r = await fetch(STATUS_URL + '?_=' + Date.now(), { cache: 'no-store' });
-    if (!r.ok) return;
+    if (!r.ok) throw new Error(`Status ${r.status}`);
     const buf = await r.arrayBuffer();
     let text;
     try {
@@ -575,7 +728,10 @@ async function poll() {
     }
     const j   = JSON.parse(text);
     const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
-    if (!src) return;
+    if (!src) throw new Error('No stream source in status payload');
+
+    pollDelay = 15000;
+    setStreamStatus(playing ? 'Live stream playing' : 'Station metadata online', playing ? 'ok' : 'warn');
 
     listenerEl.textContent = src.listeners ?? '\u2014';
 
@@ -598,6 +754,8 @@ async function poll() {
       await new Promise(res => setTimeout(res, 280));
       titleEl.textContent  = title  || '\u2014';
       artistEl.textContent = artist || '\u2014';
+      mobileTitle.textContent = title || '\u2014';
+      mobileArtist.textContent = artist || '\u2014';
       startedAt = Date.now();
       lastCombo = combo;
       titleEl.classList.remove('dim');
@@ -606,18 +764,64 @@ async function poll() {
       setTimeout(() => updateAlbumArt(artist, title), 150);
     }
   } catch (e) {
+    pollDelay = Math.min(pollDelay * 1.5, 60000);
+    listenerEl.textContent = '\u2014';
+    setStreamStatus('Station metadata unavailable. Retrying...', 'bad');
     console.warn('[M4M] poll error:', e);
+  } finally {
+    pollTimer = setTimeout(poll, pollDelay);
   }
 }
 poll();
-setInterval(poll, 15000);
 
 // ── Side panel ────────────────────────────────────────────────────────────────
-const openPanel  = () => { hamburger.classList.add('open'); panel.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; };
-const closePanel = () => { hamburger.classList.remove('open'); panel.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; };
+function getPanelFocusables() {
+  return [...panel.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])')]
+    .filter(el => !el.disabled && el.offsetParent !== null);
+}
+
+const openPanel  = () => {
+  lastFocusedEl = document.activeElement;
+  hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded', 'true');
+  panel.classList.add('open');
+  panel.setAttribute('aria-hidden', 'false');
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => (getPanelFocusables()[0] || panel).focus(), 50);
+};
+const closePanel = () => {
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  panel.classList.remove('open');
+  panel.setAttribute('aria-hidden', 'true');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+  if (lastFocusedEl && typeof lastFocusedEl.focus === 'function') lastFocusedEl.focus();
+};
 hamburger.addEventListener('click', () => panel.classList.contains('open') ? closePanel() : openPanel());
 overlay.addEventListener('click', closePanel);
 panelClose.addEventListener('click', closePanel);
+document.addEventListener('keydown', e => {
+  if (!panel.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    closePanel();
+    return;
+  }
+  if (e.key !== 'Tab') return;
+  const focusables = getPanelFocusables();
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+});
 
 // ── Toast ─────────────────────────────────────────────────────────────────────
 function showToast(msg) {
@@ -629,21 +833,39 @@ function showToast(msg) {
 // ── Song request form ─────────────────────────────────────────────────────────
 document.getElementById('reqform').addEventListener('submit', async e => {
   e.preventDefault();
+  [...e.target.querySelectorAll('.field-error')].forEach(el => { el.textContent = ''; });
   const fd = new FormData(e.target);
   if (fd.get('website')) return; // honeypot
   const data = Object.fromEntries(fd.entries());
+  const required = [
+    ['name', 'reqNameError', 'Tell us who is making the request.'],
+    ['artist', 'reqArtistError', 'Artist is required.'],
+    ['song', 'reqSongError', 'Song title is required.']
+  ];
+  const missing = required.find(([key]) => !String(data[key] || '').trim());
+  if (missing) {
+    document.getElementById(missing[1]).textContent = missing[2];
+    e.target.elements[missing[0]].focus();
+    return;
+  }
+  submitRequestBtn.disabled = true;
+  submitRequestBtn.textContent = 'Sending...';
   if (FORMSPREE_ID) {
     try {
-      await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify({ ...data, _replyto: CONTACT_EMAIL }),
       });
+      if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       e.target.reset();
       closePanel();
       showToast('Request sent! \uD83E\uDD18 Horns up!');
     } catch {
       showToast('Couldn\u2019t send \u2014 try again.');
+    } finally {
+      submitRequestBtn.disabled = false;
+      submitRequestBtn.textContent = 'Send Request \uD83E\uDD18';
     }
   } else {
     const subject = encodeURIComponent(`Song Request: ${data.artist} - ${data.song}`);
@@ -652,6 +874,8 @@ document.getElementById('reqform').addEventListener('submit', async e => {
     e.target.reset();
     closePanel();
     showToast('Opening your email app\u2026');
+    submitRequestBtn.disabled = false;
+    submitRequestBtn.textContent = 'Send Request \uD83E\uDD18';
   }
 });
 
