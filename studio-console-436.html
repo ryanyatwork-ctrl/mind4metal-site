@@ -156,6 +156,56 @@ header{
 /* ── 2-COL GRID ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 @media(max-width:700px){.two-col{grid-template-columns:1fr;}.stat-grid{grid-template-columns:1fr 1fr;}}
+
+/* ── ALBUM ART MANAGER ── */
+.am-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.am-toolbar input.am-filter{flex:1;min-width:160px;padding:9px 12px;background:rgba(0,0,0,0.45);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:15px;outline:none;}
+.am-toolbar input.am-filter:focus{border-color:rgba(255,85,0,0.5);}
+.am-btn{padding:9px 14px;border-radius:4px;border:1px solid var(--border2);background:rgba(0,0,0,0.4);color:var(--text-dim);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.am-btn:hover{color:var(--fire2);border-color:rgba(255,85,0,0.45);background:rgba(255,85,0,0.08);}
+.am-btn.primary{background:linear-gradient(135deg,var(--fire),var(--fire2));color:#fff;border:none;box-shadow:0 3px 14px rgba(255,85,0,0.3);}
+.am-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+.am-card{background:var(--bg3);border:1px solid var(--border2);border-radius:6px;overflow:hidden;position:relative;transition:border-color .18s;}
+.am-card:hover{border-color:rgba(255,85,0,0.4);}
+.am-thumb{width:100%;aspect-ratio:1;background:linear-gradient(135deg,var(--steel),var(--steel2));display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--text-muted);position:relative;}
+.am-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.am-src{position:absolute;top:6px;left:6px;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:rgba(0,0,0,0.7);color:var(--text-dim);}
+.am-src.manual{background:rgba(0,230,118,0.9);color:#04210f;}
+.am-src.miss{background:rgba(255,85,0,0.9);color:#fff;}
+.am-meta{padding:9px 10px;}
+.am-title{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;color:#fff;text-transform:uppercase;letter-spacing:.02em;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.am-artist{font-size:12px;color:var(--text-muted);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;}
+.am-fix{display:block;width:100%;margin-top:8px;padding:6px;border:1px solid rgba(255,85,0,0.3);background:rgba(255,85,0,0.06);color:var(--fire2);border-radius:3px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s;}
+.am-fix:hover{background:rgba(255,85,0,0.18);}
+.am-empty{color:var(--text-muted);font-size:13px;letter-spacing:.05em;padding:24px 10px;text-align:center;}
+
+/* ── ART FIX MODAL ── */
+.am-modal{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,0.78);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;padding:20px;}
+.am-modal.open{display:flex;}
+.am-dialog{width:min(720px,100%);max-height:90vh;overflow-y:auto;background:var(--bg2);border:1px solid rgba(255,85,0,0.3);border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
+.am-dialog-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);background:rgba(0,0,0,0.3);}
+.am-dialog-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;}
+.am-dialog-title small{display:block;font-size:12px;color:var(--text-muted);letter-spacing:.04em;text-transform:none;font-weight:400;margin-top:2px;}
+.am-close{width:32px;height:32px;border-radius:4px;background:rgba(255,85,0,0.1);border:1px solid rgba(255,85,0,0.25);color:var(--fire2);font-size:17px;cursor:pointer;}
+.am-dialog-body{padding:20px;}
+.am-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+.am-compare figure{text-align:center;}
+.am-compare figcaption{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px;}
+.am-preview{width:100%;aspect-ratio:1;border-radius:6px;border:1px solid var(--border2);background:linear-gradient(135deg,var(--steel),var(--steel2));display:flex;align-items:center;justify-content:center;font-size:40px;color:var(--text-muted);overflow:hidden;}
+.am-preview img{width:100%;height:100%;object-fit:cover;}
+.am-preview.new{border-color:rgba(0,230,118,0.5);}
+.am-field-label{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);margin:14px 0 6px;}
+.am-url-row{display:flex;gap:8px;}
+.am-url-row input{flex:1;padding:10px 12px;background:rgba(0,0,0,0.5);border:1px solid var(--border2);border-radius:4px;color:var(--text);font-family:'Share Tech Mono',monospace;font-size:13px;outline:none;}
+.am-url-row input:focus{border-color:rgba(255,85,0,0.5);}
+.am-search-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-top:10px;}
+.am-result{cursor:pointer;border:2px solid transparent;border-radius:5px;overflow:hidden;transition:border-color .15s;background:var(--steel);}
+.am-result:hover{border-color:var(--fire2);}
+.am-result img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+.am-result .am-result-cap{font-size:9px;color:var(--text-muted);padding:3px 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.am-dialog-foot{display:flex;justify-content:space-between;gap:10px;padding:16px 20px;border-top:1px solid var(--border);background:rgba(0,0,0,0.2);}
+.am-hint{font-size:12px;color:var(--text-muted);letter-spacing:.03em;}
+.am-status{font-size:12px;color:var(--green);letter-spacing:.04em;min-height:16px;}
 </style>
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
@@ -245,6 +295,25 @@ header{
       </div>
     </div>
 
+    <!-- ALBUM ART MANAGER -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-title">🖼️ Album Art Manager</div>
+        <div class="sec-badge" id="amBadge">0 tracks</div>
+      </div>
+      <div class="sec-body">
+        <div class="am-toolbar">
+          <input class="am-filter" id="amFilter" placeholder="Filter by artist or title…">
+          <button class="am-btn" id="amAddCurrent">+ Add current</button>
+          <button class="am-btn" id="amRefresh">↻ Refresh art</button>
+          <button class="am-btn primary" id="amExport">⬇ Export manifest</button>
+        </div>
+        <div class="am-grid" id="amGrid">
+          <div class="am-empty">Tracks appear here as they play. Click <b>Fix</b> on any cover to correct it.</div>
+        </div>
+      </div>
+    </div>
+
     <!-- WORLD MAP -->
     <div class="sec">
       <div class="sec-head">
@@ -299,6 +368,51 @@ header{
   </div>
 </div>
 
+<!-- ── ART FIX MODAL ── -->
+<div class="am-modal" id="amModal">
+  <div class="am-dialog">
+    <div class="am-dialog-head">
+      <div class="am-dialog-title">Fix Album Art<small id="amModalTrack">—</small></div>
+      <button class="am-close" id="amModalClose">✕</button>
+    </div>
+    <div class="am-dialog-body">
+      <div class="am-compare">
+        <figure>
+          <figcaption>Current</figcaption>
+          <div class="am-preview" id="amCurrentPreview">🎸</div>
+        </figure>
+        <figure>
+          <figcaption>New</figcaption>
+          <div class="am-preview new" id="amNewPreview">?</div>
+        </figure>
+      </div>
+
+      <label class="am-field-label">Image URL (paste a direct link to a cover)</label>
+      <div class="am-url-row">
+        <input id="amUrlInput" placeholder="https://…/cover.jpg" spellcheck="false">
+        <button class="am-btn" id="amUrlPreview">Preview</button>
+      </div>
+
+      <label class="am-field-label">Or search iTunes for the correct cover</label>
+      <div class="am-url-row">
+        <input id="amSearchInput" placeholder="artist + album/song" spellcheck="false">
+        <button class="am-btn" id="amSearchBtn">Search</button>
+      </div>
+      <div class="am-search-results" id="amSearchResults"></div>
+    </div>
+    <div class="am-dialog-foot">
+      <div>
+        <div class="am-hint" id="amHint">Pick a result or paste a URL, then Save.</div>
+        <div class="am-status" id="amStatus"></div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="am-btn" id="amClearOverride">Clear override</button>
+        <button class="am-btn primary" id="amSave">Save override</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="m4m-art.js"></script>
 <script>
@@ -334,6 +448,7 @@ function checkPw() {
 
 function init() {
   M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {});
+  ArtMgr.bind();
   initChart();
   initMap();
   poll();
@@ -486,7 +601,7 @@ async function updateNowPlayingArt(artist, title) {
   currentArtKey = key;
 
   try {
-    const resolved = await M4MArt.resolveArt({ artist, title });
+    const resolved = await ArtMgr.resolve(artist, title);
     if (currentArtKey !== key) return;
     showAdminArt(resolved?.url || null, artist, title);
   } catch {
@@ -497,8 +612,8 @@ async function updateNowPlayingArt(artist, title) {
 
 async function poll() {
   try {
-    const r    = await fetch(`${STATUS_URL}?_=${Date.now()}`, {cache:'no-store'});
-    const j    = await r.json();
+    const j    = await fetchStatusJson();
+    if (!j) return;
     const src  = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
     if (!src) return;
 
@@ -519,9 +634,11 @@ async function poll() {
     document.getElementById('statTrack').textContent   = title;
     document.getElementById('statArtist').textContent  = artist;
 
+    ArtMgr.setCurrent(parsed.artist || '', parsed.title || '');
     if (trackKey !== lastTitle) {
       lastTitle = trackKey;
       updateNowPlayingArt(parsed.artist || '', parsed.title || '');
+      ArtMgr.observe(parsed.artist || '', parsed.title || '');
     }
 
     updateChart(count);
@@ -579,6 +696,228 @@ function renderGeoTable(results) {
       <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--text-muted)">${r.ip}</td>
     </tr>`).join('');
 }
+
+// ============================ ALBUM ART MANAGER ============================
+// Encoding-safe Icecast status fetch — fixes umlaut bands (Mötley Crüe, etc.)
+// that the old r.json() froze on (Icecast serves Latin-1 bytes labelled UTF-8).
+function _amTryParse(t){ try { return JSON.parse(t); } catch { return null; } }
+async function fetchStatusJson(){
+  const r = await fetch(`${STATUS_URL}?_=${Date.now()}`, { cache:'no-store' });
+  const buf = await r.arrayBuffer();
+  for (const enc of ['utf-8','windows-1252','iso-8859-1']) {
+    try {
+      const dec = enc === 'utf-8' ? new TextDecoder(enc, { fatal:true }) : new TextDecoder(enc);
+      const data = _amTryParse(dec.decode(buf));
+      if (data) return data;
+    } catch {}
+  }
+  return null;
+}
+
+const ArtMgr = (function(){
+  const ART_API_URL = '/api/art/resolve';
+  const OV_KEY   = 'm4m_art_overrides_v1';
+  const SEEN_KEY = 'm4m_admin_seen_tracks_v1';
+  const SEEN_MAX = 200;
+
+  let overrides = load(OV_KEY, {});
+  let seen      = load(SEEN_KEY, []);
+  const resolvedCache = {};
+  let filter = '';
+  let editing = null;
+  let pendingUrl = null;
+  let current = { artist:'', title:'' };
+
+  function load(k, fb){ try { const r = localStorage.getItem(k); return r ? JSON.parse(r) : fb; } catch { return fb; } }
+  function persist(){ try { localStorage.setItem(OV_KEY, JSON.stringify(overrides)); localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch {} }
+  function norm(s){ try { return window.M4MArt ? M4MArt.normalize(s) : String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); } catch { return String(s||'').toLowerCase().trim(); } }
+  function key(a, t){ return `${norm(a)}|||${norm(t)}`; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function cssEsc(s){ return String(s).replace(/["\\]/g, '\\$&'); }
+  const el = id => document.getElementById(id);
+
+  function setCurrent(artist, title){ current = { artist, title }; }
+
+  function observe(artist, title){
+    if (!artist && !title) return;
+    const k = key(artist, title);
+    seen = seen.filter(s => key(s.artist, s.title) !== k);
+    seen.unshift({ artist, title, at: Date.now() });
+    if (seen.length > SEEN_MAX) seen = seen.slice(0, SEEN_MAX);
+    persist();
+    render();
+  }
+
+  // Resolve art the same way listeners do: override -> manifest -> worker(Discogs/iTunes).
+  async function resolve(artist, title, force){
+    const k = key(artist, title);
+    if (overrides[k]?.url) return { url: overrides[k].url, source:'manual' };
+    if (!force && resolvedCache[k]) return resolvedCache[k];
+    try {
+      if (window.M4MArt) {
+        const m = await M4MArt.resolveArt({ artist, title });
+        if (m?.url) return (resolvedCache[k] = { url:m.url, source:'manifest' });
+      }
+    } catch {}
+    try {
+      const r = await fetch(`${ART_API_URL}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`, { cache:'no-store' });
+      if (r.ok) {
+        const d = await r.json();
+        return (resolvedCache[k] = { url: d?.url || null, source: d?.source || (d?.ok ? 'api' : 'miss') });
+      }
+    } catch {}
+    return (resolvedCache[k] = { url:null, source:'miss' });
+  }
+
+  function render(){
+    const grid = el('amGrid'); if (!grid) return;
+    const f = filter.toLowerCase();
+    const list = seen.filter(s => !f || (s.artist+' '+s.title).toLowerCase().includes(f));
+    el('amBadge').textContent = `${seen.length} track${seen.length!==1?'s':''}`;
+    if (!list.length){
+      grid.innerHTML = `<div class="am-empty">${seen.length ? 'No tracks match your filter.' : 'Tracks appear here as they play. Click <b>Fix</b> on any cover to correct it.'}</div>`;
+      return;
+    }
+    grid.innerHTML = list.map(s => {
+      const k = key(s.artist, s.title);
+      const ov = overrides[k]?.url;
+      return `<div class="am-card">
+        <div class="am-thumb" data-thumb="${esc(k)}">${ov?`<img src="${esc(ov)}" alt="">`:'🎸'}${ov?'<span class="am-src manual">Manual</span>':''}</div>
+        <div class="am-meta">
+          <div class="am-title">${esc(s.title||'—')}</div>
+          <div class="am-artist">${esc(s.artist||'—')}</div>
+          <button class="am-fix" data-fix="${esc(k)}">Fix</button>
+        </div>
+      </div>`;
+    }).join('');
+    list.forEach(async s => {
+      const k = key(s.artist, s.title);
+      if (overrides[k]?.url) return;
+      const res = await resolve(s.artist, s.title);
+      const cur = grid.querySelector(`[data-thumb="${cssEsc(k)}"]`);
+      if (!cur) return;
+      cur.innerHTML = res.url
+        ? `<img src="${esc(res.url)}" alt=""><span class="am-src">${esc(res.source)}</span>`
+        : `🎸<span class="am-src miss">No art</span>`;
+    });
+  }
+
+  function openModal(artist, title){
+    editing = { artist, title, key: key(artist, title) };
+    pendingUrl = null;
+    el('amModalTrack').textContent = `${artist || '—'} — ${title || '—'}`;
+    el('amStatus').textContent = '';
+    el('amHint').textContent = 'Pick a result or paste a URL, then Save.';
+    el('amNewPreview').innerHTML = '?';
+    el('amSearchResults').innerHTML = '';
+    const ov = overrides[editing.key]?.url || '';
+    el('amUrlInput').value = ov;
+    el('amSearchInput').value = `${artist} ${title}`.trim();
+    el('amCurrentPreview').innerHTML = '…';
+    resolve(artist, title, true).then(res => {
+      el('amCurrentPreview').innerHTML = res.url ? `<img src="${esc(res.url)}" alt="">` : '🎸';
+    });
+    if (ov) setPreview(ov);
+    el('amModal').classList.add('open');
+  }
+  function closeModal(){ el('amModal').classList.remove('open'); editing = null; }
+
+  function setPreview(url){
+    pendingUrl = url || null;
+    const box = el('amNewPreview');
+    if (!url){ box.innerHTML = '?'; return; }
+    box.innerHTML = '…';
+    const img = new Image();
+    img.onload  = () => { box.innerHTML = ''; box.appendChild(img); };
+    img.onerror = () => { box.innerHTML = '⚠️'; el('amHint').textContent = 'That URL did not load as an image.'; };
+    img.src = url;
+  }
+
+  async function searchITunes(term){
+    const box = el('amSearchResults');
+    if (!term){ box.innerHTML = ''; return; }
+    box.innerHTML = '<div class="am-hint" style="grid-column:1/-1">Searching…</div>';
+    try {
+      const qs = new URLSearchParams({ term, media:'music', entity:'song', limit:'12' });
+      const r = await fetch(`https://itunes.apple.com/search?${qs}`);
+      const d = await r.json();
+      const results = Array.isArray(d?.results) ? d.results : [];
+      if (!results.length){ box.innerHTML = '<div class="am-hint" style="grid-column:1/-1">No results.</div>'; return; }
+      box.innerHTML = results.map(x => {
+        const art = (x.artworkUrl100 || '').replace(/\/100x100bb/, '/600x600bb');
+        if (!art) return '';
+        const cap = `${x.artistName||''} — ${x.collectionName||x.trackName||''}`;
+        return `<div class="am-result" data-url="${esc(art)}" title="${esc(cap)}"><img src="${esc(art)}" alt=""><div class="am-result-cap">${esc(x.collectionName||x.trackName||'')}</div></div>`;
+      }).join('');
+    } catch { box.innerHTML = '<div class="am-hint" style="grid-column:1/-1">Search failed.</div>'; }
+  }
+
+  function save(){
+    if (!editing) return;
+    const url = el('amUrlInput').value.trim() || pendingUrl;
+    if (!url){ el('amStatus').style.color = 'var(--fire2)'; el('amStatus').textContent = 'Pick a result or paste a URL first.'; return; }
+    overrides[editing.key] = { url, artist: editing.artist, title: editing.title };
+    delete resolvedCache[editing.key];
+    persist();
+    el('amStatus').style.color = 'var(--green)';
+    el('amStatus').textContent = 'Saved. Use “Export manifest” to publish for all listeners.';
+    render();
+    if (key(current.artist, current.title) === editing.key) updateNowPlayingArt(current.artist, current.title);
+    setTimeout(closeModal, 800);
+  }
+
+  function clearOverride(){
+    if (!editing) return;
+    delete overrides[editing.key];
+    delete resolvedCache[editing.key];
+    persist();
+    el('amStatus').style.color = 'var(--text-dim)';
+    el('amStatus').textContent = 'Override cleared.';
+    render();
+    if (key(current.artist, current.title) === editing.key) updateNowPlayingArt(current.artist, current.title);
+  }
+
+  // Merge overrides into art-manifest.json and download it (commit to publish).
+  async function exportManifest(){
+    let base = { version:1, generatedAt:new Date().toISOString(), imageBasePath:'./', tracks:[], albums:[], artists:[] };
+    try {
+      const r = await fetch(`art-manifest.json?v=${Date.now()}`, { cache:'no-store' });
+      if (r.ok){ const j = await r.json(); base = { ...base, ...j }; base.tracks = Array.isArray(j.tracks) ? j.tracks.slice() : []; }
+    } catch {}
+    const idx = new Map(base.tracks.map(t => [key(t.artist, t.title), t]));
+    Object.values(overrides).forEach(o => {
+      idx.set(key(o.artist, o.title), { artist:o.artist, title:o.title, art:o.url, notes:'admin override' });
+    });
+    const out = { ...base, generatedAt:new Date().toISOString(), tracks:[...idx.values()] };
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type:'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'art-manifest.json'; a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function bind(){
+    el('amFilter').addEventListener('input', e => { filter = e.target.value; render(); });
+    el('amAddCurrent').addEventListener('click', () => { if (current.artist || current.title) observe(current.artist, current.title); });
+    el('amRefresh').addEventListener('click', () => { for (const k in resolvedCache) delete resolvedCache[k]; render(); });
+    el('amExport').addEventListener('click', exportManifest);
+    el('amGrid').addEventListener('click', e => {
+      const fix = e.target.closest('[data-fix]');
+      if (fix){ const k = fix.getAttribute('data-fix'); const s = seen.find(x => key(x.artist, x.title) === k); if (s) openModal(s.artist, s.title); }
+    });
+    el('amModalClose').addEventListener('click', closeModal);
+    el('amModal').addEventListener('click', e => { if (e.target === el('amModal')) closeModal(); });
+    el('amUrlPreview').addEventListener('click', () => setPreview(el('amUrlInput').value.trim()));
+    el('amUrlInput').addEventListener('keydown', e => { if (e.key === 'Enter') setPreview(el('amUrlInput').value.trim()); });
+    el('amSearchBtn').addEventListener('click', () => searchITunes(el('amSearchInput').value.trim()));
+    el('amSearchInput').addEventListener('keydown', e => { if (e.key === 'Enter') searchITunes(el('amSearchInput').value.trim()); });
+    el('amSearchResults').addEventListener('click', e => { const r = e.target.closest('[data-url]'); if (r){ const u = r.getAttribute('data-url'); el('amUrlInput').value = u; setPreview(u); } });
+    el('amSave').addEventListener('click', save);
+    el('amClearOverride').addEventListener('click', clearOverride);
+    render();
+  }
+
+  return { setCurrent, observe, resolve, render, bind };
+})();
 </script>
 </body>
 </html>
