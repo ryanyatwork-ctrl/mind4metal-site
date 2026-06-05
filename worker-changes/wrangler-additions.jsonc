@@ -1,0 +1,31 @@
+// Additions for the LIVE worker's wrangler config (script: mind4metal-art-resolver).
+// Merge these into the real wrangler.jsonc when you deploy. Real resource IDs below.
+//
+// NOTE: the repo's root wrangler.jsonc has name "mind4metal-art-worker" (a
+// DIFFERENT, unused script) and placeholder IDs. That mismatch is intentional —
+// it stops an accidental `wrangler deploy` from clobbering the live resolver.
+// When you deploy for real, target the live script name.
+{
+  "name": "mind4metal-art-resolver",
+
+  // Album-art cache + (legacy) recent list. Real IDs:
+  "kv_namespaces": [
+    { "binding": "ART_CACHE",     "id": "e1e40d75dfb7455ab1b325da21c73bbe" },
+    { "binding": "RECENT_TRACKS", "id": "3f4e7f31fbf543c9b9f9deb84c1ea94f" }
+  ],
+
+  // NEW: D1 for the recently-played list (created 2026-06-05).
+  "d1_databases": [
+    {
+      "binding": "RECENT_DB",
+      "database_name": "mind4metal-recent-tracks",
+      "database_id": "f648b4ae-bbff-4818-8955-28bdf4343b5a"
+    }
+  ]
+
+  // Secret (do NOT put in this file): set with
+  //   wrangler secret put ADMIN_API_TOKEN
+  //   wrangler secret put DISCOGS_TOKEN     (already set in prod)
+  //
+  // After the D1 migration is verified you may drop the RECENT_TRACKS KV binding.
+}
