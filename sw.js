@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mind4metal-v6';
+const CACHE_NAME = 'mind4metal-v7';
 const PRECACHE_URLS = [
   '/',
   '/index.html',
@@ -30,16 +30,36 @@ self.addEventListener('fetch', event => {
   // Never cache the audio stream or metadata endpoints
   if (url.hostname === 'radio.mind4metal.com') return;
 
+  // Never cache the dynamic API (art resolver / recent tracks) — always live.
+  if (url.pathname.startsWith('/api/')) return;
+
+  const cachePut = response => {
+    if (response && response.status === 200 && response.type === 'basic') {
+      const clone = response.clone();
+      caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+    }
+    return response;
+  };
+
+  // Network-first for HTML/navigations so deployed code reaches listeners on the
+  // next reload (falls back to cache only when offline). This prevents stale-page
+  // bugs where a fix is live but the browser keeps serving an old cached page.
+  const isHTML = event.request.mode === 'navigate' ||
+    event.request.destination === 'document' ||
+    url.pathname.endsWith('.html');
+
+  if (isHTML) {
+    event.respondWith(
+      fetch(event.request).then(cachePut)
+        .catch(() => caches.match(event.request).then(c => c || caches.match('/')))
+    );
+    return;
+  }
+
+  // Cache-first for static assets (icons, scripts, manifest) — fast and rarely change.
   event.respondWith(
     caches.match(event.request).then(cached => {
-      const fetched = fetch(event.request).then(response => {
-        if (response && response.status === 200 && response.type === 'basic') {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-        }
-        return response;
-      }).catch(() => cached);
-
+      const fetched = fetch(event.request).then(cachePut).catch(() => cached);
       return cached || fetched;
     })
   );
