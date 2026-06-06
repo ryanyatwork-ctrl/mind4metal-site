@@ -238,6 +238,14 @@
     return { artist: '', title: String(raw).trim(), raw: String(raw) };
   }
 
+  // Synchronous manifest lookup (bypasses the resolve cache) — returns the curated
+  // track entry, including any displayArtist/displayTitle corrections, or null.
+  function lookupEntry(artist, title) {
+    const m = state.manifest;
+    if (!m || !m.tracks) return null;
+    return m.tracks.get(keyFor(artist, title)) || null;
+  }
+
   async function primeCache(entries) {
     try { await init(); } catch {}
     if (!Array.isArray(entries)) return [];
@@ -256,5 +264,6 @@
     primeCache,
     normalize,
     keyFor,
+    lookupEntry,
   };
 })();

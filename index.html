@@ -918,6 +918,18 @@ async function poll() {
     const artist = parsed.artist || '';
     const combo  = `${artist}|||${title}`;
 
+    // Curated display corrections (e.g. misspelled metadata). Fail-safe: falls
+    // back to the raw parsed text when no correction exists. Matching + art
+    // lookup still use the raw artist/title below.
+    let dispArtist = artist, dispTitle = title;
+    try {
+      const entry = (window.M4MArt && M4MArt.lookupEntry) ? M4MArt.lookupEntry(artist, title) : null;
+      if (entry) {
+        if (entry.displayArtist) dispArtist = entry.displayArtist;
+        if (entry.displayTitle)  dispTitle  = entry.displayTitle;
+      }
+    } catch {}
+
     if (combo && combo !== lastCombo) {
       // Push previous track to history
       if (lastCombo && titleEl.textContent !== '\u2014') {
@@ -927,10 +939,10 @@ async function poll() {
       titleEl.classList.add('dim');
       artistEl.classList.add('dim');
       await new Promise(res => setTimeout(res, 280));
-      titleEl.textContent  = title  || '\u2014';
-      artistEl.textContent = artist || '\u2014';
-      mobileTitle.textContent = title || '\u2014';
-      mobileArtist.textContent = artist || '\u2014';
+      titleEl.textContent  = dispTitle  || '\u2014';
+      artistEl.textContent = dispArtist || '\u2014';
+      mobileTitle.textContent = dispTitle || '\u2014';
+      mobileArtist.textContent = dispArtist || '\u2014';
       startedAt = Date.now();
       lastCombo = combo;
       titleEl.classList.remove('dim');
@@ -948,6 +960,8 @@ async function poll() {
     pollTimer = setTimeout(poll, pollDelay);
   }
 }
+// Warm the curated manifest early so display corrections apply from the first track.
+if (window.M4MArt) { M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {}); }
 poll();
 
 // ── Side panel ────────────────────────────────────────────────────────────────

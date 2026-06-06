@@ -387,6 +387,14 @@ header{
         </figure>
       </div>
 
+      <label class="am-field-label">Correct text (fixes misspelled / mangled metadata for listeners)</label>
+      <div class="am-url-row" style="margin-bottom:8px;">
+        <input id="amArtistInput" placeholder="Correct artist" spellcheck="false">
+      </div>
+      <div class="am-url-row">
+        <input id="amTitleInput" placeholder="Correct title" spellcheck="false">
+      </div>
+
       <label class="am-field-label">Image URL (paste a direct link to a cover)</label>
       <div class="am-url-row">
         <input id="amUrlInput" placeholder="https://…/cover.jpg" spellcheck="false">
@@ -629,12 +637,13 @@ async function poll() {
     const artist = parsed.artist || '—';
     const trackKey = `${artist}|||${title}`;
 
-    document.getElementById('adminTitle').textContent  = title;
-    document.getElementById('adminArtist').textContent = artist;
-    document.getElementById('statTrack').textContent   = title;
-    document.getElementById('statArtist').textContent  = artist;
-
     ArtMgr.setCurrent(parsed.artist || '', parsed.title || '');
+    const disp = ArtMgr.displayFor(parsed.artist || '', parsed.title || '');
+    document.getElementById('adminTitle').textContent  = disp.title  || '—';
+    document.getElementById('adminArtist').textContent = disp.artist || '—';
+    document.getElementById('statTrack').textContent   = disp.title  || '—';
+    document.getElementById('statArtist').textContent  = disp.artist || '—';
+
     if (trackKey !== lastTitle) {
       lastTitle = trackKey;
       updateNowPlayingArt(parsed.artist || '', parsed.title || '');
@@ -759,6 +768,21 @@ const ArtMgr = (function(){
 
   function setCurrent(artist, title){ current = { artist, title }; }
 
+  // Corrected display text for a track (falls back to raw if no correction).
+  function displayFor(artist, title){
+    const o = overrides[key(artist, title)] || {};
+    return { artist: o.displayArtist || artist, title: o.displayTitle || title };
+  }
+  // Re-apply corrected text to the admin Now Playing panel for the current track.
+  function refreshNowPlayingText(){
+    const d = displayFor(current.artist, current.title);
+    const t = el('adminTitle'), a = el('adminArtist'), st = el('statTrack'), sa = el('statArtist');
+    if (t) t.textContent = d.title || '—';
+    if (a) a.textContent = d.artist || '—';
+    if (st) st.textContent = d.title || '—';
+    if (sa) sa.textContent = d.artist || '—';
+  }
+
   function observe(artist, title){
     if (!artist && !title) return;
     const k = key(artist, title);
@@ -801,12 +825,16 @@ const ArtMgr = (function(){
     }
     grid.innerHTML = list.map(s => {
       const k = key(s.artist, s.title);
-      const ov = overrides[k]?.url;
+      const o = overrides[k] || {};
+      const ov = o.url;
+      const dTitle = o.displayTitle || s.title || '—';
+      const dArtist = o.displayArtist || s.artist || '—';
+      const textFixed = !!(o.displayTitle || o.displayArtist);
       return `<div class="am-card">
         <div class="am-thumb" data-thumb="${esc(k)}">${ov?`<img src="${esc(ov)}" alt="">`:'🎸'}${ov?'<span class="am-src manual">Manual</span>':''}</div>
         <div class="am-meta">
-          <div class="am-title">${esc(s.title||'—')}</div>
-          <div class="am-artist">${esc(s.artist||'—')}</div>
+          <div class="am-title">${esc(dTitle)}${textFixed?' <span title="text corrected" style="color:var(--green);font-size:11px;">✎</span>':''}</div>
+          <div class="am-artist">${esc(dArtist)}</div>
           <button class="am-fix" data-fix="${esc(k)}">Fix</button>
         </div>
       </div>`;
@@ -828,11 +856,13 @@ const ArtMgr = (function(){
     pendingUrl = null;
     el('amModalTrack').textContent = `${artist || '—'} — ${title || '—'}`;
     el('amStatus').textContent = '';
-    el('amHint').textContent = 'Pick a result or paste a URL, then Save.';
+    el('amHint').textContent = 'Fix the cover and/or the text, then Save.';
     el('amNewPreview').innerHTML = '?';
     el('amSearchResults').innerHTML = '';
     const ov = overrides[editing.key]?.url || '';
     el('amUrlInput').value = ov;
+    el('amArtistInput').value = overrides[editing.key]?.displayArtist || artist;
+    el('amTitleInput').value  = overrides[editing.key]?.displayTitle  || title;
     el('amSearchInput').value = `${artist} ${title}`.trim();
     el('amCurrentPreview').innerHTML = '…';
     resolve(artist, title, true).then(res => {
@@ -875,15 +905,25 @@ const ArtMgr = (function(){
 
   function save(){
     if (!editing) return;
-    const url = el('amUrlInput').value.trim() || pendingUrl;
-    if (!url){ el('amStatus').style.color = 'var(--fire2)'; el('amStatus').textContent = 'Pick a result or paste a URL first.'; return; }
-    overrides[editing.key] = { url, artist: editing.artist, title: editing.title };
+    const url = el('amUrlInput').value.trim() || pendingUrl || '';
+    const dArtist = el('amArtistInput').value.trim();
+    const dTitle  = el('amTitleInput').value.trim();
+    const ov = { artist: editing.artist, title: editing.title };
+    if (url) ov.url = url;
+    if (dArtist && dArtist !== editing.artist) ov.displayArtist = dArtist;
+    if (dTitle  && dTitle  !== editing.title)  ov.displayTitle  = dTitle;
+    if (!ov.url && !ov.displayArtist && !ov.displayTitle){
+      el('amStatus').style.color = 'var(--fire2)';
+      el('amStatus').textContent = 'Add a correct image and/or corrected text first.';
+      return;
+    }
+    overrides[editing.key] = ov;
     delete resolvedCache[editing.key];
     persist();
     el('amStatus').style.color = 'var(--green)';
     el('amStatus').textContent = 'Saved. Use “Export manifest” to publish for all listeners.';
     render();
-    if (key(current.artist, current.title) === editing.key) updateNowPlayingArt(current.artist, current.title);
+    if (key(current.artist, current.title) === editing.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
     setTimeout(closeModal, 800);
   }
 
@@ -895,7 +935,7 @@ const ArtMgr = (function(){
     el('amStatus').style.color = 'var(--text-dim)';
     el('amStatus').textContent = 'Override cleared.';
     render();
-    if (key(current.artist, current.title) === editing.key) updateNowPlayingArt(current.artist, current.title);
+    if (key(current.artist, current.title) === editing.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
   }
 
   // Merge overrides into art-manifest.json and download it (commit to publish).
@@ -907,7 +947,11 @@ const ArtMgr = (function(){
     } catch {}
     const idx = new Map(base.tracks.map(t => [key(t.artist, t.title), t]));
     Object.values(overrides).forEach(o => {
-      idx.set(key(o.artist, o.title), { artist:o.artist, title:o.title, art:o.url, notes:'admin override' });
+      const entry = { artist:o.artist, title:o.title, notes:'admin override' };
+      if (o.url) entry.art = o.url;
+      if (o.displayArtist) entry.displayArtist = o.displayArtist;
+      if (o.displayTitle)  entry.displayTitle  = o.displayTitle;
+      idx.set(key(o.artist, o.title), entry);
     });
     const out = { ...base, generatedAt:new Date().toISOString(), tracks:[...idx.values()] };
     const blob = new Blob([JSON.stringify(out, null, 2)], { type:'application/json' });
@@ -937,7 +981,7 @@ const ArtMgr = (function(){
     render();
   }
 
-  return { setCurrent, observe, resolve, render, bind };
+  return { setCurrent, observe, resolve, render, bind, displayFor, refreshNowPlayingText };
 })();
 </script>
 </body>
