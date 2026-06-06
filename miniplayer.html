@@ -79,6 +79,7 @@ html,body{height:100%;overflow:hidden;background:#07080a;color:#dde1e8;font-fami
 </div>
 
 <audio id="audio" preload="none"></audio>
+<script src="m4m-art.js"></script>
 <script>
 const STREAM_URL  = 'https://radio.mind4metal.com/stream.mp3';
 const STATUS_URL  = 'https://radio.mind4metal.com/status-json.xsl';
@@ -372,10 +373,20 @@ async function poll() {
     const artist = parsed.artist || '';
     const combo  = `${artist}|||${title}`;
 
+    // Curated display corrections (fail-safe: raw text if none). Art/match use raw.
+    let dispArtist = artist, dispTitle = title;
+    try {
+      const entry = (window.M4MArt && M4MArt.lookupEntry) ? M4MArt.lookupEntry(artist, title) : null;
+      if (entry) {
+        if (entry.displayArtist) dispArtist = entry.displayArtist;
+        if (entry.displayTitle)  dispTitle  = entry.displayTitle;
+      }
+    } catch {}
+
     if (combo !== lastCombo) {
-      songEl.textContent  = title;
-      bandEl.textContent  = artist || '\u2014';
-      document.title      = artist ? `${title} \u2014 ${artist}` : `${title} \u2014 Mind4Metal`;
+      songEl.textContent  = dispTitle;
+      bandEl.textContent  = dispArtist || '\u2014';
+      document.title      = dispArtist ? `${dispTitle} \u2014 ${dispArtist}` : `${dispTitle} \u2014 Mind4Metal`;
       startedAt = Date.now();
       lastCombo = combo;
       setTimeout(() => updateArt(artist, title), 150);
@@ -384,6 +395,7 @@ async function poll() {
     console.warn('[M4M mini] poll error:', e);
   }
 }
+if (window.M4MArt) { M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {}); }
 poll();
 setInterval(poll, 15000);
 
