@@ -308,6 +308,7 @@ header{
           <button class="am-btn" id="amRefresh">↻ Refresh art</button>
           <button class="am-btn primary" id="amExport">⬇ Export manifest</button>
         </div>
+        <div id="amUploadNotice" style="display:none;margin:10px 0 4px;padding:10px 14px;border-radius:4px;background:rgba(255,136,0,0.12);border:1px solid rgba(255,136,0,0.4);font-size:12px;color:var(--fire2);line-height:1.5;"></div>
         <div class="am-grid" id="amGrid">
           <div class="am-empty">Tracks appear here as they play. Click <b>Fix</b> on any cover to correct it.</div>
         </div>
@@ -395,13 +396,15 @@ header{
         <input id="amTitleInput" placeholder="Correct title" spellcheck="false">
       </div>
 
-      <label class="am-field-label">Image URL (paste a direct link to a cover)</label>
+      <label class="am-field-label">Image — paste a URL, upload a file, or search iTunes</label>
       <div class="am-url-row">
         <input id="amUrlInput" placeholder="https://…/cover.jpg" spellcheck="false">
         <button class="am-btn" id="amUrlPreview">Preview</button>
+        <button class="am-btn" id="amUploadBtn" title="Upload an image from your computer">📁 Upload</button>
+        <input type="file" id="amFileInput" accept="image/*" style="display:none;">
       </div>
 
-      <label class="am-field-label">Or search iTunes for the correct cover</label>
+      <label class="am-field-label">Or search iTunes</label>
       <div class="am-url-row">
         <input id="amSearchInput" placeholder="artist + album/song" spellcheck="false">
         <button class="am-btn" id="amSearchBtn">Search</button>
@@ -1006,6 +1009,22 @@ const ArtMgr = (function(){
     if (key(current.artist, current.title) === editing.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
   }
 
+  // ── Upload helpers ────────────────────────────────────────────────────────
+  function dataUrlExt(dataUrl){
+    const m = (dataUrl||'').match(/^data:image\/([a-z]+);/);
+    return (m?.[1]||'jpg').replace('jpeg','jpg');
+  }
+  function slugify(s){ return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+  // Returns a repo-relative filename for a locally-uploaded image.
+  function uploadedFilename(artist, title){
+    const base = title ? `${slugify(artist)}-${slugify(title)}` : slugify(artist);
+    return `art/${base || 'cover'}.${dataUrlExt(null)}`; // ext fixed below per dataUrl
+  }
+  function uploadedFilenameFor(dataUrl, artist, title){
+    const base = title ? `${slugify(artist)}-${slugify(title)}` : slugify(artist);
+    return `art/${base || 'cover'}.${dataUrlExt(dataUrl)}`;
+  }
+
   // Merge overrides into art-manifest.json and download it (commit to publish).
   async function exportManifest(){
     let base = { version:1, generatedAt:new Date().toISOString(), imageBasePath:'./', tracks:[], albums:[], artists:[] };
@@ -1020,31 +1039,68 @@ const ArtMgr = (function(){
       }
     } catch {}
 
+    // Track which data-URL images need to be saved as separate files.
+    const uploadedFiles = []; // { filename, dataUrl }
+    const usedFilenames = new Set();
+    function resolveArt(art, artist, title){
+      if (!art || !art.startsWith('data:')) return art;
+      let fname = uploadedFilenameFor(art, artist, title);
+      // Avoid filename collisions if two entries would produce the same slug.
+      if (usedFilenames.has(fname)){
+        const base = fname.replace(/\.[^.]+$/, '');
+        const ext  = fname.replace(/.*\./, '');
+        let i = 2;
+        while (usedFilenames.has(`${base}-${i}.${ext}`)) i++;
+        fname = `${base}-${i}.${ext}`;
+      }
+      usedFilenames.add(fname);
+      uploadedFiles.push({ filename: fname, dataUrl: art });
+      return fname; // replace data URL with relative path in manifest
+    }
+
     // Merge track-level overrides.
     const trackIdx = new Map(base.tracks.map(t => [key(t.artist, t.title), t]));
     Object.values(overrides).forEach(o => {
       const entry = { artist:o.artist, title:o.title, notes:'admin override' };
-      if (o.url) entry.art = o.url;
+      if (o.url) entry.art = resolveArt(o.url, o.artist, o.title);
       if (o.displayArtist) entry.displayArtist = o.displayArtist;
       if (o.displayTitle)  entry.displayTitle  = o.displayTitle;
       trackIdx.set(key(o.artist, o.title), entry);
     });
 
-    // Merge artist-level overrides (covers every track by that artist automatically).
+    // Merge artist-level overrides.
     const artistIdx = new Map(base.artists.map(a => [norm(a.artist), a]));
     Object.values(artistOverrides).forEach(ao => {
       const existing = artistIdx.get(norm(ao.artist)) || {};
       const entry = { ...existing, artist: ao.artist, notes: 'admin artist override' };
-      if (ao.url) entry.art = ao.url;
+      if (ao.url) entry.art = resolveArt(ao.url, ao.artist, null);
       if (ao.displayArtist) entry.displayArtist = ao.displayArtist;
       artistIdx.set(norm(ao.artist), entry);
     });
 
     const out = { ...base, generatedAt:new Date().toISOString(), tracks:[...trackIdx.values()], artists:[...artistIdx.values()] };
     const blob = new Blob([JSON.stringify(out, null, 2)], { type:'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob); a.download = 'art-manifest.json'; a.click();
-    URL.revokeObjectURL(a.href);
+    const jsonLink = document.createElement('a');
+    jsonLink.href = URL.createObjectURL(blob); jsonLink.download = 'art-manifest.json'; jsonLink.click();
+    URL.revokeObjectURL(jsonLink.href);
+
+    // Download any locally-uploaded image files (with a slight delay between each).
+    if (uploadedFiles.length) {
+      for (let i = 0; i < uploadedFiles.length; i++){
+        await new Promise(r => setTimeout(r, 350 * (i + 1)));
+        const f = uploadedFiles[i];
+        const imgLink = document.createElement('a');
+        imgLink.href = f.dataUrl; imgLink.download = f.filename.split('/').pop(); imgLink.click();
+      }
+      const names = uploadedFiles.map(f => f.filename).join(', ');
+      // Show a prominent notice near the export button.
+      const notice = el('amUploadNotice');
+      if (notice){
+        notice.textContent = `Also move downloaded image(s) into your repo: ${names} — then commit both files.`;
+        notice.style.display = 'block';
+        setTimeout(() => { notice.style.display = 'none'; }, 30000);
+      }
+    }
   }
 
   function bind(){
@@ -1060,6 +1116,26 @@ const ArtMgr = (function(){
     el('amModal').addEventListener('click', e => { if (e.target === el('amModal')) closeModal(); });
     el('amUrlPreview').addEventListener('click', () => setPreview(el('amUrlInput').value.trim()));
     el('amUrlInput').addEventListener('keydown', e => { if (e.key === 'Enter') setPreview(el('amUrlInput').value.trim()); });
+    el('amUploadBtn').addEventListener('click', () => el('amFileInput').click());
+    el('amFileInput').addEventListener('change', e => {
+      const file = e.target.files?.[0];
+      e.target.value = ''; // reset so same file can be picked again
+      if (!file) return;
+      if (file.size > 8 * 1024 * 1024){
+        el('amHint').textContent = 'File too large — please use an image under 8 MB.';
+        return;
+      }
+      el('amHint').textContent = 'Reading file…';
+      const reader = new FileReader();
+      reader.onload = ev => {
+        const dataUrl = ev.target.result;
+        el('amUrlInput').value = ''; // clear URL field — upload takes precedence
+        setPreview(dataUrl);         // show preview immediately
+        el('amHint').textContent = `Loaded: ${file.name} — looks good? Hit Save.`;
+      };
+      reader.onerror = () => { el('amHint').textContent = 'Could not read file.'; };
+      reader.readAsDataURL(file);
+    });
     el('amSearchBtn').addEventListener('click', () => searchITunes(el('amSearchInput').value.trim()));
     el('amSearchInput').addEventListener('keydown', e => { if (e.key === 'Enter') searchITunes(el('amSearchInput').value.trim()); });
     el('amSearchResults').addEventListener('click', e => { const r = e.target.closest('[data-url]'); if (r){ const u = r.getAttribute('data-url'); el('amUrlInput').value = u; setPreview(u); } });
