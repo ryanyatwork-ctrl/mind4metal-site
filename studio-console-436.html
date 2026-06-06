@@ -624,7 +624,7 @@ async function poll() {
     document.getElementById('statPeak').textContent = peakListeners;
     document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
 
-    const parsed = M4MArt.parseTrack(src.title || src.yp_currently_playing || '');
+    const parsed = parseTrackSmart(src.title || src.yp_currently_playing || '');
     const title  = parsed.title || '—';
     const artist = parsed.artist || '—';
     const trackKey = `${artist}|||${title}`;
@@ -712,6 +712,27 @@ async function fetchStatusJson(){
     } catch {}
   }
   return null;
+}
+
+// Some playout software can't emit apostrophes and sends a literal "?" instead
+// (It Ain?t -> It Ain't, Knockin? -> Knockin'). Repair it for display + lookup,
+// matching what the main site already does so the Admin view agrees with listeners.
+function repairText(str){
+  let out = String(str || '').trim();
+  out = out
+    .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")   // ?N Roses -> 'N Roses
+    .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")          // N? Roses -> N' Roses
+    .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")            // Ain?t -> Ain't, It?s -> It's
+    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");          // Stompin? -> Stompin'
+  return out.replace(/\s+/g, ' ');
+}
+function parseTrackSmart(raw){
+  const str = repairText(raw);
+  for (const sep of [' - ', ' — ', ' – ', ' ‒ ']) {
+    const i = str.indexOf(sep);
+    if (i > 0) return { artist: str.slice(0, i).trim(), title: str.slice(i + sep.length).trim() };
+  }
+  return { artist: '', title: str };
 }
 
 const ArtMgr = (function(){
