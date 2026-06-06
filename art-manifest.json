@@ -11,6 +11,14 @@
       "titleAliases": [],
       "art": "Chrome_Viper_cover.png",
       "notes": "Manual seed"
+    },
+    {
+      "artist": "Europe",
+      "artistAliases": ["EUROPE"],
+      "title": "Time Has Come",
+      "titleAliases": [],
+      "art": "https://i.discogs.com/SXnzfJtU0RvGdyqMG8sxcpULkrWjbpIh2KagjThGV3U/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNDk3/NjI5LTE1MDAyMDc3/MjYtMzkyMC5qcGVn.jpeg",
+      "notes": "Discogs resolver matched Hot Rod soundtrack instead of The Final Countdown — pinned correct cover"
     }
   ],
   "albums": [],
