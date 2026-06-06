@@ -407,6 +407,12 @@ header{
         <button class="am-btn" id="amSearchBtn">Search</button>
       </div>
       <div class="am-search-results" id="amSearchResults"></div>
+
+      <label class="am-field-label" style="margin-top:16px;">Scope</label>
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 12px;border-radius:4px;border:1px solid var(--border2);background:rgba(0,0,0,0.3);">
+        <input type="checkbox" id="amApplyAllArtist" style="accent-color:var(--fire2);width:16px;height:16px;flex-shrink:0;">
+        <span style="font-size:13px;color:var(--text-dim);line-height:1.4;">Apply to <strong style="color:var(--silver);">all songs by <span id="amScopeArtistName" style="color:var(--fire2);">this artist</span></strong> — not just this track</span>
+      </label>
     </div>
     <div class="am-dialog-foot">
       <div>
@@ -747,12 +753,14 @@ function parseTrackSmart(raw){
 const ArtMgr = (function(){
   const ART_API_URL = '/api/art/resolve';
   const LASTFM_KEY  = '486c7335b86e6c3922c334f50ed28019';
-  const OV_KEY   = 'm4m_art_overrides_v1';
-  const SEEN_KEY = 'm4m_admin_seen_tracks_v1';
-  const SEEN_MAX = 200;
+  const OV_KEY        = 'm4m_art_overrides_v1';
+  const OV_ARTIST_KEY = 'm4m_art_overrides_by_artist_v1';
+  const SEEN_KEY      = 'm4m_admin_seen_tracks_v1';
+  const SEEN_MAX      = 200;
 
-  let overrides = load(OV_KEY, {});
-  let seen      = load(SEEN_KEY, []);
+  let overrides       = load(OV_KEY, {});
+  let artistOverrides = load(OV_ARTIST_KEY, {});
+  let seen            = load(SEEN_KEY, []);
   const resolvedCache = {};
   let filter = '';
   let editing = null;
@@ -760,7 +768,7 @@ const ArtMgr = (function(){
   let current = { artist:'', title:'' };
 
   function load(k, fb){ try { const r = localStorage.getItem(k); return r ? JSON.parse(r) : fb; } catch { return fb; } }
-  function persist(){ try { localStorage.setItem(OV_KEY, JSON.stringify(overrides)); localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch {} }
+  function persist(){ try { localStorage.setItem(OV_KEY, JSON.stringify(overrides)); localStorage.setItem(OV_ARTIST_KEY, JSON.stringify(artistOverrides)); localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch {} }
   function norm(s){ try { return window.M4MArt ? M4MArt.normalize(s) : String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); } catch { return String(s||'').toLowerCase().trim(); } }
   function key(a, t){ return `${norm(a)}|||${norm(t)}`; }
   function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
@@ -771,8 +779,9 @@ const ArtMgr = (function(){
 
   // Corrected display text for a track (falls back to raw if no correction).
   function displayFor(artist, title){
-    const o = overrides[key(artist, title)] || {};
-    return { artist: o.displayArtist || artist, title: o.displayTitle || title };
+    const o  = overrides[key(artist, title)] || {};
+    const ao = artistOverrides[norm(artist)] || {};
+    return { artist: o.displayArtist || ao.displayArtist || artist, title: o.displayTitle || title };
   }
   // Re-apply corrected text to the admin Now Playing panel for the current track.
   function refreshNowPlayingText(){
@@ -810,6 +819,8 @@ const ArtMgr = (function(){
   async function resolve(artist, title, force){
     const k = key(artist, title);
     if (overrides[k]?.url) return { url: overrides[k].url, source:'manual' };
+    const ak = norm(artist);
+    if (artistOverrides[ak]?.url) return { url: artistOverrides[ak].url, source:'manual-artist' };
     if (!force && resolvedCache[k]) return resolvedCache[k];
     // 1. curated manifest
     try {
@@ -845,13 +856,15 @@ const ArtMgr = (function(){
     }
     grid.innerHTML = list.map(s => {
       const k = key(s.artist, s.title);
-      const o = overrides[k] || {};
-      const ov = o.url;
-      const dTitle = o.displayTitle || s.title || '—';
-      const dArtist = o.displayArtist || s.artist || '—';
-      const textFixed = !!(o.displayTitle || o.displayArtist);
+      const o  = overrides[k] || {};
+      const ao = artistOverrides[norm(s.artist)] || {};
+      const ov = o.url || ao.url;
+      const dTitle  = o.displayTitle  || s.title || '—';
+      const dArtist = o.displayArtist || ao.displayArtist || s.artist || '—';
+      const textFixed = !!(o.displayTitle || o.displayArtist || ao.displayArtist);
+      const manualLabel = o.url ? 'Manual' : ao.url ? 'Artist' : '';
       return `<div class="am-card">
-        <div class="am-thumb" data-thumb="${esc(k)}">${ov?`<img src="${esc(ov)}" alt="">`:'🎸'}${ov?'<span class="am-src manual">Manual</span>':''}</div>
+        <div class="am-thumb" data-thumb="${esc(k)}">${ov?`<img src="${esc(ov)}" alt="">`:'🎸'}${ov?`<span class="am-src manual">${esc(manualLabel)}</span>`:''}</div>
         <div class="am-meta">
           <div class="am-title">${esc(dTitle)}${textFixed?' <span title="text corrected" style="color:var(--green);font-size:11px;">✎</span>':''}</div>
           <div class="am-artist">${esc(dArtist)}</div>
@@ -861,7 +874,7 @@ const ArtMgr = (function(){
     }).join('');
     list.forEach(async s => {
       const k = key(s.artist, s.title);
-      if (overrides[k]?.url) return;
+      if (overrides[k]?.url || artistOverrides[norm(s.artist)]?.url) return;
       const res = await resolve(s.artist, s.title);
       const cur = grid.querySelector(`[data-thumb="${cssEsc(k)}"]`);
       if (!cur) return;
@@ -884,6 +897,8 @@ const ArtMgr = (function(){
     el('amArtistInput').value = overrides[editing.key]?.displayArtist || artist;
     el('amTitleInput').value  = overrides[editing.key]?.displayTitle  || title;
     el('amSearchInput').value = `${artist} ${title}`.trim();
+    el('amScopeArtistName').textContent = artist || 'this artist';
+    el('amApplyAllArtist').checked = !!(artistOverrides[norm(artist)]);
     el('amCurrentPreview').innerHTML = '…';
     resolve(artist, title, true).then(res => {
       el('amCurrentPreview').innerHTML = res.url ? `<img src="${esc(res.url)}" alt="">` : '🎸';
@@ -925,32 +940,65 @@ const ArtMgr = (function(){
 
   function save(){
     if (!editing) return;
-    const url = el('amUrlInput').value.trim() || pendingUrl || '';
-    const dArtist = el('amArtistInput').value.trim();
-    const dTitle  = el('amTitleInput').value.trim();
-    const ov = { artist: editing.artist, title: editing.title };
-    if (url) ov.url = url;
-    if (dArtist && dArtist !== editing.artist) ov.displayArtist = dArtist;
-    if (dTitle  && dTitle  !== editing.title)  ov.displayTitle  = dTitle;
-    if (!ov.url && !ov.displayArtist && !ov.displayTitle){
-      el('amStatus').style.color = 'var(--fire2)';
-      el('amStatus').textContent = 'Add a correct image and/or corrected text first.';
-      return;
+    const url      = el('amUrlInput').value.trim() || pendingUrl || '';
+    const dArtist  = el('amArtistInput').value.trim();
+    const dTitle   = el('amTitleInput').value.trim();
+    const applyAll = el('amApplyAllArtist').checked;
+    const ak       = norm(editing.artist);
+
+    if (applyAll) {
+      // Artist-level: this cover applies to EVERY track by this artist.
+      const ao = { artist: editing.artist };
+      if (url) ao.url = url;
+      if (dArtist && dArtist !== editing.artist) ao.displayArtist = dArtist;
+      if (!ao.url && !ao.displayArtist) {
+        el('amStatus').style.color = 'var(--fire2)';
+        el('amStatus').textContent = 'Add a correct image or corrected artist name first.';
+        return;
+      }
+      artistOverrides[ak] = ao;
+      // Flush resolve cache for every seen track by this artist so grid updates.
+      seen.filter(s => norm(s.artist) === ak).forEach(s => delete resolvedCache[key(s.artist, s.title)]);
+      // Also write a track-level entry so this specific card updates immediately.
+      const ov = { artist: editing.artist, title: editing.title };
+      if (url) ov.url = url;
+      if (ao.displayArtist) ov.displayArtist = ao.displayArtist;
+      if (dTitle && dTitle !== editing.title) ov.displayTitle = dTitle;
+      overrides[editing.key] = ov;
+    } else {
+      // Track-level only (original behaviour).
+      const ov = { artist: editing.artist, title: editing.title };
+      if (url) ov.url = url;
+      if (dArtist && dArtist !== editing.artist) ov.displayArtist = dArtist;
+      if (dTitle  && dTitle  !== editing.title)  ov.displayTitle  = dTitle;
+      if (!ov.url && !ov.displayArtist && !ov.displayTitle) {
+        el('amStatus').style.color = 'var(--fire2)';
+        el('amStatus').textContent = 'Add a correct image and/or corrected text first.';
+        return;
+      }
+      overrides[editing.key] = ov;
+      delete resolvedCache[editing.key];
     }
-    overrides[editing.key] = ov;
-    delete resolvedCache[editing.key];
+
     persist();
     el('amStatus').style.color = 'var(--green)';
-    el('amStatus').textContent = 'Saved. Use “Export manifest” to publish for all listeners.';
+    el('amStatus').textContent = applyAll
+      ? `Saved for ALL songs by ${editing.artist}. Export manifest to publish.`
+      : 'Saved. Use “Export manifest” to publish for all listeners.';
     render();
     if (key(current.artist, current.title) === editing.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
-    setTimeout(closeModal, 800);
+    setTimeout(closeModal, 1000);
   }
 
   function clearOverride(){
     if (!editing) return;
     delete overrides[editing.key];
     delete resolvedCache[editing.key];
+    const ak = norm(editing.artist);
+    if (artistOverrides[ak]) {
+      delete artistOverrides[ak];
+      seen.filter(s => norm(s.artist) === ak).forEach(s => delete resolvedCache[key(s.artist, s.title)]);
+    }
     persist();
     el('amStatus').style.color = 'var(--text-dim)';
     el('amStatus').textContent = 'Override cleared.';
@@ -963,17 +1011,36 @@ const ArtMgr = (function(){
     let base = { version:1, generatedAt:new Date().toISOString(), imageBasePath:'./', tracks:[], albums:[], artists:[] };
     try {
       const r = await fetch(`art-manifest.json?v=${Date.now()}`, { cache:'no-store' });
-      if (r.ok){ const j = await r.json(); base = { ...base, ...j }; base.tracks = Array.isArray(j.tracks) ? j.tracks.slice() : []; }
+      if (r.ok){
+        const j = await r.json();
+        base = { ...base, ...j };
+        base.tracks  = Array.isArray(j.tracks)  ? j.tracks.slice()  : [];
+        base.artists = Array.isArray(j.artists) ? j.artists.slice() : [];
+        base.albums  = Array.isArray(j.albums)  ? j.albums.slice()  : [];
+      }
     } catch {}
-    const idx = new Map(base.tracks.map(t => [key(t.artist, t.title), t]));
+
+    // Merge track-level overrides.
+    const trackIdx = new Map(base.tracks.map(t => [key(t.artist, t.title), t]));
     Object.values(overrides).forEach(o => {
       const entry = { artist:o.artist, title:o.title, notes:'admin override' };
       if (o.url) entry.art = o.url;
       if (o.displayArtist) entry.displayArtist = o.displayArtist;
       if (o.displayTitle)  entry.displayTitle  = o.displayTitle;
-      idx.set(key(o.artist, o.title), entry);
+      trackIdx.set(key(o.artist, o.title), entry);
     });
-    const out = { ...base, generatedAt:new Date().toISOString(), tracks:[...idx.values()] };
+
+    // Merge artist-level overrides (covers every track by that artist automatically).
+    const artistIdx = new Map(base.artists.map(a => [norm(a.artist), a]));
+    Object.values(artistOverrides).forEach(ao => {
+      const existing = artistIdx.get(norm(ao.artist)) || {};
+      const entry = { ...existing, artist: ao.artist, notes: 'admin artist override' };
+      if (ao.url) entry.art = ao.url;
+      if (ao.displayArtist) entry.displayArtist = ao.displayArtist;
+      artistIdx.set(norm(ao.artist), entry);
+    });
+
+    const out = { ...base, generatedAt:new Date().toISOString(), tracks:[...trackIdx.values()], artists:[...artistIdx.values()] };
     const blob = new Blob([JSON.stringify(out, null, 2)], { type:'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob); a.download = 'art-manifest.json'; a.click();
