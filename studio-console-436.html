@@ -814,8 +814,12 @@ const ArtMgr = (function(){
     if (!artist) return null;
     const base = 'https://ws.audioscrobbler.com/2.0/'; const k = encodeURIComponent(LASTFM_KEY);
     try {
+      // 1. Track info (embedded album art — most specific)
       if (title) { const r = await fetch(`${base}?method=track.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`); if (r.ok) { const d = await r.json(); const u = lfmPick(d?.track?.album?.image); if (u) return u; } }
-      const r2 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`); if (r2.ok) { const d2 = await r2.json(); const u2 = lfmPick(d2?.artist?.image); if (u2) return u2; }
+      // 2. Album search (catches many tracks the track endpoint misses)
+      if (title) { const r2 = await fetch(`${base}?method=album.search&api_key=${k}&album=${encodeURIComponent(title + ' ' + artist)}&limit=3&format=json`); if (r2.ok) { const d2 = await r2.json(); const list = d2?.results?.albummatches?.album; if (list?.length) { const match = list.find(a => a.artist?.toLowerCase() === artist.toLowerCase()) || list[0]; const u2 = lfmPick(match?.image); if (u2) return u2; } } }
+      // 3. Artist image (broad fallback)
+      const r3 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`); if (r3.ok) { const d3 = await r3.json(); const u3 = lfmPick(d3?.artist?.image); if (u3) return u3; }
     } catch {}
     return null;
   }
