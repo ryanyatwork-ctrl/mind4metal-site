@@ -746,6 +746,7 @@ function parseTrackSmart(raw){
 
 const ArtMgr = (function(){
   const ART_API_URL = '/api/art/resolve';
+  const LASTFM_KEY  = '486c7335b86e6c3922c334f50ed28019';
   const OV_KEY   = 'm4m_art_overrides_v1';
   const SEEN_KEY = 'm4m_admin_seen_tracks_v1';
   const SEEN_MAX = 200;
@@ -793,23 +794,42 @@ const ArtMgr = (function(){
     render();
   }
 
-  // Resolve art the same way listeners do: override -> manifest -> worker(Discogs/iTunes).
+  // Resolve art the EXACT way listeners do, so "No art" here == listeners saw the
+  // placeholder: override -> manifest -> worker(Discogs/iTunes) -> Last.fm.
+  function lfmValid(u){ return u && !u.includes('2a96cbd8b46e442fc41c2b86b821562f') && !u.includes('/noimage/') && !u.endsWith('.gif'); }
+  function lfmPick(imgs){ if (!imgs || !imgs.length) return null; const u = (imgs.find(i=>i.size==='extralarge')||imgs.find(i=>i.size==='large')||imgs[imgs.length-1])?.['#text']; return lfmValid(u) ? u : null; }
+  async function fetchArtLastFm(artist, title){
+    if (!artist) return null;
+    const base = 'https://ws.audioscrobbler.com/2.0/'; const k = encodeURIComponent(LASTFM_KEY);
+    try {
+      if (title) { const r = await fetch(`${base}?method=track.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&track=${encodeURIComponent(title)}&format=json`); if (r.ok) { const d = await r.json(); const u = lfmPick(d?.track?.album?.image); if (u) return u; } }
+      const r2 = await fetch(`${base}?method=artist.getInfo&api_key=${k}&artist=${encodeURIComponent(artist)}&format=json`); if (r2.ok) { const d2 = await r2.json(); const u2 = lfmPick(d2?.artist?.image); if (u2) return u2; }
+    } catch {}
+    return null;
+  }
   async function resolve(artist, title, force){
     const k = key(artist, title);
     if (overrides[k]?.url) return { url: overrides[k].url, source:'manual' };
     if (!force && resolvedCache[k]) return resolvedCache[k];
+    // 1. curated manifest
     try {
       if (window.M4MArt) {
         const m = await M4MArt.resolveArt({ artist, title });
         if (m?.url) return (resolvedCache[k] = { url:m.url, source:'manifest' });
       }
     } catch {}
+    // 2. Worker (Discogs -> iTunes)
     try {
       const r = await fetch(`${ART_API_URL}?artist=${encodeURIComponent(artist)}&title=${encodeURIComponent(title)}`, { cache:'no-store' });
       if (r.ok) {
         const d = await r.json();
-        return (resolvedCache[k] = { url: d?.url || null, source: d?.source || (d?.ok ? 'api' : 'miss') });
+        if (d?.url) return (resolvedCache[k] = { url: d.url, source: d.source || 'api' });
       }
+    } catch {}
+    // 3. Last.fm — the same final fallback listeners get on the main site
+    try {
+      const u = await fetchArtLastFm(artist, title);
+      if (u) return (resolvedCache[k] = { url:u, source:'lastfm' });
     } catch {}
     return (resolvedCache[k] = { url:null, source:'miss' });
   }
