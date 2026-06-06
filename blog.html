@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mind4Metal · Blog</title>
+<meta name="description" content="Mind4Metal Radio Blog — news, new music, show announcements and metal features.">
+<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mind4Metal Radio">
+<meta property="og:title" content="Mind4Metal · Blog">
+<meta property="og:description" content="News, new music, show announcements and metal features.">
+<meta property="og:url" content="https://mind4metal.com/blog.html">
+<meta property="og:image" content="https://mind4metal.com/Mind4Metal_Banner.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{
+  --fire:#ff5500;--fire2:#ff8800;--fire-glow:rgba(255,85,0,0.4);--fire-dim:rgba(255,85,0,0.12);
+  --bg:#07080a;--bg2:#0d0f13;--steel:#1a1e26;--steel2:#222633;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#dde1e8;--text-dim:rgba(221,225,232,0.55);--text-muted:rgba(221,225,232,0.3);
+  --silver:#c8d0dc;--silver2:#8a94a0;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
+.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('Mind4Metal_Background.png');background-size:85% auto;background-position:center center;background-repeat:no-repeat;opacity:0.06;filter:grayscale(30%);}
+.bg-fixed::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,85,0,0.05) 0%,transparent 60%);}
+.wrapper{position:relative;z-index:1;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:72px;background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);border-bottom:1px solid rgba(255,85,0,0.22);box-shadow:0 4px 20px rgba(0,0,0,0.8);position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo img{height:44px;filter:drop-shadow(0 0 10px rgba(255,85,0,0.5));}
+.nav-logo-text{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);}
+.nav-links{display:flex;gap:5px;}
+.nav-links a{padding:5px 12px;border-radius:3px;background:rgba(0,0,0,0.4);border:1px solid var(--border2);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver2);text-decoration:none;transition:all .18s;}
+.nav-links a:hover,.nav-links a.active{color:var(--fire2);border-color:rgba(255,85,0,0.4);background:rgba(255,85,0,0.08);}
+.page-header{text-align:center;padding:52px 24px 40px;border-bottom:1px solid rgba(255,85,0,0.1);}
+.page-header h1{font-family:'Oswald',sans-serif;font-size:clamp(28px,5vw,52px);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;text-shadow:0 0 40px rgba(255,85,0,0.3);margin-bottom:10px;}
+.page-header h1 span{color:var(--fire2);}
+.page-header p{font-size:16px;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase;}
+.main{max-width:900px;margin:0 auto;padding:44px 24px 80px;}
+.card{background:var(--bg2);border:1px solid var(--border2);border-radius:8px;margin-bottom:28px;overflow:hidden;}
+.card-head{padding:18px 24px;border-bottom:1px solid rgba(255,85,0,0.14);background:rgba(0,0,0,0.3);display:flex;align-items:center;gap:12px;}
+.card-icon{font-size:20px;}
+.card-title{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);}
+.card-sub{font-size:12px;color:var(--text-muted);letter-spacing:.06em;margin-top:2px;}
+.card-body{padding:24px;}
+.fire-bar{height:2px;background:linear-gradient(90deg,var(--fire),var(--fire2),rgba(255,136,0,0.15),transparent);border-radius:2px;margin-bottom:22px;}
+.coming-soon{text-align:center;padding:30px 10px;color:var(--text-muted);}
+.coming-soon .big{font-size:48px;margin-bottom:14px;}
+.coming-soon p{font-size:16px;line-height:1.7;letter-spacing:.04em;max-width:540px;margin:0 auto 10px;}
+.cta{display:inline-block;margin-top:18px;padding:11px 22px;background:linear-gradient(135deg,var(--fire),var(--fire2));border-radius:4px;color:#fff;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(255,85,0,0.3);}
+.cta:hover{box-shadow:0 4px 24px rgba(255,85,0,0.55);transform:translateY(-1px);}
+footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
+.footer-logo{height:28px;opacity:.55;}
+@media(max-width:600px){nav{padding:0 12px;}.nav-links a span{display:none;}.bg-fixed::before{display:none;}}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-EVLV2T57J8");</script>
+</head>
+<body>
+<div class="bg-fixed"></div>
+<div class="wrapper">
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="Mind4Metal_Dragon.png" alt="Mind4Metal" width="44" height="44" decoding="async">
+    <div class="nav-logo-text">Mind4Metal Radio</div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">&larr; <span>Listen </span>Live</a>
+    <a href="community.html">Community</a>
+    <a href="blog.html" class="active">Blog</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>The <span>Blog</span></h1>
+  <p>News · New Music · Show Announcements · Metal Features</p>
+</div>
+
+<main class="main">
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">📝</span>
+      <div>
+        <div class="card-title">Latest from the Pit</div>
+        <div class="card-sub">Riffs, reviews and radio news</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="fire-bar"></div>
+      <div class="coming-soon">
+        <div class="big">🤘</div>
+        <p>The Mind4Metal blog is warming up. Soon you'll find new music spotlights,
+        show announcements, gear talk and features on the bands keeping the flame alive.</p>
+        <p>Until then, keep it locked to the stream.</p>
+        <a class="cta" href="index.html">Listen Live &rarr;</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-left">
+    <img src="Mind4Metal_Dragon.png" alt="" class="footer-logo" width="28" height="28" loading="lazy" decoding="async">
+    <span>&copy; 2026 Mind4Metal Radio &middot; Coeur d'Alene, Idaho</span>
+  </div>
+</footer>
+</div>
+</body>
+</html>
