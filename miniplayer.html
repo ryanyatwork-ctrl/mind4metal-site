@@ -135,7 +135,12 @@ function repairQuestionMarkApostrophes(str) {
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
     .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
     .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")
-    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");
+    // Mid-title word? followed by space (Stompin? On, Nothin? But, Livin? On).
+    .replace(/\b([A-Za-z]+)\?(?=\s)/g, "$1'")
+    // Space+? before a letter: "Rock ?N? Roll" -> "Rock 'N' Roll"
+    .replace(/ \?([A-Za-z])/g, " '$1")
+    // Space+?+space before a letter: "Rock ? N' Roll" -> "Rock 'N' Roll"
+    .replace(/ \? ([A-Za-z])/g, " '$1");
 }
 
 function repairMetadataText(str) {

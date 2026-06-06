@@ -423,14 +423,19 @@ function repairMetadataText(str) {
 
 function repairQuestionMarkApostrophes(str) {
   return String(str || '')
-    // Guns ?N Roses -> Guns 'N Roses
+    // ?N-style (? before letter, preceded by whitespace): Guns ?N Roses -> Guns 'N Roses
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
-    // Guns N? Roses -> Guns N' Roses
+    // N?-style (letter before ?, followed by space+uppercase): N? Roll -> N' Roll
     .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
-    // Don?t, Knockin?On, Rock ?N? Roll-style metadata damage.
+    // Internal: Don?t, Knockin?On, Rock ?N? Roll.
     .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")
-    // Stompin? -> Stompin', but leave normal sentence/title questions alone.
-    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");
+    // Mid-title word?: Stompin? On, Nothin? But, Livin? On — followed by space.
+    // Leaves trailing ? alone (could be a genuine question mark at end of title).
+    .replace(/\b([A-Za-z]+)\?(?=\s)/g, "$1'")
+    // Space+? immediately before a letter: "Rock ?N? Roll" -> "Rock 'N' Roll"
+    .replace(/ \?([A-Za-z])/g, " '$1")
+    // Space+?+space before a letter: "Rock ? N' Roll" -> "Rock 'N' Roll"
+    .replace(/ \? ([A-Za-z])/g, " '$1");
 }
 
 function normalizeArtistDisplay(artist) {
