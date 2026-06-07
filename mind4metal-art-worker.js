@@ -87,10 +87,31 @@ function compactArtistKey(str) {
 
 function repairQuestionMarkApostrophes(str) {
   return String(str || '')
+    // ?N-style (? before letter, preceded by whitespace): Guns ?N Roses -> Guns 'N Roses
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
+    // N?-style (letter before ?, followed by space+uppercase): N? Roll -> N' Roll
     .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
+    // Internal: Don?t, Knockin?On, Rock ?N? Roll
     .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")
-    .replace(/\b([A-Za-z]+in)\?(?=\s|$)/g, "$1'");
+    // Mid-title word?: Stompin? On, Nothin? But — leaves trailing ? alone (genuine question mark)
+    .replace(/\b([A-Za-z]+)\?(?=\s)/g, "$1'")
+    // Space+? immediately before a letter: "Rock ?N? Roll" -> "Rock 'N' Roll"
+    .replace(/ \?([A-Za-z])/g, " '$1")
+    // Space+?+space before a letter: "Rock ? N' Roll" -> "Rock 'N' Roll"
+    .replace(/ \? ([A-Za-z])/g, " '$1");
+}
+
+// Strip common bracketed/parenthetical qualifiers that hurt search accuracy.
+// Applied only at search time — not to the KV cache key — so variant titles
+// ("Song [Album Version]") still get their own KV slot but resolve correctly.
+const QUALIFIER_RE = /\s*[\[(](?:album version|single version|radio edit|re-?master(?:ed)?(?:\s+\d{4})?|instrumental|live(?: version)?|acoustic(?: version)?|demo(?: version)?|extended(?: version)?|deluxe(?: edition)?|bonus track|bonus|original version|official(?: video)?|explicit|clean(?: version)?|feat\..*|ft\..*)[\])]\s*$/gi;
+
+function stripTitleQualifiers(title) {
+  // Repeatedly strip so nested qualifiers ("Song (Live) [Remastered]") are fully removed
+  let t = String(title || '').trim();
+  let prev;
+  do { prev = t; t = t.replace(QUALIFIER_RE, '').trim(); } while (t !== prev);
+  return t || String(title || '').trim(); // fall back to original if everything stripped
 }
 
 function repairMetadataText(str) {
@@ -364,11 +385,15 @@ async function handleResolve(_request, env, url) {
     return json({ ok: !!cached.url, ...cached, cache: 'kv-hit' });
   }
 
+  // Strip qualifiers like [Album Version] / (Instrumental) for search only;
+  // the KV key intentionally keeps the raw title so each variant is cached.
+  const searchTitle = stripTitleQualifiers(title);
+
   let resolved = null;
 
   try {
-    // 1. Try exact track match via iTunes
-    resolved = await searchITunesTrack(artist, title);
+    // 1. Try exact track match via iTunes (using qualifier-stripped title)
+    resolved = await searchITunesTrack(artist, searchTitle);
 
     // 2. Fall back to artist-level image if track miss
     if (!resolved) {

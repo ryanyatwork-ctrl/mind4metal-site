@@ -17,6 +17,17 @@
     memoryResolveCache: new Map(),
   };
 
+  // Strip common bracketed/parenthetical qualifiers before manifest lookup.
+  // Tries the cleaned title as a secondary lookup if the raw title misses.
+  const QUALIFIER_RE = /\s*[\[(](?:album version|single version|radio edit|re-?master(?:ed)?(?:\s+\d{4})?|instrumental|live(?: version)?|acoustic(?: version)?|demo(?: version)?|extended(?: version)?|deluxe(?: edition)?|bonus track|bonus|original version|official(?: video)?|explicit|clean(?: version)?|feat\..*|ft\..*)[\])]\s*$/gi;
+
+  function stripTitleQualifiers(title) {
+    let t = String(title || '').trim();
+    let prev;
+    do { prev = t; t = t.replace(QUALIFIER_RE, '').trim(); } while (t !== prev);
+    return t || String(title || '').trim(); // fall back to original if everything stripped
+  }
+
   // Normalize artist/title for fuzzy matching.
   // - Strips diacritics (Mötley → Motley) via NFKD decomposition
   // - Normalizes curly/smart quotes to straight (Stompin' → Stompin')
@@ -183,7 +194,11 @@
     const manifest = state.manifest;
     if (!manifest) return null;
 
-    const directTrack = manifest.tracks.get(keyFor(artist, title));
+    // Primary lookup with raw title; secondary with qualifier-stripped title so
+    // "Crazy Horses [Album Version]" still hits the "Crazy Horses" manifest entry.
+    const cleanTitle = stripTitleQualifiers(title);
+    const directTrack = manifest.tracks.get(keyFor(artist, title))
+      || (cleanTitle !== title ? manifest.tracks.get(keyFor(artist, cleanTitle)) : null);
     if (directTrack?.art) {
       return { url: absolutizeAssetPath(directTrack.art), source: 'manifest-track', entry: directTrack };
     }
@@ -265,5 +280,6 @@
     normalize,
     keyFor,
     lookupEntry,
+    stripTitleQualifiers,
   };
 })();

@@ -310,8 +310,12 @@ async function resolveArt(artist, title) {
   let url = null;
   const searchArtist = toSearchAlias(artist);
   const searchTitle = repairMetadataText(title);
+  // Strip qualifiers for Last.fm — the Worker strips them internally.
+  const cleanSearchTitle = window.M4MArt?.stripTitleQualifiers
+    ? window.M4MArt.stripTitleQualifiers(searchTitle)
+    : searchTitle;
 
-  // 1. Cloudflare Worker (iTunes-backed, KV-cached)
+  // 1. Cloudflare Worker (iTunes-backed, KV-cached) — sends full title; Worker strips qualifiers internally
   try {
     const r = await fetch(
       `${ART_API_URL}?artist=${encodeURIComponent(searchArtist)}&title=${encodeURIComponent(searchTitle)}`,
@@ -323,9 +327,9 @@ async function resolveArt(artist, title) {
     }
   } catch {}
 
-  // 2. Last.fm fallback
+  // 2. Last.fm fallback — uses qualifier-stripped title for better match rate
   if (!url) {
-    url = await fetchArtLastFm(searchArtist, searchTitle);
+    url = await fetchArtLastFm(searchArtist, cleanSearchTitle);
   }
 
   if (artCache.size >= 100) artCache.delete(artCache.keys().next().value);

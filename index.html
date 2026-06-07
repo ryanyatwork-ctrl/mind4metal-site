@@ -558,6 +558,11 @@ async function resolveArtUrl(artist, title) {
   let url = null;
   const searchArtist = toSearchAlias(artist);
   const searchTitle = repairMetadataText(title);
+  // Strip qualifiers ([Album Version], (Instrumental) etc.) for Last.fm — the
+  // Worker strips them internally; the manifest lookup handles it via m4m-art.js.
+  const cleanSearchTitle = window.M4MArt?.stripTitleQualifiers
+    ? window.M4MArt.stripTitleQualifiers(searchTitle)
+    : searchTitle;
 
   // 1. Manifest
   if (window.M4MArt) {
@@ -568,7 +573,7 @@ async function resolveArtUrl(artist, title) {
     } catch {}
   }
 
-  // 2. Cloudflare Worker (iTunes)
+  // 2. Cloudflare Worker (iTunes) — sends full title; Worker strips qualifiers internally
   if (!url) {
     try {
       const r = await fetch(
@@ -582,9 +587,9 @@ async function resolveArtUrl(artist, title) {
     } catch {}
   }
 
-  // 3. Last.fm
+  // 3. Last.fm — uses qualifier-stripped title for better match rate
   if (!url) {
-    url = await fetchArtLastFm(searchArtist, searchTitle);
+    url = await fetchArtLastFm(searchArtist, cleanSearchTitle);
   }
 
   cacheArt(key, url);
