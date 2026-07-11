@@ -18,11 +18,11 @@
 <meta property="og:title" content="Mind4Metal Radio">
 <meta property="og:description" content="24/7 heavy metal, power metal, and hard rock from the 80s to now.">
 <meta property="og:url" content="https://www.mind4metal.com/">
-<meta property="og:image" content="https://www.mind4metal.com/Mind4Metal_Banner.png">
+<meta property="og:image" content="https://www.mind4metal.com/optimized/Mind4Metal_Banner-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mind4Metal Radio">
 <meta name="twitter:description" content="24/7 heavy metal, power metal, and hard rock from the 80s to now.">
-<meta name="twitter:image" content="https://www.mind4metal.com/Mind4Metal_Banner.png">
+<meta name="twitter:image" content="https://www.mind4metal.com/optimized/Mind4Metal_Banner-og.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,8 +41,8 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-.smoke-right{position:fixed;top:0;right:0;width:320px;height:100%;z-index:0;background-image:url('Mind4Metal_Background.png');background-size:auto 60%;background-position:right 30%;background-repeat:no-repeat;opacity:0.08;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);pointer-events:none;}
-.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('Mind4Metal_Background.png');background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:0.08;}
+.smoke-right{position:fixed;top:0;right:0;width:320px;height:100%;z-index:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:auto 60%;background-position:right 30%;background-repeat:no-repeat;opacity:0.05;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);pointer-events:none;}
+.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:0.06;-webkit-mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);}
 .bg-fixed::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,8,10,0.5) 0%,rgba(7,8,10,0.7) 30%,rgba(7,8,10,0.9) 60%,rgba(7,8,10,0.98) 80%,rgba(7,8,10,1) 100%);}
 .wrapper{position:relative;z-index:1;}
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:72px;background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);border-bottom:1px solid rgba(255,85,0,0.25);box-shadow:0 4px 20px rgba(0,0,0,0.8);position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);}
@@ -71,7 +71,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .panel-brand{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--silver);}
 .panel-close{width:34px;height:34px;border-radius:3px;background:rgba(255,85,0,.1);border:1px solid rgba(255,85,0,.25);color:var(--fire2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .panel-close:hover{background:rgba(255,85,0,.2);}
-.panel-nav{display:flex;flex-direction:column;gap:3px;margin-bottom:0;}
+.panel-nav{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:3px;margin-bottom:0;padding:0;height:auto;background:none;border:none;box-shadow:none;position:static;}
 .panel-divider{height:1px;background:linear-gradient(90deg,rgba(255,85,0,.3),transparent);margin:20px 0;}
 .panel-nav a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:5px;font-family:'Oswald',sans-serif;font-size:17px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--silver2);text-decoration:none;transition:all .18s;background:rgba(0,0,0,0.25);border:1px solid transparent;}
 .panel-nav a:hover{color:var(--fire2);background:rgba(255,85,0,.08);border-color:rgba(255,85,0,.2);}
@@ -102,7 +102,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .waveform{display:flex;align-items:flex-end;gap:3px;height:34px;margin-bottom:24px;}
 .waveform .bar{width:4px;border-radius:2px 2px 0 0;transform-origin:bottom;background:linear-gradient(to top,var(--fire),var(--fire2),rgba(255,210,80,.8));animation:wave 1.1s ease-in-out infinite;opacity:.28;transition:opacity .4s;}
 .waveform.on .bar{opacity:1;}
-.waveform:not(.on) .bar{animation:none;height:3px!important;}
+.waveform:not(.on){visibility:hidden;}
+.waveform:not(.on) .bar{animation:none;}
 @keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
 .controls{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
 #listen-btn{display:flex;align-items:center;gap:9px;padding:12px 26px;background:transparent;border:2px solid var(--fire);color:var(--fire2);border-radius:3px;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
@@ -158,7 +159,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .home-card-cta{margin-top:auto;padding-top:16px;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--fire2);}
 footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
-.footer-dragon{height:28px;opacity:.55;}
+.footer-dragon{height:28px;opacity:.9;filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,136,0,.55));}
 .footer-links{display:flex;gap:4px;flex-wrap:wrap;}
 .footer-links a{padding:4px 9px;border-radius:3px;background:var(--fire-dim);border:1px solid rgba(255,85,0,.14);font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--silver2);text-decoration:none;transition:all .18s;}
 .footer-links a:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);}
@@ -176,6 +177,16 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 .fade{transition:opacity .4s;}
 .fade.dim{opacity:.3;}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-logo img{width:42px;height:42px;filter:brightness(1.3) drop-shadow(0 0 8px rgba(255,85,0,.5));}
+.ic{width:1em;height:1em;fill:currentColor;flex-shrink:0;}
+.panel-nav .nav-icon .ic{width:18px;height:18px;color:var(--fire2);}
+.home-card-icon .ic{width:26px;height:26px;color:var(--fire2);}
+.sec-head .ic{width:16px;height:16px;color:var(--fire2);}
+.art-placeholder .ic{width:64px;height:64px;color:var(--silver2);}
+.mobile-art-ph .ic{width:22px;height:22px;}
+.icon-btn .ic{width:16px;height:16px;}
+.panel-brand{display:flex;align-items:center;gap:9px;}
+.panel-brand img{width:26px;height:26px;filter:brightness(1.3) drop-shadow(0 0 6px rgba(255,85,0,.5));}
 .nav-sub{display:block;}
 @media(max-width:980px){.nav-sub{display:none;}.nav-social{display:none;}.now-playing-section{grid-template-columns:220px minmax(0,1fr);}.art-frame{width:220px;height:220px;}.station-rail{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;}.rail-actions{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0;}.home-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){body{padding-bottom:76px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.station-rail{width:100%;grid-column:auto;display:flex;text-align:left;}.rail-actions{grid-template-columns:1fr;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}.home-grid{grid-template-columns:1fr;}.home-card{min-height:150px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
@@ -184,7 +195,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EVLV2T57J8"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-EVLV2T57J8");</script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:;">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; media-src 'self' https://radio.mind4metal.com; connect-src 'self' https://radio.mind4metal.com https://ws.audioscrobbler.com https://formspree.io https://itunes.apple.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'self'; form-action 'self' https://formspree.io;">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
@@ -194,6 +205,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <div class="wrapper">
 <nav>
   <div class="nav-logo">
+    <img src="optimized/Mind4Metal_Dragon-256.png" alt="" width="42" height="42" decoding="async">
     <div class="nav-tagline">
       <strong>Mind4Metal Radio</strong>
       <span class="nav-sub">The Best Hard Rock &amp; Heavy Metal From the 80&#39;s to Now</span>
@@ -202,9 +214,9 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   <div class="nav-right">
     <div class="listener-badge"><span class="fire-dot"></span>Listeners&nbsp;<span class="listener-num" id="listenerCount">&mdash;</span></div>
     <nav class="nav-social">
-      <a href="https://facebook.com/Mind4Metal" target="_blank">Facebook</a>
-      <a href="https://instagram.com/mind4metalradio" target="_blank">Instagram</a>
-      <a href="https://x.com/mind4metal" target="_blank">X</a>
+      <a href="https://facebook.com/Mind4Metal" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://instagram.com/mind4metalradio" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://x.com/mind4metal" target="_blank" rel="noopener noreferrer">X</a>
       <a href="mailto:mind4metal@hotmail.com">Email</a>
     </nav>
     <button class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="slidePanel"><span></span><span></span><span></span></button>
@@ -213,11 +225,11 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 <div class="request-overlay" id="overlay"></div>
 <aside class="slide-panel" id="slidePanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true" tabindex="-1">
   <div class="panel-header">
-    <div class="panel-brand" id="panelTitle">&#x1F918; Mind4Metal</div>
+    <div class="panel-brand" id="panelTitle"><img src="optimized/Mind4Metal_Dragon-256.png" alt="" width="26" height="26" decoding="async">Mind4Metal</div>
     <button class="panel-close" id="panelClose" aria-label="Close menu">&#x2715;</button>
   </div>
   <div class="panel-inner">
-  <div class="panel-section-title" style="margin-top:0;">&#x1F3B8; Song Request</div>
+  <div class="panel-section-title" style="margin-top:0;">Song Request</div>
   <form id="reqform" novalidate>
     <label class="field-label" for="reqName">Your Name</label>
     <input id="reqName" name="name" required autocomplete="name" placeholder="Your name">
@@ -234,15 +246,15 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <button type="submit" class="submit-btn" id="submitRequestBtn">Send Request &#x1F918;</button>
   </form>
   <div class="panel-divider"></div>
-  <div class="panel-section-title">&#x1F517; Links</div>
+  <div class="panel-section-title">Links</div>
   <nav class="panel-nav">
-    <a href="https://facebook.com/Mind4Metal" target="_blank"><span class="nav-icon">&#x1F4D8;</span> Facebook</a>
-    <a href="https://instagram.com/mind4metalradio" target="_blank"><span class="nav-icon">&#x1F4F7;</span> Instagram</a>
-    <a href="https://x.com/mind4metal" target="_blank"><span class="nav-icon">&#x1D54F;</span> X / Twitter</a>
-    <a href="blog.html"><span class="nav-icon">&#x1F4DD;</span> Blog</a>
-    <a href="community.html"><span class="nav-icon">&#x1F918;</span> Community</a>
-    <a href="community.html#guestbook"><span class="nav-icon">&#x1F4D6;</span> Guestbook</a>
-    <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon">&#x2709;&#xFE0F;</span> Email Us</a>
+    <a href="https://facebook.com/Mind4Metal" target="_blank" rel="noopener noreferrer"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h3v3h-2c-.6 0-1 .4-1 1v2h3l-.5 3H14v9h-3v-9H8V9h3V7a4 4 0 0 1 4-4z"/></svg></span> Facebook</a>
+    <a href="https://instagram.com/mind4metalradio" target="_blank" rel="noopener noreferrer"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4A5.8 5.8 0 0 1 16.2 22H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.4-3.4a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg></span> Instagram</a>
+    <a href="https://x.com/mind4metal" target="_blank" rel="noopener noreferrer"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h5.1l4.3 6.1L17.5 3H20l-6.4 8 7 10h-5.1l-4.7-6.7L5.5 21H3l7.2-8.8L3 3zm4 1.9L16.4 19h1.9L8.9 4.9H7z"/></svg></span> X / Twitter</a>
+    <a href="blog.html"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.9 3.2a1 1 0 0 1 1.4 0l2.5 2.5a1 1 0 0 1 0 1.4L9.6 18.3 4 20l1.7-5.6L16.9 3.2zm-1.2 3-8.2 8.2-.8 2.9 2.9-.8 8.2-8.2-2.1-2.1z"/></svg></span> Blog</a>
+    <a href="community.html"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.7 5 9.7a5 5 0 0 1-10 0c0-1.8.7-3.4 1.6-4.8.3 1 .9 1.9 1.8 2.4C10 6.8 11.2 4.3 12 2z"/></svg></span> Community</a>
+    <a href="community.html#guestbook"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h13a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v12.2c.3-.1.6-.2 1-.2h12V5H6zm0 15h12v-2H6a1 1 0 0 0 0 2z"/></svg></span> Guestbook</a>
+    <a href="mailto:mind4metal@hotmail.com"><span class="nav-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1 2.8V17h14V7.8l-7 4.6-7-4.6zM6.3 7l5.7 3.7L17.7 7H6.3z"/></svg></span> Email Us</a>
   </nav>
   </div>
 </aside>
@@ -251,21 +263,21 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
     <div style="position:relative;">
       <div class="art-glow" id="artGlow"></div>
       <div class="art-frame" id="artFrame">
-        <div class="art-placeholder" id="artPlaceholder">&#x1F3B8;</div>
+        <div class="art-placeholder" id="artPlaceholder"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
         <img id="albumArt" alt="Album Art">
       </div>
     </div>
     <div class="np-info">
       <div class="steel-bar"></div>
       <div class="np-eyebrow">Now Playing<span class="live-badge"><span class="fire-dot"></span>Live Broadcast</span></div>
-      <h2 id="title" class="fade">&mdash;</h2>
-      <p id="artist" class="fade">&mdash;</p>
+      <h2 id="title" class="fade">Tuning in&hellip;</h2>
+      <p id="artist" class="fade">Mind4Metal Radio</p>
       <div class="waveform" id="waveform"></div>
       <div class="controls">
         <button id="listen-btn" aria-label="Listen live"><span id="playIcon">&#x25B6;</span><span id="btnText">Listen Live</span></button>
         <span class="elapsed" id="elapsed">0:00</span>
         <div class="volume-group" aria-label="Playback volume">
-          <button class="icon-btn" id="muteBtn" type="button" aria-label="Mute stream" title="Mute">&#x1F50A;</button>
+          <button class="icon-btn" id="muteBtn" type="button" aria-label="Mute stream" title="Mute"></button>
           <input class="volume-slider" id="volumeSlider" type="range" min="0" max="100" value="85" aria-label="Volume">
         </div>
         <button class="popout-btn" id="popoutBtn" title="Pop out mini player"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg><span>Mini Player</span></button>
@@ -295,7 +307,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </div>
   <div class="flame-divider"><hr></div>
   <section class="section">
-    <div class="sec-head"><span style="font-size:17px">&#x1F525;</span><h3 class="sec-title">Recently Played</h3><div class="sec-line"></div></div>
+    <div class="sec-head"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.7 5 9.7a5 5 0 0 1-10 0c0-1.8.7-3.4 1.6-4.8.3 1 .9 1.9 1.8 2.4C10 6.8 11.2 4.3 12 2z"/></svg><h3 class="sec-title">Recently Played</h3><div class="sec-line"></div></div>
     <table class="hist-table">
       <thead><tr><th class="td-n">#</th><th>Title</th><th>Artist</th><th>Time</th></tr></thead>
       <tbody id="histBody"><tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr></tbody>
@@ -303,22 +315,22 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </section>
   <div class="flame-divider"><hr></div>
   <section class="section">
-    <div class="sec-head"><span style="font-size:17px">&#x1F918;</span><h3 class="sec-title">Get Involved</h3><div class="sec-line"></div></div>
+    <div class="sec-head"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4.5 14H10l-1 8 8.5-12H12l1-8z"/></svg><h3 class="sec-title">Get Involved</h3><div class="sec-line"></div></div>
     <div class="home-grid">
       <button class="home-card" type="button" id="requestCardBtn">
-        <div class="home-card-icon">&#x1F3B8;</div>
+        <div class="home-card-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
         <div class="home-card-title">Request a Song</div>
         <div class="home-card-copy">Send a track, artist, and shout-out straight to the station without leaving the live player.</div>
         <div class="home-card-cta">Open request form</div>
       </button>
       <a class="home-card" href="community.html#signup">
-        <div class="home-card-icon">&#x1F525;</div>
+        <div class="home-card-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.7 5 9.7a5 5 0 0 1-10 0c0-1.8.7-3.4 1.6-4.8.3 1 .9 1.9 1.8 2.4C10 6.8 11.2 4.3 12 2z"/></svg></div>
         <div class="home-card-title">Community</div>
         <div class="home-card-copy">Sign up for station updates, leave a guestbook note, and keep up with the Mind4Metal crowd.</div>
         <div class="home-card-cta">Visit community</div>
       </a>
       <a class="home-card" href="miniplayer.html" target="mind4metal_mini">
-        <div class="home-card-icon">&#x25F1;</div>
+        <div class="home-card-icon"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg></div>
         <div class="home-card-title">Mini Player</div>
         <div class="home-card-copy">Pop out a compact player for the corner of your screen while you work, game, or browse.</div>
         <div class="home-card-cta">Launch player</div>
@@ -327,11 +339,11 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   </section>
 </main>
 <footer>
-  <div class="footer-left"><img src="Mind4Metal_Dragon.png" alt="" class="footer-dragon" width="28" height="28" loading="lazy" decoding="async"><span>&copy; 2026 Mind4Metal Radio &middot; Coeur d&#39;Alene, Idaho</span></div>
+  <div class="footer-left"><img src="optimized/Mind4Metal_Dragon-256.png" alt="" class="footer-dragon" width="28" height="28" loading="lazy" decoding="async"><span>&copy; 2026 Mind4Metal Radio &middot; Coeur d&#39;Alene, Idaho</span></div>
   <div class="footer-links">
-    <a href="https://facebook.com/Mind4Metal" target="_blank">Facebook</a>
-    <a href="https://instagram.com/mind4metalradio" target="_blank">Instagram</a>
-    <a href="https://x.com/mind4metal" target="_blank">X</a>
+    <a href="https://facebook.com/Mind4Metal" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://instagram.com/mind4metalradio" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://x.com/mind4metal" target="_blank" rel="noopener noreferrer">X</a>
     <a href="blog.html">Blog</a>
     <a href="mailto:mind4metal@hotmail.com">Email</a>
   </div>
@@ -339,11 +351,11 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 </div>
 <div class="toast" id="toast"></div>
 <div class="mobile-player" id="mobilePlayer" aria-label="Sticky mobile player">
-  <div class="mobile-art-ph" id="mobileArtPh">&#x1F3B8;</div>
+  <div class="mobile-art-ph" id="mobileArtPh"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
   <img class="mobile-art" id="mobileArt" alt="">
   <div class="mobile-copy">
-    <div class="mobile-title" id="mobileTitle">&mdash;</div>
-    <div class="mobile-artist" id="mobileArtist">&mdash;</div>
+    <div class="mobile-title" id="mobileTitle">Tuning in&hellip;</div>
+    <div class="mobile-artist" id="mobileArtist">Mind4Metal Radio</div>
   </div>
   <button class="mobile-play" id="mobilePlayBtn" type="button" aria-label="Listen live">&#x25B6;</button>
 </div>
@@ -357,7 +369,7 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
   "@type": "RadioStation",
   "name": "Mind4Metal Radio",
   "url": "https://www.mind4metal.com/",
-  "image": "https://www.mind4metal.com/Mind4Metal_Banner.png",
+  "image": "https://www.mind4metal.com/optimized/Mind4Metal_Banner-og.jpg",
   "description": "24/7 heavy metal, power metal, and hard rock from the 80s to now.",
   "areaServed": "Worldwide",
   "sameAs": [
@@ -679,9 +691,11 @@ function setStreamStatus(message, tone = 'warn') {
   streamStatus.classList.add(tone);
 }
 
+const ICON_VOL = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1c2.9.9 5 3.5 5 6.7s-2.1 5.8-5 6.7v2.1c4-.9 7-4.5 7-8.8s-3-7.9-7-8.8z"/></svg>';
+const ICON_MUTED = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3c-.7.5-1.4.9-2.3 1.2v2.1c1.4-.3 2.6-1 3.7-1.8L19.7 21 21 19.7 4.3 3zM12 4 9.9 6.1 12 8.2V4zm4.5 8c0-1.8-1-3.3-2.5-4v2.2l2.5 2.4v-.6z"/></svg>';
 function updateMuteButton() {
   const muted = audio.muted || audio.volume === 0;
-  muteBtn.textContent = muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
+  muteBtn.innerHTML = muted ? ICON_MUTED : ICON_VOL;
   muteBtn.setAttribute('aria-label', muted ? 'Unmute stream' : 'Mute stream');
   muteBtn.title = muted ? 'Unmute' : 'Mute';
 }
@@ -716,7 +730,7 @@ async function startStream() {
   try {
     await audio.play();
     setPlayState(true);
-    setStreamStatus('Live stream playing', 'ok');
+    setStreamStatus('On air · streaming live', 'ok');
   } catch (e) {
     setPlayState(false);
     setStreamStatus('Tap listen to start audio', 'warn');
@@ -745,7 +759,7 @@ function scheduleReconnect() {
       audio.src = STREAM_URL;
       audio.load();
       await audio.play();
-      setStreamStatus('Live stream playing', 'ok');
+      setStreamStatus('On air · streaming live', 'ok');
     } catch { scheduleReconnect(); }
   }, 3000);
 }
@@ -756,7 +770,7 @@ audio.addEventListener('ended',   () => { if (playing) scheduleReconnect(); });
 // Resume after tab becomes visible again
 document.addEventListener('visibilitychange', async () => {
   if (document.visibilityState === 'visible' && playing && audio.paused) {
-    try { audio.src = STREAM_URL; audio.load(); await audio.play(); setStreamStatus('Live stream playing', 'ok'); } catch {}
+    try { audio.src = STREAM_URL; audio.load(); await audio.play(); setStreamStatus('On air · streaming live', 'ok'); } catch {}
   }
 });
 
@@ -920,10 +934,27 @@ async function poll() {
     const buf = await r.arrayBuffer();
     const j   = parseIcecastJson(buf);
     const src = Array.isArray(j?.icestats?.source) ? j.icestats.source[0] : j?.icestats?.source;
-    if (!src) throw new Error('No stream source in status payload');
+
+    // Icecast is up but no encoder is connected — the station is off air.
+    // Distinct from a fetch error: show a friendly state, no error tone.
+    if (!src) {
+      pollDelay = 30000;
+      listenerEl.textContent = '—';
+      railListenerEl.textContent = '—';
+      setStreamStatus('Off air — back soon', 'warn');
+      if (lastCombo !== 'offair') {
+        lastCombo = 'offair';
+        titleEl.textContent = 'Off Air';
+        artistEl.textContent = 'Back soon — keep the horns up';
+        mobileTitle.textContent = 'Off Air';
+        mobileArtist.textContent = 'Back soon';
+        showArt(null);
+      }
+      return;
+    }
 
     pollDelay = 15000;
-    setStreamStatus(playing ? 'Live stream playing' : 'Station metadata online', playing ? 'ok' : 'warn');
+    setStreamStatus(playing ? 'On air · streaming live' : 'On air', 'ok');
 
     const listenerCount = src.listeners ?? '\u2014';
     listenerEl.textContent = listenerCount;
@@ -948,8 +979,8 @@ async function poll() {
     } catch {}
 
     if (combo && combo !== lastCombo) {
-      // Push previous track to history
-      if (lastCombo && titleEl.textContent !== '\u2014') {
+      // Push previous track to history (never the off-air/tuning placeholders)
+      if (lastCombo && lastCombo !== 'offair' && titleEl.textContent !== '\u2014') {
         addRecentTrack({ title: titleEl.textContent, artist: artistEl.textContent, at: startedAt });
       }
       // Fade transition

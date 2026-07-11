@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal · Blog</title>
 <meta name="description" content="Mind4Metal Radio Blog — news, new music, show announcements and metal features.">
-<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="icon" type="image/png" href="optimized/Mind4Metal_Dragon-256.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'self';">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,7 +16,7 @@
 <meta property="og:title" content="Mind4Metal · Blog">
 <meta property="og:description" content="News, new music, show announcements and metal features.">
 <meta property="og:url" content="https://mind4metal.com/blog.html">
-<meta property="og:image" content="https://mind4metal.com/Mind4Metal_Banner.png">
+<meta property="og:image" content="https://mind4metal.com/optimized/Mind4Metal_Banner-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <style>
 :root{
@@ -29,7 +30,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('Mind4Metal_Background.png');background-size:85% auto;background-position:center center;background-repeat:no-repeat;opacity:0.06;filter:grayscale(30%);}
+.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:85% auto;background-position:center center;background-repeat:no-repeat;opacity:0.06;filter:grayscale(30%);}
 .bg-fixed::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,85,0,0.05) 0%,transparent 60%);}
 .wrapper{position:relative;z-index:1;}
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:72px;background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);border-bottom:1px solid rgba(255,85,0,0.22);box-shadow:0 4px 20px rgba(0,0,0,0.8);position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);}
@@ -58,7 +59,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .cta:hover{box-shadow:0 4px 24px rgba(255,85,0,0.55);transform:translateY(-1px);}
 footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
-.footer-logo{height:28px;opacity:.55;}
+.footer-logo{height:28px;opacity:.9;filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,136,0,.55));}
 @media(max-width:600px){nav{padding:0 12px;}.nav-links a span{display:none;}.bg-fixed::before{display:none;}}
 </style>
 <!-- Google Analytics -->
@@ -71,7 +72,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="Mind4Metal_Dragon.png" alt="Mind4Metal" width="44" height="44" decoding="async">
+    <img src="optimized/Mind4Metal_Dragon-256.png" alt="Mind4Metal" width="44" height="44" decoding="async">
     <div class="nav-logo-text">Mind4Metal Radio</div>
   </a>
   <div class="nav-links">
@@ -110,7 +111,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
 <footer>
   <div class="footer-left">
-    <img src="Mind4Metal_Dragon.png" alt="" class="footer-logo" width="28" height="28" loading="lazy" decoding="async">
+    <img src="optimized/Mind4Metal_Dragon-256.png" alt="" class="footer-logo" width="28" height="28" loading="lazy" decoding="async">
     <span>&copy; 2026 Mind4Metal Radio &middot; Coeur d'Alene, Idaho</span>
   </div>
 </footer>

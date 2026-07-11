@@ -1,1 +1,6 @@
 _bridge/
+
+# sharp is only needed locally to run scripts/optimize-images.mjs
+node_modules/
+package.json
+package-lock.json

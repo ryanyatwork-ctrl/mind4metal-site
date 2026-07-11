@@ -18,33 +18,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 
-/* ── LOGIN SCREEN ── */
-#loginScreen{
-  position:fixed;inset:0;z-index:999;
-  background:radial-gradient(ellipse at center,#0d0f13 0%,#07080a 70%);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
-}
-#loginScreen img{width:120px;filter:drop-shadow(0 0 30px rgba(255,85,0,0.6));animation:pulse 3s ease-in-out infinite;}
-@keyframes pulse{0%,100%{filter:drop-shadow(0 0 20px rgba(255,85,0,0.5));}50%{filter:drop-shadow(0 0 40px rgba(255,85,0,0.9));}}
-.login-title{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);}
-.login-box{display:flex;flex-direction:column;gap:12px;width:280px;}
-.login-box input{
-  padding:12px 16px;background:rgba(0,0,0,0.5);
-  border:1px solid rgba(255,85,0,0.3);border-radius:4px;
-  color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:16px;
-  letter-spacing:.08em;outline:none;text-align:center;
-}
-.login-box input:focus{border-color:var(--fire);box-shadow:0 0 0 2px rgba(255,85,0,0.15);}
-.login-btn{
-  padding:12px;background:linear-gradient(135deg,var(--fire),var(--fire2));
-  border:none;border-radius:4px;color:#fff;
-  font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;letter-spacing:.12em;
-  text-transform:uppercase;cursor:pointer;transition:all .2s;
-  box-shadow:0 4px 20px rgba(255,85,0,0.35);
-}
-.login-btn:hover{box-shadow:0 4px 28px rgba(255,85,0,0.6);transform:translateY(-1px);}
-.login-err{color:var(--fire);font-size:13px;text-align:center;letter-spacing:.06em;min-height:18px;}
-
 /* ── MAIN LAYOUT ── */
 #app{display:none;}
 #app.visible{display:block;}
@@ -213,18 +186,11 @@ header{
 </head>
 <body>
 
-<!-- ── LOGIN ── -->
-<div id="loginScreen">
-  <img src="Mind4Metal_Dragon.png" alt="Mind4Metal">
-  <div class="login-title">Admin Access</div>
-  <div class="login-box">
-    <input type="password" id="pwInput" placeholder="Enter password" autofocus>
-    <button class="login-btn" onclick="checkPw()">Enter 🤘</button>
-    <div class="login-err" id="pwErr"></div>
-  </div>
-</div>
-
-<!-- ── APP ── -->
+<!-- ── APP ──
+     Access control is Cloudflare Access (SSO) in front of this URL.
+     The old client-side password gate was removed 2026-07-10: the password
+     string shipped to every visitor in a public repo, so it provided no
+     security — and the burned value must not be reused anywhere. -->
 <div id="app">
   <header>
     <div class="hd-left">
@@ -433,7 +399,6 @@ header{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script src="m4m-art.js"></script>
 <script>
-const ADMIN_PASSWORD = "d8V@#bz>nhCL9+y$%<";
 const STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
 const GEO_API    = "https://ip-api.com/json/";
 const POLL_MS    = 20000;
@@ -446,22 +411,12 @@ let countries       = new Set();
 let lastTitle       = '';
 let currentArtKey   = '';
 
-document.getElementById('pwInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPw();
+// Cloudflare Access gates this page; show the console immediately.
+// (Deferred to DOMContentLoaded so everything below is defined first.)
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('app').classList.add('visible');
+  init();
 });
-
-function checkPw() {
-  const val = document.getElementById('pwInput').value;
-  if (val === ADMIN_PASSWORD) {
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('app').classList.add('visible');
-    init();
-  } else {
-    document.getElementById('pwErr').textContent = 'Incorrect password';
-    document.getElementById('pwInput').value = '';
-    setTimeout(() => document.getElementById('pwErr').textContent = '', 2000);
-  }
-}
 
 function init() {
   M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {});

@@ -5,13 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal · Community</title>
 <meta name="description" content="Mind4Metal Radio Community — Sign up for updates and leave a message in the guestbook!">
-<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="icon" type="image/png" href="optimized/Mind4Metal_Dragon-256.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self' https://formspree.io https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; base-uri 'self'; form-action 'self' https://formspree.io;">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<!-- ── REPLACE THIS WITH YOUR REAL GA ID ── -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
 
 <style>
 :root{
@@ -31,7 +28,7 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
 .bg-fixed::before{
   content:'';position:absolute;inset:0;
-  background-image:url('Mind4Metal_banner.png');
+  background-image:url('optimized/Mind4Metal_Banner-og.jpg');
   background-size:85% auto;background-position:center center;background-repeat:no-repeat;
   opacity:0.07;filter:grayscale(30%);
 }
@@ -174,7 +171,7 @@ nav{
 /* FOOTER */
 footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .footer-left{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:.07em;color:var(--text-muted);text-transform:uppercase;}
-.footer-logo{height:28px;opacity:.55;}
+.footer-logo{height:28px;opacity:.9;filter:brightness(1.35) drop-shadow(0 0 6px rgba(255,136,0,.55));}
 
 @media(max-width:600px){
   .signup-row{flex-direction:column;}
@@ -194,7 +191,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="Mind4Metal_Dragon.png" alt="Mind4Metal">
+    <img src="optimized/Mind4Metal_Dragon-256.png" alt="Mind4Metal" width="44" height="44" decoding="async">
     <div class="nav-logo-text">Mind4Metal Radio</div>
   </a>
   <div class="nav-links">
@@ -226,21 +223,16 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
       <!-- ── BRAVENET MAILING LIST ──────────────────────────────
            Sign up at bravenet.com → My Tools → Mailing List
-           Copy your embed form code and replace the placeholder below
+           Paste your embed form code inside #braveNetWrap and it will show.
+           (Placeholder is hidden from visitors until real code is added.)
       ──────────────────────────────────────────────────────── -->
-      <div id="braveNetWrap">
-        <!-- PASTE YOUR BRAVENET FORM CODE HERE -->
-        <div class="bravenet-wrap">
-          <p style="margin-bottom:8px">📋 Bravenet mailing list form goes here</p>
-          <p>Sign up at <strong>bravenet.com</strong> → My Tools → Mailing List Manager<br>
-          then paste your embed code in this spot in community.html</p>
-        </div>
-        <!-- END BRAVENET CODE -->
+      <div id="braveNetWrap" hidden>
+        <!-- PASTE YOUR BRAVENET FORM CODE HERE, then remove the `hidden` attribute above -->
       </div>
 
-      <!-- Fallback simple form (uses Formspree, remove once Bravenet is set up) -->
-      <div id="fallbackSignup" style="margin-top:16px;">
-        <p class="signup-desc">Or drop your email below and we'll reach out directly:</p>
+      <!-- Signup form (Formspree) -->
+      <div id="fallbackSignup">
+        <p class="signup-desc">Drop your email below and we'll keep you posted on shows, events &amp; announcements:</p>
         <form id="signupForm">
           <div class="signup-row">
             <input class="signup-input" type="text" name="name" placeholder="Your name" required>
@@ -303,10 +295,8 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
         <button type="submit" class="gb-submit">Sign the Book 🤘</button>
       </form>
 
-      <!-- Entries loaded from Formspree -->
-      <div id="gbEntries">
-        <div class="gb-loading">Loading entries...</div>
-      </div>
+      <!-- Entries you submitted in this browser (requests go to the station inbox) -->
+      <div id="gbEntries"></div>
 
     </div>
   </div>
@@ -315,7 +305,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
 <footer>
   <div class="footer-left">
-    <img src="Mind4Metal_Dragon.png" alt="" class="footer-logo" width="28" height="28" loading="lazy" decoding="async">
+    <img src="optimized/Mind4Metal_Dragon-256.png" alt="" class="footer-logo" width="28" height="28" loading="lazy" decoding="async">
     <span>© 2026 Mind4Metal Radio · Coeur d'Alene, Idaho</span>
   </div>
 </footer>
@@ -325,14 +315,7 @@ footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding
 
 <script>
 // ── CONFIG ──────────────────────────────────────────────────────
-// 1. Replace with your GA ID once you create it
-const GA_ID = 'G-XXXXXXXXXX';
-
-// 2. Your existing Formspree ID for requests
-const FORMSPREE_SIGNUP = 'xgolbjen'; // reusing existing — or create a new one
-
-// 3. Create a NEW Formspree form called "Mind4Metal Guestbook"
-//    and paste its ID here (e.g. 'xabcd1234')
+const FORMSPREE_SIGNUP = 'xgolbjen';
 const FORMSPREE_GUESTBOOK = 'mlgwywnz';
 
 // ── TOAST ────────────────────────────────────────────────────────
@@ -426,7 +409,7 @@ function renderGuestbook() {
   const wrap = document.getElementById('gbEntries');
 
   if (!entries.length) {
-    wrap.innerHTML = `<div class="gb-empty">Be the first to sign the guestbook! 🤘</div>`;
+    wrap.innerHTML = `<div class="gb-empty">Sign the book — your message goes straight to the station crew. 🤘</div>`;
     return;
   }
 
@@ -437,10 +420,10 @@ function renderGuestbook() {
           <span class="gb-name">${escHtml(e.name)}</span>
           ${e.location ? `<span class="gb-location">📍 ${escHtml(e.location)}</span>` : ''}
         </div>
-        <div class="gb-date">${e.date || ''}</div>
+        <div class="gb-date">${escHtml(e.date || '')}</div>
       </div>
       <div class="gb-msg">${escHtml(e.message)}</div>
-      ${e.rating ? `<div class="gb-rating">${e.rating}</div>` : ''}
+      ${e.rating ? `<div class="gb-rating">${escHtml(e.rating)}</div>` : ''}
     </div>
   `).join('');
 }
