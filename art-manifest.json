@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-11T03:41:21.088Z",
+  "generatedAt": "2026-07-11T09:33:11.658Z",
   "notes": "Seed known album art here. Add track-specific entries first, then artist-level fallbacks.",
   "imageBasePath": "./",
   "tracks": [
@@ -2558,6 +2558,15 @@
       "displayTitle": "So Good...So Bad...",
       "art": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a4/1e/1d/a41e1d6d-3780-b3c4-301a-f7b4aa5b7a94/886447496114.jpg/600x600bb.jpg",
       "notes": "Manual seed — playout mangles ellipses to ? (So Good? So Bad?)"
+    },
+    {
+      "artist": "Dokken",
+      "artistAliases": [],
+      "title": "Heaven Sent",
+      "titleAliases": [],
+      "album": "Back for the Attack",
+      "art": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/c1/24/7d/c1247dbc-07d2-078b-c180-279008fbe9a9/0075596073561.jpg/600x600bb.jpg",
+      "notes": "Manual seed — Last.fm was serving the Very Best Of compilation cover"
     }
   ],
   "albums": [],

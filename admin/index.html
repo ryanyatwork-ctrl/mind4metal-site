@@ -273,6 +273,7 @@ header{
           <input class="am-filter" id="amFilter" placeholder="Filter by artist or title…">
           <button class="am-btn" id="amAddCurrent">+ Add current</button>
           <button class="am-btn" id="amRefresh">↻ Refresh art</button>
+          <button class="am-btn" id="amPublishToken" title="Set the live-publish token (ADMIN_API_TOKEN on the art Worker)">Publish token</button>
           <button class="am-btn primary" id="amExport">⬇ Export manifest</button>
         </div>
         <div id="amUploadNotice" style="display:none;margin:10px 0 4px;padding:10px 14px;border-radius:4px;background:rgba(255,136,0,0.12);border:1px solid rgba(255,136,0,0.4);font-size:12px;color:var(--fire2);line-height:1.5;"></div>
@@ -727,6 +728,23 @@ const ArtMgr = (function(){
   let pendingUrl = null;
   let current = { artist:'', title:'' };
 
+  // ── Live publish (Worker POST /api/art/override) ──────────────────────────
+  const TOKEN_KEY = 'm4m_admin_api_token';
+  function getToken(){ try { return localStorage.getItem(TOKEN_KEY) || ''; } catch { return ''; } }
+  async function publishLive(payload){
+    const token = getToken();
+    if (!token) return { ok:false, skipped:'no_token' };
+    try {
+      const r = await fetch('/api/art/override', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'Authorization':'Bearer ' + token },
+        body: JSON.stringify(payload),
+      });
+      const d = await r.json().catch(() => ({}));
+      return { ok: r.ok && d.ok !== false, status: r.status, ...d };
+    } catch (e) { return { ok:false, error:String(e) }; }
+  }
+
   function load(k, fb){ try { const r = localStorage.getItem(k); return r ? JSON.parse(r) : fb; } catch { return fb; } }
   function persist(){ try { localStorage.setItem(OV_KEY, JSON.stringify(overrides)); localStorage.setItem(OV_ARTIST_KEY, JSON.stringify(artistOverrides)); localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch {} }
   function norm(s){ try { return window.M4MArt ? M4MArt.normalize(s) : String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim(); } catch { return String(s||'').toLowerCase().trim(); } }
@@ -902,8 +920,9 @@ const ArtMgr = (function(){
     } catch { box.innerHTML = '<div class="am-hint" style="grid-column:1/-1">Search failed.</div>'; }
   }
 
-  function save(){
+  async function save(){
     if (!editing) return;
+    const ed       = { ...editing };
     const url      = el('amUrlInput').value.trim() || pendingUrl || '';
     const dArtist  = el('amArtistInput').value.trim();
     const dTitle   = el('amTitleInput').value.trim();
@@ -945,17 +964,37 @@ const ArtMgr = (function(){
     }
 
     persist();
-    el('amStatus').style.color = 'var(--green)';
-    el('amStatus').textContent = applyAll
-      ? `Saved for ALL songs by ${editing.artist}. Export manifest to publish.`
-      : 'Saved. Use “Export manifest” to publish for all listeners.';
     render();
-    if (key(current.artist, current.title) === editing.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
-    setTimeout(closeModal, 1000);
+    if (key(current.artist, current.title) === ed.key) { updateNowPlayingArt(current.artist, current.title); refreshNowPlayingText(); }
+
+    // Push the fix live for ALL listeners via the Worker (https URLs only —
+    // uploaded data-URL images still go through Export manifest).
+    let liveMsg;
+    if (url && /^https:\/\//i.test(url)) {
+      el('amStatus').style.color = 'var(--text-dim)';
+      el('amStatus').textContent = 'Saved. Publishing live…';
+      const res = await publishLive({
+        artist: ed.artist, title: ed.title, url,
+        displayArtist: dArtist && dArtist !== ed.artist ? dArtist : '',
+        displayTitle:  dTitle  && dTitle  !== ed.title  ? dTitle  : '',
+      });
+      liveMsg = res.ok ? ' Published LIVE for all listeners. 🤘'
+        : res.skipped === 'no_token' ? ' Set the Publish token to push live instantly (until then: Export manifest).'
+        : ` Live publish failed (${res.error || res.status}) — use Export manifest.`;
+    } else if (url && url.startsWith('data:')) {
+      liveMsg = ' Uploaded images publish via Export manifest.';
+    } else {
+      liveMsg = ' Text corrections publish via Export manifest.';
+    }
+    el('amStatus').style.color = 'var(--green)';
+    el('amStatus').textContent = (applyAll ? `Saved for ALL songs by ${ed.artist}.` : 'Saved.') + liveMsg;
+    setTimeout(closeModal, 1600);
   }
 
   function clearOverride(){
     if (!editing) return;
+    // Also clear any live-published override on the Worker (fire-and-forget).
+    publishLive({ artist: editing.artist, title: editing.title, clear: true });
     delete overrides[editing.key];
     delete resolvedCache[editing.key];
     const ak = norm(editing.artist);
@@ -1069,6 +1108,17 @@ const ArtMgr = (function(){
     el('amAddCurrent').addEventListener('click', () => { if (current.artist || current.title) observe(current.artist, current.title); });
     el('amRefresh').addEventListener('click', () => { for (const k in resolvedCache) delete resolvedCache[k]; render(); });
     el('amExport').addEventListener('click', exportManifest);
+    el('amPublishToken').addEventListener('click', () => {
+      const val = window.prompt('Live-publish token (the ADMIN_API_TOKEN secret on the art Worker).\nLeave blank to remove.', getToken());
+      if (val === null) return;
+      try { val.trim() ? localStorage.setItem(TOKEN_KEY, val.trim()) : localStorage.removeItem(TOKEN_KEY); } catch {}
+      const notice = el('amUploadNotice');
+      if (notice){
+        notice.textContent = val.trim() ? 'Publish token saved — cover fixes now go live instantly on Save.' : 'Publish token removed — fixes publish via Export manifest.';
+        notice.style.display = 'block';
+        setTimeout(() => { notice.style.display = 'none'; }, 8000);
+      }
+    });
     el('amGrid').addEventListener('click', e => {
       const fix = e.target.closest('[data-fix]');
       if (fix){ const k = fix.getAttribute('data-fix'); const s = seen.find(x => key(x.artist, x.title) === k); if (s) openModal(s.artist, s.title); }

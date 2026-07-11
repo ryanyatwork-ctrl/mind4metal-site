@@ -363,33 +363,38 @@ document.getElementById('signupForm').addEventListener('submit', async e => {
 });
 
 // ── GUESTBOOK SUBMIT ─────────────────────────────────────────────
+// Entries go to the site's D1-backed guestbook API (visible to everyone),
+// plus a Formspree copy so the station gets an email notification.
 document.getElementById('gbForm').addEventListener('submit', async e => {
   e.preventDefault();
   const fd = new FormData(e.target);
   if (fd.get('website')) return;
 
   const entry = {
-    _subject: `Guestbook: ${fd.get('name')} from ${fd.get('location') || 'Unknown'}`,
-    name:     fd.get('name'),
-    location: fd.get('location') || '',
-    message:  fd.get('message'),
+    name:     (fd.get('name') || '').trim(),
+    location: (fd.get('location') || '').trim(),
+    message:  (fd.get('message') || '').trim(),
     rating:   fd.get('rating') || '',
-    date:     new Date().toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'})
+    website:  fd.get('website') || ''
   };
+  if (!entry.name || !entry.message) { showToast('Name and message are required.'); return; }
 
   try {
-    if (FORMSPREE_GUESTBOOK !== 'GUESTBOOK_FORM_ID') {
-      await fetch(`https://formspree.io/f/${FORMSPREE_GUESTBOOK}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(entry)
-      });
-    }
-    // Also save locally for instant display
-    const saved = JSON.parse(localStorage.getItem('m4m_guestbook') || '[]');
-    saved.unshift({ ...entry, id: Date.now() });
-    if (saved.length > 50) saved.pop();
-    localStorage.setItem('m4m_guestbook', JSON.stringify(saved));
+    const r = await fetch('/api/guestbook', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry)
+    });
+    if (r.status === 429) { showToast('Easy there — try again in a little while. 🤘'); return; }
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok || d.ok === false) throw new Error('guestbook_api');
+
+    // Email notification to the station (best-effort, ignore failures)
+    fetch(`https://formspree.io/f/${FORMSPREE_GUESTBOOK}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ _subject: `Guestbook: ${entry.name} from ${entry.location || 'Unknown'}`, ...entry })
+    }).catch(() => {});
 
     e.target.reset();
     rating = 0;
@@ -402,14 +407,22 @@ document.getElementById('gbForm').addEventListener('submit', async e => {
 });
 
 // ── RENDER GUESTBOOK ─────────────────────────────────────────────
-// Loads from localStorage (entries submitted in this browser)
-// When you connect a real backend, replace this with a fetch to your API
-function renderGuestbook() {
-  const entries = JSON.parse(localStorage.getItem('m4m_guestbook') || '[]');
+function fmtGbDate(iso) {
+  try { return new Date(iso).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' }); }
+  catch { return ''; }
+}
+
+async function renderGuestbook() {
   const wrap = document.getElementById('gbEntries');
+  let entries = [];
+  try {
+    const r = await fetch('/api/guestbook', { cache: 'no-store' });
+    const d = await r.json();
+    if (d?.ok && Array.isArray(d.entries)) entries = d.entries;
+  } catch {}
 
   if (!entries.length) {
-    wrap.innerHTML = `<div class="gb-empty">Sign the book — your message goes straight to the station crew. 🤘</div>`;
+    wrap.innerHTML = `<div class="gb-empty">Be the first to sign the guestbook! 🤘</div>`;
     return;
   }
 
@@ -420,7 +433,7 @@ function renderGuestbook() {
           <span class="gb-name">${escHtml(e.name)}</span>
           ${e.location ? `<span class="gb-location">📍 ${escHtml(e.location)}</span>` : ''}
         </div>
-        <div class="gb-date">${escHtml(e.date || '')}</div>
+        <div class="gb-date">${escHtml(fmtGbDate(e.created_at))}</div>
       </div>
       <div class="gb-msg">${escHtml(e.message)}</div>
       ${e.rating ? `<div class="gb-rating">${escHtml(e.rating)}</div>` : ''}
