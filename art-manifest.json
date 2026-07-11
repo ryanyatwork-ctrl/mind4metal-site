@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-11T03:37:36.097Z",
+  "generatedAt": "2026-07-11T03:41:21.088Z",
   "notes": "Seed known album art here. Add track-specific entries first, then artist-level fallbacks.",
   "imageBasePath": "./",
   "tracks": [
@@ -2548,6 +2548,16 @@
       "album": "Reckless Heart",
       "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/b4/97/89b49720-3ad7-8cd7-6413-5ca33e484996/198391902741.jpg/600x600bb.jpg",
       "notes": "Manual seed — playout mangles apostrophe to ?85"
+    },
+    {
+      "artist": "Arcade",
+      "artistAliases": [],
+      "title": "So Good...So Bad...",
+      "titleAliases": [],
+      "album": "Arcade",
+      "displayTitle": "So Good...So Bad...",
+      "art": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/a4/1e/1d/a41e1d6d-3780-b3c4-301a-f7b4aa5b7a94/886447496114.jpg/600x600bb.jpg",
+      "notes": "Manual seed — playout mangles ellipses to ? (So Good? So Bad?)"
     }
   ],
   "albums": [],
