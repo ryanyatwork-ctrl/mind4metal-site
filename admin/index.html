@@ -4,7 +4,8 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Mind4Metal · Admin</title>
-<link rel="icon" type="image/png" href="Mind4Metal_Dragon.png">
+<link rel="icon" type="image/png" href="/optimized/Mind4Metal_Dragon-256.png">
+<meta name="robots" content="noindex,nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Barlow+Condensed:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -194,12 +195,12 @@ header{
 <div id="app">
   <header>
     <div class="hd-left">
-      <img src="Mind4Metal_Dragon.png" alt="">
+      <img src="/optimized/Mind4Metal_Dragon-256.png" alt="">
       <div class="hd-title">Mind4Metal <span>Admin</span></div>
     </div>
     <div class="hd-right">
       <div class="last-update">Updated: <span id="updateTime">—</span></div>
-      <a href="index.html" class="back-btn">← Site</a>
+      <a href="/" class="back-btn">← Site</a>
     </div>
   </header>
 
@@ -397,7 +398,7 @@ header{
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
-<script src="m4m-art.js"></script>
+<script src="/m4m-art.js"></script>
 <script>
 const STATUS_URL = "https://radio.mind4metal.com/status-json.xsl";
 const GEO_API    = "https://ip-api.com/json/";
@@ -419,7 +420,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function init() {
-  M4MArt.init({ manifestUrl: 'art-manifest.json' }).catch(() => {});
+  M4MArt.init({ manifestUrl: '/art-manifest.json' }).catch(() => {});
   ArtMgr.bind();
   initChart();
   initMap();
@@ -988,7 +989,7 @@ const ArtMgr = (function(){
   async function exportManifest(){
     let base = { version:1, generatedAt:new Date().toISOString(), imageBasePath:'./', tracks:[], albums:[], artists:[] };
     try {
-      const r = await fetch(`art-manifest.json?v=${Date.now()}`, { cache:'no-store' });
+      const r = await fetch(`/art-manifest.json?v=${Date.now()}`, { cache:'no-store' });
       if (r.ok){
         const j = await r.json();
         base = { ...base, ...j };
