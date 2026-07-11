@@ -132,6 +132,8 @@ function artistKey(str) {
 
 function repairQuestionMarkApostrophes(str) {
   return String(str || '')
+    // ? immediately before a digit is a mangled decade apostrophe: Back To ?85 -> Back To '85
+    .replace(/\?(?=\d)/g, "'")
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
     .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")
     .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")

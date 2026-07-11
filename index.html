@@ -435,6 +435,8 @@ function repairMetadataText(str) {
 
 function repairQuestionMarkApostrophes(str) {
   return String(str || '')
+    // ? immediately before a digit is a mangled decade apostrophe: Back To ?85 -> Back To '85
+    .replace(/\?(?=\d)/g, "'")
     // ?N-style (? before letter, preceded by whitespace): Guns ?N Roses -> Guns 'N Roses
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")
     // N?-style (letter before ?, followed by space+uppercase): N? Roll -> N' Roll

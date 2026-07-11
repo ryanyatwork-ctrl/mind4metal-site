@@ -1,5 +1,5 @@
 (function () {
-  const VERSION = '1.1.0';
+  const VERSION = '1.1.1';
   const MANIFEST_CACHE_KEY = 'm4m_art_manifest_cache_v1';
   const RESOLVE_CACHE_KEY  = 'm4m_art_resolve_cache_v1';
   const MANIFEST_TTL_MS    = 6 * 60 * 60 * 1000; // 6 hours
@@ -230,8 +230,11 @@
     // Always try init; it's a no-op if already loaded
     try { await init(); } catch {}
 
+    // Only trust cached resolutions computed against the CURRENT manifest.
+    // Without this check a cached 'miss' (or stale hit) persists in the
+    // listener's localStorage and newly-published manifest fixes never apply.
     const cached = getResolveCacheEntry(artist, title);
-    if (cached) {
+    if (cached && cached.ts && cached.ts >= state.manifestLoadedAt) {
       if (cached.url) preloadImage(cached.url);
       return cached;
     }

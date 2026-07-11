@@ -694,6 +694,7 @@ async function fetchStatusJson(){
 function repairText(str){
   let out = String(str || '').trim();
   out = out
+    .replace(/\?(?=\d)/g, "'")                              // Back To ?85 -> Back To '85
     .replace(/(^|[\s([{])\?([A-Za-z])(?=\s|$)/g, "$1'$2")   // ?N Roses -> 'N Roses
     .replace(/\b([A-Za-z])\?(?=\s+[A-Z])/g, "$1'")          // N? Roses -> N' Roses
     .replace(/([A-Za-z])\?([A-Za-z])/g, "$1'$2")            // Ain?t -> Ain't, It?s -> It's

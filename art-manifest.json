@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-03-09T00:00:00-08:00",
+  "generatedAt": "2026-07-11T03:37:36.097Z",
   "notes": "Seed known album art here. Add track-specific entries first, then artist-level fallbacks.",
   "imageBasePath": "./",
   "tracks": [
@@ -14,7 +14,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "The Final Countdown",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -22,7 +24,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Rock the Night",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -30,7 +34,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Carrie",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -38,7 +44,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Danger on the Track",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -46,7 +54,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Ninja",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -54,7 +64,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Cherokee",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -62,7 +74,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Time Has Come",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -70,7 +84,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Heart of Stone",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -78,7 +94,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "On the Loose",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -86,7 +104,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Love Chaser",
       "titleAliases": [],
       "art": "https://i.discogs.com/NWOLPm6oG3mru-RXJoKLCNXMijPs7pOLNERcDrh03C0/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDEz/MS0xNjg2MDIxODQ5/LTIxNTAuanBlZw.jpeg",
@@ -94,7 +114,9 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Restless Love",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -102,7 +124,9 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Wanna Hear The Toys",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -110,15 +134,23 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Fallin' In Lust Again",
-      "titleAliases": ["Fallin In Lust Again", "Fallin' In Lust...Again", "Fallin' In Lust (Again)"],
+      "titleAliases": [
+        "Fallin In Lust Again",
+        "Fallin' In Lust...Again",
+        "Fallin' In Lust (Again)"
+      ],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
       "notes": "Noize Toys - Fallin' In Lust...(...Again) (1988)"
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Hungry",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -126,31 +158,45 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Gunnin' For Ya",
-      "titleAliases": ["Gunnin For Ya"],
+      "titleAliases": [
+        "Gunnin For Ya"
+      ],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
       "notes": "Noize Toys - Fallin' In Lust...(...Again) (1988)"
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Hot and Wet",
-      "titleAliases": ["Hot & Wet"],
+      "titleAliases": [
+        "Hot & Wet"
+      ],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
       "notes": "Noize Toys - Fallin' In Lust...(...Again) (1988)"
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Do You Want It",
-      "titleAliases": ["Do Ya Want It"],
+      "titleAliases": [
+        "Do Ya Want It"
+      ],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
       "notes": "Noize Toys - Fallin' In Lust...(...Again) (1988)"
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Neighborhood Nightmare",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -158,7 +204,9 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Try Me",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -166,7 +214,9 @@
     },
     {
       "artist": "Noize Toys",
-      "artistAliases": ["NOIZE TOYS"],
+      "artistAliases": [
+        "NOIZE TOYS"
+      ],
       "title": "Paradise Lane",
       "titleAliases": [],
       "art": "https://i.discogs.com/wOSJM5XqsXkVyey3W2Osy-kXhLzIkrtIGABncjbKVso/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODg5/MTYtMTc1OTM4ODU3/My04Njk1LmpwZWc.jpeg",
@@ -174,7 +224,9 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "One More Night",
       "titleAliases": [],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
@@ -182,7 +234,9 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Running Back",
       "titleAliases": [],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
@@ -190,23 +244,35 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Don't Turn Out The Light",
-      "titleAliases": ["Dont Turn Out The Light", "Don't Turn Out the Light"],
+      "titleAliases": [
+        "Dont Turn Out The Light",
+        "Don't Turn Out the Light"
+      ],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
       "notes": "Blue Blud - The Big Noise"
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Love Grows Wild (In The Heat)",
-      "titleAliases": ["Love Grows Wild In The Heat", "Love Grows Wild"],
+      "titleAliases": [
+        "Love Grows Wild In The Heat",
+        "Love Grows Wild"
+      ],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
       "notes": "Blue Blud - The Big Noise"
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Never Rains In England",
       "titleAliases": [],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
@@ -214,7 +280,9 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Secret Lover",
       "titleAliases": [],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
@@ -222,23 +290,33 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "My Idea Of Heaven",
-      "titleAliases": ["My Idea of Heaven"],
+      "titleAliases": [
+        "My Idea of Heaven"
+      ],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
       "notes": "Blue Blud - The Big Noise"
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "I Can't Wait",
-      "titleAliases": ["I Cant Wait"],
+      "titleAliases": [
+        "I Cant Wait"
+      ],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
       "notes": "Blue Blud - The Big Noise"
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Night Time City",
       "titleAliases": [],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
@@ -246,15 +324,23 @@
     },
     {
       "artist": "Blue Blud",
-      "artistAliases": ["BLUE BLUD"],
+      "artistAliases": [
+        "BLUE BLUD"
+      ],
       "title": "Road To Ruin",
-      "titleAliases": ["Road to Ruin"],
+      "titleAliases": [
+        "Road to Ruin"
+      ],
       "art": "https://i.discogs.com/WedNpvgiDVBgA6m_EeHx1mT6sGSQLdTn7yxILxKuX8U/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NjIw/NTctMTYxMDEwMzAz/My01OTMzLmpwZWc.jpeg",
       "notes": "Blue Blud - The Big Noise"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Wheels In Motion",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -262,7 +348,11 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Can You Move Me",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -270,7 +360,11 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "What My Body Needs",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -278,15 +372,26 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "1000 Times A Day",
-      "titleAliases": ["One Thousand Times A Day", "1000 Times a Day"],
+      "titleAliases": [
+        "One Thousand Times A Day",
+        "1000 Times a Day"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Hard To Please",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -294,15 +399,27 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Don't Wanna Loose Her",
-      "titleAliases": ["Dont Wanna Loose Her", "Don't Wanna Lose Her", "Dont Wanna Lose Her"],
+      "titleAliases": [
+        "Dont Wanna Loose Her",
+        "Don't Wanna Lose Her",
+        "Dont Wanna Lose Her"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Little Boys",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -310,15 +427,26 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "I'm In Trouble",
-      "titleAliases": ["Im In Trouble", "I'm In Trouble"],
+      "titleAliases": [
+        "Im In Trouble",
+        "I'm In Trouble"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Longevity",
       "titleAliases": [],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
@@ -326,39 +454,69 @@
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "It's To Late",
-      "titleAliases": ["Its To Late", "It's Too Late", "Its Too Late"],
+      "titleAliases": [
+        "Its To Late",
+        "It's Too Late",
+        "Its Too Late"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Out Of The Blue",
-      "titleAliases": ["Out of the Blue"],
+      "titleAliases": [
+        "Out of the Blue"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "I'm Coming Home",
-      "titleAliases": ["Im Coming Home"],
+      "titleAliases": [
+        "Im Coming Home"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "SingSing",
-      "artistAliases": ["SINGSING", "Sing Sing", "SING SING"],
+      "artistAliases": [
+        "SINGSING",
+        "Sing Sing",
+        "SING SING"
+      ],
       "title": "Don't Control Me",
-      "titleAliases": ["Dont Control Me"],
+      "titleAliases": [
+        "Dont Control Me"
+      ],
       "art": "https://i.discogs.com/840XE3CXcA2hbn76Y0VM-p63MqKrXB4BlpM0Vp9nnhE/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYzNTgw/OTgtMTQxNzI4NTYz/Mi03MzY5LmpwZWc.jpeg",
       "notes": "SingSing album"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Nineteen",
       "titleAliases": [],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
@@ -366,7 +524,11 @@
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Curious Intentions",
       "titleAliases": [],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
@@ -374,55 +536,97 @@
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Bangin' Time Again",
-      "titleAliases": ["Bangin Time Again"],
+      "titleAliases": [
+        "Bangin Time Again"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Mother of Love",
-      "titleAliases": ["Mother Of Love"],
+      "titleAliases": [
+        "Mother Of Love"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Devil in the Angel",
-      "titleAliases": ["Devil In The Angel"],
+      "titleAliases": [
+        "Devil In The Angel"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Rockin' My Body",
-      "titleAliases": ["Rockin My Body"],
+      "titleAliases": [
+        "Rockin My Body"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Slow and Beautiful",
-      "titleAliases": ["Slow And Beautiful"],
+      "titleAliases": [
+        "Slow And Beautiful"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Tyre Kickin' (Ya Makin' Me Nervous)",
-      "titleAliases": ["Tyre Kickin Ya Makin Me Nervous", "Tyre Kickin'", "Tyre Kickin"],
+      "titleAliases": [
+        "Tyre Kickin Ya Makin Me Nervous",
+        "Tyre Kickin'",
+        "Tyre Kickin"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Terminate",
       "titleAliases": [],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
@@ -430,23 +634,42 @@
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Nothin' Great About a Heartache",
-      "titleAliases": ["Nothin Great About a Heartache", "Nothin' Great About A Heartache", "Nothin Great About A Heartache"],
+      "titleAliases": [
+        "Nothin Great About a Heartache",
+        "Nothin' Great About A Heartache",
+        "Nothin Great About A Heartache"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "We're Gonna Fight",
-      "titleAliases": ["Were Gonna Fight", "We're Gonna Fight"],
+      "titleAliases": [
+        "Were Gonna Fight",
+        "We're Gonna Fight"
+      ],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
       "notes": "Bad 4 Good - Refugee (1992)"
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "I Want Everything",
       "titleAliases": [],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
@@ -454,7 +677,11 @@
     },
     {
       "artist": "Bad 4 Good",
-      "artistAliases": ["BAD 4 GOOD", "Bad4Good", "BAD4GOOD"],
+      "artistAliases": [
+        "BAD 4 GOOD",
+        "Bad4Good",
+        "BAD4GOOD"
+      ],
       "title": "Felony",
       "titleAliases": [],
       "art": "https://i.discogs.com/RW0VNhQiZZWMR14xdLVO4EXdlsSP4OnX7sF1KqxrvMI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTMz/MzUtMTYwNDYxMzAw/Mi0zMzg0LmpwZWc.jpeg",
@@ -462,7 +689,9 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Danger In This Game",
       "titleAliases": [],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
@@ -470,7 +699,9 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Never Stop",
       "titleAliases": [],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
@@ -478,23 +709,33 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Feel The Fire",
-      "titleAliases": ["Feel the Fire"],
+      "titleAliases": [
+        "Feel the Fire"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "This Is The Love",
-      "titleAliases": ["This Is the Love"],
+      "titleAliases": [
+        "This Is the Love"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Runaway",
       "titleAliases": [],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
@@ -502,15 +743,21 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Like An Eagle",
-      "titleAliases": ["Like an Eagle"],
+      "titleAliases": [
+        "Like an Eagle"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Harmony",
       "titleAliases": [],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
@@ -518,23 +765,34 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "I'm Hurt",
-      "titleAliases": ["Im Hurt"],
+      "titleAliases": [
+        "Im Hurt"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Tell Me (If I'm Wrong)",
-      "titleAliases": ["Tell Me If Im Wrong", "Tell Me If I'm Wrong"],
+      "titleAliases": [
+        "Tell Me If Im Wrong",
+        "Tell Me If I'm Wrong"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Survivor",
       "titleAliases": [],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
@@ -542,31 +800,47 @@
     },
     {
       "artist": "Glory",
-      "artistAliases": ["GLORY"],
+      "artistAliases": [
+        "GLORY"
+      ],
       "title": "Exhibition (Instrumental)",
-      "titleAliases": ["Exhibition Instrumental", "Exhibition"],
+      "titleAliases": [
+        "Exhibition Instrumental",
+        "Exhibition"
+      ],
       "art": "https://i.discogs.com/4ZBS72MMmnbEPjND2MRRN9QBE-DZFCEEEzPDzkTp5lM/rs:fit/g:sm/q:90/h:490/w:490/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ4NTY1/MjctMTM3NzYyNTc2/Mi01NjcxLmpwZWc.jpeg",
       "notes": "Glory - Danger In This Game"
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "4 The Love Of The Game",
-      "titleAliases": ["For The Love Of The Game", "4 The Love of the Game"],
+      "titleAliases": [
+        "For The Love Of The Game",
+        "4 The Love of the Game"
+      ],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
       "notes": "Push - 4 The Love of the Game"
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Heart Is An Empty Space",
-      "titleAliases": ["Heart Is an Empty Space"],
+      "titleAliases": [
+        "Heart Is an Empty Space"
+      ],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
       "notes": "Push - 4 The Love of the Game"
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Only Dreaming",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -574,7 +848,9 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "In My Blood",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -582,7 +858,9 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Time To Let You Know",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -590,7 +868,9 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Not This Time",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -598,7 +878,9 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Lucky Man",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -606,7 +888,9 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "The Best Thing",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -614,23 +898,33 @@
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "More Than Meets The Eye",
-      "titleAliases": ["More Than Meets the Eye"],
+      "titleAliases": [
+        "More Than Meets the Eye"
+      ],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
       "notes": "Push - 4 The Love of the Game"
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Just A Man",
-      "titleAliases": ["Just a Man"],
+      "titleAliases": [
+        "Just a Man"
+      ],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
       "notes": "Push - 4 The Love of the Game"
     },
     {
       "artist": "Push",
-      "artistAliases": ["PUSH"],
+      "artistAliases": [
+        "PUSH"
+      ],
       "title": "Black Candles",
       "titleAliases": [],
       "art": "https://i.discogs.com/sZ6AaEMod-7FOXXUzxVkqJmP4p0u_mWUWBtnq4CDxHM/rs:fit/g:sm/q:90/h:600/w:595/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzYy/MjctMTYyOTQ3MjE5/NC0yNDQ2LmpwZWc.jpeg",
@@ -638,15 +932,22 @@
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Hold On (To Your Love)",
-      "titleAliases": ["Hold On To Your Love", "Hold On"],
+      "titleAliases": [
+        "Hold On To Your Love",
+        "Hold On"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "My Apollo",
       "titleAliases": [],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
@@ -654,7 +955,9 @@
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Reflections",
       "titleAliases": [],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
@@ -662,15 +965,21 @@
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Keep The Fires Burning",
-      "titleAliases": ["Keep the Fires Burning"],
+      "titleAliases": [
+        "Keep the Fires Burning"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "The Hunter",
       "titleAliases": [],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
@@ -678,71 +987,110 @@
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Brave The Storm",
-      "titleAliases": ["Brave the Storm"],
+      "titleAliases": [
+        "Brave the Storm"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Wild, Wild Woman",
-      "titleAliases": ["Wild Wild Woman"],
+      "titleAliases": [
+        "Wild Wild Woman"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Caught In The Act",
-      "titleAliases": ["Caught in the Act"],
+      "titleAliases": [
+        "Caught in the Act"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Was I Wrong?",
-      "titleAliases": ["Was I Wrong"],
+      "titleAliases": [
+        "Was I Wrong"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Hold On (To Your Love) (Extended Version)",
-      "titleAliases": ["Hold On To Your Love Extended Version", "Hold On Extended Version"],
+      "titleAliases": [
+        "Hold On To Your Love Extended Version",
+        "Hold On Extended Version"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Strangers In Town",
-      "titleAliases": ["Strangers in Town"],
+      "titleAliases": [
+        "Strangers in Town"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Two Hearts (Live)",
-      "titleAliases": ["Two Hearts Live", "Two Hearts"],
+      "titleAliases": [
+        "Two Hearts Live",
+        "Two Hearts"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Shy",
-      "artistAliases": ["SHY"],
+      "artistAliases": [
+        "SHY"
+      ],
       "title": "Behind Closed Doors (Live)",
-      "titleAliases": ["Behind Closed Doors Live", "Behind Closed Doors"],
+      "titleAliases": [
+        "Behind Closed Doors Live",
+        "Behind Closed Doors"
+      ],
       "art": "https://i.discogs.com/MV0_jRLMByYYUJjiPGx1O-n3KFGESUvviwM6KPVVjhg/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDQ5/MTYtMTE5NTU4NTI4/NS5qcGVn.jpeg",
       "notes": "Shy - Brave The Storm"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Stand Alone",
       "titleAliases": [],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
@@ -750,7 +1098,11 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Firepower",
       "titleAliases": [],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
@@ -758,23 +1110,40 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Cold And Lonely Nights",
-      "titleAliases": ["Cold and Lonely Nights"],
+      "titleAliases": [
+        "Cold and Lonely Nights"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Time's Just A Circle",
-      "titleAliases": ["Times Just A Circle", "Time's Just a Circle"],
+      "titleAliases": [
+        "Times Just A Circle",
+        "Time's Just a Circle"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Hold On Tight",
       "titleAliases": [],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
@@ -782,39 +1151,70 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Middle Of The Night",
-      "titleAliases": ["Middle of the Night"],
+      "titleAliases": [
+        "Middle of the Night"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Walkin Out The Door",
-      "titleAliases": ["Walkin' Out The Door", "Walkin' Out the Door", "Walking Out The Door"],
+      "titleAliases": [
+        "Walkin' Out The Door",
+        "Walkin' Out the Door",
+        "Walking Out The Door"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Give Ya All My Lovin",
-      "titleAliases": ["Give Ya All My Lovin'", "Give You All My Loving"],
+      "titleAliases": [
+        "Give Ya All My Lovin'",
+        "Give You All My Loving"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Name Of The Game",
-      "titleAliases": ["Name of the Game"],
+      "titleAliases": [
+        "Name of the Game"
+      ],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
       "notes": "Dare Force - Firepower"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Evil Woman",
       "titleAliases": [],
       "art": "https://i.discogs.com/geiiGSeK1tuzKwJvaW4nWdL-BmQRM62yrUsKlxDFh_s/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1ODI3/NjctMTU3OTkzNTI5/NC02Nzc0LmpwZWc.jpeg",
@@ -822,15 +1222,25 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Looking For Some Action",
-      "titleAliases": ["Looking for Some Action"],
+      "titleAliases": [
+        "Looking for Some Action"
+      ],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
       "notes": "Dare Force - Makin' Our Own Rules"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Just One Night",
       "titleAliases": [],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
@@ -838,15 +1248,25 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Running From Your Shadow",
-      "titleAliases": ["Running from Your Shadow"],
+      "titleAliases": [
+        "Running from Your Shadow"
+      ],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
       "notes": "Dare Force - Makin' Our Own Rules"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Not Gonna Let You Hurt Me",
       "titleAliases": [],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
@@ -854,7 +1274,11 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Let It Fly",
       "titleAliases": [],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
@@ -862,15 +1286,27 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Makin' Our Own Rules",
-      "titleAliases": ["Makin Our Own Rules", "Making Our Own Rules", "Making' Our Own Rules"],
+      "titleAliases": [
+        "Makin Our Own Rules",
+        "Making Our Own Rules",
+        "Making' Our Own Rules"
+      ],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
       "notes": "Dare Force - Makin' Our Own Rules"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Come When You Call",
       "titleAliases": [],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
@@ -878,7 +1314,11 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Double Dealer",
       "titleAliases": [],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
@@ -886,31 +1326,56 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Waited Such A Long Time",
-      "titleAliases": ["Waited Such a Long Time"],
+      "titleAliases": [
+        "Waited Such a Long Time"
+      ],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
       "notes": "Dare Force - Makin' Our Own Rules"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "You're In Danger",
-      "titleAliases": ["Youre In Danger", "You're in Danger"],
+      "titleAliases": [
+        "Youre In Danger",
+        "You're in Danger"
+      ],
       "art": "https://i.discogs.com/C9jZf6EB_6CUmUcPCvxlDAKFDzcKFEEHjiczkxqWV8I/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1Mzk4/OTUtMTQ2MzY1NDY2/Ni01NjMzLmpwZWc.jpeg",
       "notes": "Dare Force - Makin' Our Own Rules"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "At Mos Fear",
-      "titleAliases": ["at mos fear", "Atmosphere", "At-Mos-Fear"],
+      "titleAliases": [
+        "at mos fear",
+        "Atmosphere",
+        "At-Mos-Fear"
+      ],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
       "notes": "Dare Force - Callin' Your Name"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Journey Through These Days",
       "titleAliases": [],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
@@ -918,7 +1383,11 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Onto You",
       "titleAliases": [],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
@@ -926,7 +1395,11 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Just Another Heartbreaker",
       "titleAliases": [],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
@@ -934,23 +1407,42 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Cities On Flame With Rock n Roll",
-      "titleAliases": ["Cities On Flame With Rock 'n' Roll", "Cities On Flame With Rock N' Roll", "Cities on Flame with Rock n Roll"],
+      "titleAliases": [
+        "Cities On Flame With Rock 'n' Roll",
+        "Cities On Flame With Rock N' Roll",
+        "Cities on Flame with Rock n Roll"
+      ],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
       "notes": "Dare Force - Callin' Your Name"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "She's A Mover",
-      "titleAliases": ["Shes A Mover", "She's a Mover"],
+      "titleAliases": [
+        "Shes A Mover",
+        "She's a Mover"
+      ],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
       "notes": "Dare Force - Callin' Your Name"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Let Me Play",
       "titleAliases": [],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
@@ -958,23 +1450,40 @@
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "One Night Standup",
-      "titleAliases": ["One Night Stand Up", "One Night Stand-Up"],
+      "titleAliases": [
+        "One Night Stand Up",
+        "One Night Stand-Up"
+      ],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
       "notes": "Dare Force - Callin' Your Name"
     },
     {
       "artist": "Dare Force",
-      "artistAliases": ["DARE FORCE", "Dareforce", "DAREFORCE"],
+      "artistAliases": [
+        "DARE FORCE",
+        "Dareforce",
+        "DAREFORCE"
+      ],
       "title": "Callin' Your Name",
-      "titleAliases": ["Callin Your Name"],
+      "titleAliases": [
+        "Callin Your Name"
+      ],
       "art": "https://i.discogs.com/sbdmMXWiSLkNrrzlHYT3kE1MMOnvQUvbRLDvcgmIkzI/rs:fit/g:sm/q:90/h:504/w:504/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjkz/MTQ1LTE1MzIzMTMz/NjQtMTkxMy5qcGVn.jpeg",
       "notes": "Dare Force - Callin' Your Name"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "You Keep Me Waiting",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -982,31 +1491,55 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "I've Got A Lot To Learn About Love",
-      "titleAliases": ["Ive Got A Lot To Learn About Love", "I've Got a Lot to Learn About Love"],
+      "titleAliases": [
+        "Ive Got A Lot To Learn About Love",
+        "I've Got a Lot to Learn About Love"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "In The Raw",
-      "titleAliases": ["In the Raw"],
+      "titleAliases": [
+        "In the Raw"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "You're Gonna Miss Me",
-      "titleAliases": ["Youre Gonna Miss Me", "You're Gonna Miss Me"],
+      "titleAliases": [
+        "Youre Gonna Miss Me",
+        "You're Gonna Miss Me"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Call Me",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -1014,15 +1547,25 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Show Me The Way",
-      "titleAliases": ["Show Me the Way"],
+      "titleAliases": [
+        "Show Me the Way"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "I Want You Back",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -1030,7 +1573,11 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Still Loving You",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -1038,15 +1585,25 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Touch And Go",
-      "titleAliases": ["Touch and Go"],
+      "titleAliases": [
+        "Touch and Go"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Gimme Love",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -1054,7 +1611,11 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Take Me Away",
       "titleAliases": [],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
@@ -1062,23 +1623,35 @@
     },
     {
       "artist": "The Storm",
-      "artistAliases": ["THE STORM", "Storm", "STORM"],
+      "artistAliases": [
+        "THE STORM",
+        "Storm",
+        "STORM"
+      ],
       "title": "Can't Live Without Love",
-      "titleAliases": ["Cant Live Without Love"],
+      "titleAliases": [
+        "Cant Live Without Love"
+      ],
       "art": "https://i.discogs.com/YI7Nfz0eE88N32C0btT8paBMY9umQE2QP9jGGlDQ2Tw/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTE4/NDEtMTUyMDc4NzQ3/Ni04NjgyLmpwZWc.jpeg",
       "notes": "The Storm - The Storm"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Go For It!",
-      "titleAliases": ["Go For It"],
+      "titleAliases": [
+        "Go For It"
+      ],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
       "notes": "Dalton - Injection"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Love Injection",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1086,15 +1659,21 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Like An Angel",
-      "titleAliases": ["Like an Angel"],
+      "titleAliases": [
+        "Like an Angel"
+      ],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
       "notes": "Dalton - Injection"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Lonely",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1102,7 +1681,9 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Love Hurts",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1110,23 +1691,34 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Dressed To Kill",
-      "titleAliases": ["Dressed to Kill"],
+      "titleAliases": [
+        "Dressed to Kill"
+      ],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
       "notes": "Dalton - Injection"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Why Don't You Love Me?",
-      "titleAliases": ["Why Dont You Love Me", "Why Don't You Love Me"],
+      "titleAliases": [
+        "Why Dont You Love Me",
+        "Why Don't You Love Me"
+      ],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
       "notes": "Dalton - Injection"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Love Lie",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1134,7 +1726,9 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Wild Tonight",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1142,7 +1736,9 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Heartbroken",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1150,15 +1746,22 @@
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Comin' On Strong",
-      "titleAliases": ["Comin On Strong", "Coming On Strong"],
+      "titleAliases": [
+        "Comin On Strong",
+        "Coming On Strong"
+      ],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
       "notes": "Dalton - Injection"
     },
     {
       "artist": "Dalton",
-      "artistAliases": ["DALTON"],
+      "artistAliases": [
+        "DALTON"
+      ],
       "title": "Wake You Up",
       "titleAliases": [],
       "art": "https://i.discogs.com/RUtFmxeoPCp4YXmlrZazdcKP7B7Ab0HF5DwlGtvtpZA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMDUy/MDItMTQxMzEyNTQ1/OS03MTc2LmpwZWc.jpeg",
@@ -1166,7 +1769,9 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Superstitious",
       "titleAliases": [],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
@@ -1174,15 +1779,21 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Let The Good Times Rock",
-      "titleAliases": ["Let the Good Times Rock"],
+      "titleAliases": [
+        "Let the Good Times Rock"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Open Your Heart",
       "titleAliases": [],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
@@ -1190,47 +1801,69 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "More Than Meets The Eye",
-      "titleAliases": ["More Than Meets the Eye"],
+      "titleAliases": [
+        "More Than Meets the Eye"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Coast To Coast",
-      "titleAliases": ["Coast to Coast"],
+      "titleAliases": [
+        "Coast to Coast"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Ready Or Not",
-      "titleAliases": ["Ready or Not"],
+      "titleAliases": [
+        "Ready or Not"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Sign Of The Times",
-      "titleAliases": ["Sign of the Times"],
+      "titleAliases": [
+        "Sign of the Times"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Just The Beginning",
-      "titleAliases": ["Just the Beginning"],
+      "titleAliases": [
+        "Just the Beginning"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Never Say Die",
       "titleAliases": [],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
@@ -1238,23 +1871,35 @@
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Lights And Shadows",
-      "titleAliases": ["Lights and Shadows"],
+      "titleAliases": [
+        "Lights and Shadows"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Tower's Callin'",
-      "titleAliases": ["Towers Callin", "Tower's Callin", "Towers Callin'"],
+      "titleAliases": [
+        "Towers Callin",
+        "Tower's Callin",
+        "Towers Callin'"
+      ],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
       "notes": "Europe - Out of This World"
     },
     {
       "artist": "Europe",
-      "artistAliases": ["EUROPE"],
+      "artistAliases": [
+        "EUROPE"
+      ],
       "title": "Tomorrow",
       "titleAliases": [],
       "art": "https://i.discogs.com/Y-RnormaExMODZhpT_Lg2tSJQtsSsQT3nRFHALvAPXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkxNTIw/OC0xNTEzNjgzOTc2/LTk2NzcuanBlZw.jpeg",
@@ -1262,7 +1907,9 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "No Promises",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1270,15 +1917,22 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Nothin' We Can't Take",
-      "titleAliases": ["Nothin We Cant Take", "Nothin' We Can't Take"],
+      "titleAliases": [
+        "Nothin We Cant Take",
+        "Nothin' We Can't Take"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Rocket",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1286,7 +1940,9 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Coming Home",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1294,7 +1950,9 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Step Inside",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1302,7 +1960,9 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Bad Line",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1310,39 +1970,60 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Daytripper",
-      "titleAliases": ["Day Tripper", "Day-Tripper"],
+      "titleAliases": [
+        "Day Tripper",
+        "Day-Tripper"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "I Need A Woman",
-      "titleAliases": ["I Need a Woman"],
+      "titleAliases": [
+        "I Need a Woman"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Make It To The Top",
-      "titleAliases": ["Make It to the Top"],
+      "titleAliases": [
+        "Make It to the Top"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "All 'n' Now",
-      "titleAliases": ["All n Now", "All N Now", "All 'N' Now"],
+      "titleAliases": [
+        "All n Now",
+        "All N Now",
+        "All 'N' Now"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Hold On",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1350,15 +2031,21 @@
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "Break Out",
-      "titleAliases": ["Breakout"],
+      "titleAliases": [
+        "Breakout"
+      ],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
       "notes": "Craaft - No Tricks Just Kicks"
     },
     {
       "artist": "Craaft",
-      "artistAliases": ["CRAAFT"],
+      "artistAliases": [
+        "CRAAFT"
+      ],
       "title": "You Were There",
       "titleAliases": [],
       "art": "https://i.discogs.com/LbrArpZcHM5YoI8JQlUq4FJBc6RJL8XkoS3ekb8JD9Y/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNzQ4/ODYtMTc2NzExODI4/NC05Nzk0LmpwZWc.jpeg",
@@ -1366,23 +2053,36 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Back To The Bullet",
-      "titleAliases": ["Back to the Bullet"],
+      "titleAliases": [
+        "Back to the Bullet"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet"
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Tear Down The Wall",
-      "titleAliases": ["Tear Down the Wall"],
+      "titleAliases": [
+        "Tear Down the Wall"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet"
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Every Second Counts",
       "titleAliases": [],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
@@ -1390,7 +2090,10 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Call My Name",
       "titleAliases": [],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
@@ -1398,7 +2101,10 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Crazy Horses",
       "titleAliases": [],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
@@ -1406,15 +2112,25 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "In The Name Of Rock 'N' Roll",
-      "titleAliases": ["In The Name Of Rock N Roll", "In The Name Of Rock N' Roll", "In The Name Of Rock 'N Roll"],
+      "titleAliases": [
+        "In The Name Of Rock N Roll",
+        "In The Name Of Rock N' Roll",
+        "In The Name Of Rock 'N Roll"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet"
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Wildest Dreams",
       "titleAliases": [],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
@@ -1422,7 +2138,10 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Down Undercover",
       "titleAliases": [],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
@@ -1430,31 +2149,49 @@
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Face To Face",
-      "titleAliases": ["Face to Face"],
+      "titleAliases": [
+        "Face to Face"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet"
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "Crying In The Wires",
-      "titleAliases": ["Crying in the Wires"],
+      "titleAliases": [
+        "Crying in the Wires"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet"
     },
     {
       "artist": "Mat Sinner",
-      "artistAliases": ["MAT SINNER", "Sinner"],
+      "artistAliases": [
+        "MAT SINNER",
+        "Sinner"
+      ],
       "title": "She's Got The Look",
-      "titleAliases": ["Shes Got The Look", "She's Got the Look"],
+      "titleAliases": [
+        "Shes Got The Look",
+        "She's Got the Look"
+      ],
       "art": "https://i.discogs.com/Re0lV8SRq2AoduODq3rZyR1M5g9iR1N6f5bALOEeNP8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU3MjU1/NjgtMTQwMDk4NzIx/MC0yMzAyLmpwZWc.jpeg",
       "notes": "Mat Sinner - Back To The Bullet (bonus)"
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Show Me What You Got",
       "titleAliases": [],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
@@ -1462,7 +2199,9 @@
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Do It Till We Drop",
       "titleAliases": [],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
@@ -1470,7 +2209,9 @@
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Am I Wrong",
       "titleAliases": [],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
@@ -1478,7 +2219,9 @@
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Desperate Lover",
       "titleAliases": [],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
@@ -1486,39 +2229,58 @@
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Let Me Be The One",
-      "titleAliases": ["Let Me Be the One"],
+      "titleAliases": [
+        "Let Me Be the One"
+      ],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
       "notes": "Witness - Witness"
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "You're Not My Lover",
-      "titleAliases": ["Youre Not My Lover", "You're Not My Lover"],
+      "titleAliases": [
+        "Youre Not My Lover",
+        "You're Not My Lover"
+      ],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
       "notes": "Witness - Witness"
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Jump Into The Fire",
-      "titleAliases": ["Jump into the Fire"],
+      "titleAliases": [
+        "Jump into the Fire"
+      ],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
       "notes": "Witness - Witness"
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "When It Comes From The Heart",
-      "titleAliases": ["When It Comes from the Heart"],
+      "titleAliases": [
+        "When It Comes from the Heart"
+      ],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
       "notes": "Witness - Witness"
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Borrowed Time",
       "titleAliases": [],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
@@ -1526,39 +2288,58 @@
     },
     {
       "artist": "Witness",
-      "artistAliases": ["WITNESS"],
+      "artistAliases": [
+        "WITNESS"
+      ],
       "title": "Back To You",
-      "titleAliases": ["Back to You"],
+      "titleAliases": [
+        "Back to You"
+      ],
       "art": "https://i.discogs.com/hbSnoQutZzNdSRLyanRsxrDN1wAEuAr0dmi_HeVazUk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTgy/NTUtMTQ2MTU0MzEy/NS0zMzExLmpwZWc.jpeg",
       "notes": "Witness - Witness"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Faster Than The Flame",
-      "titleAliases": ["Faster than the Flame"],
+      "titleAliases": [
+        "Faster than the Flame"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Beast Of Gévaudan",
-      "titleAliases": ["Beast Of Gevaudan", "Beast of Gevaudan"],
+      "titleAliases": [
+        "Beast Of Gevaudan",
+        "Beast of Gevaudan"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Dancing With The Dead",
-      "titleAliases": ["Dancing with the Dead"],
+      "titleAliases": [
+        "Dancing with the Dead"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Varcolac",
       "titleAliases": [],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
@@ -1566,23 +2347,34 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Alive Or Undead",
-      "titleAliases": ["Alive or Undead"],
+      "titleAliases": [
+        "Alive or Undead"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Blood For Blood (Faoladh)",
-      "titleAliases": ["Blood For Blood Faoladh", "Blood for Blood (Faoladh)"],
+      "titleAliases": [
+        "Blood For Blood Faoladh",
+        "Blood for Blood (Faoladh)"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Glaubenskraft",
       "titleAliases": [],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
@@ -1590,23 +2382,33 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Call Of The Wild",
-      "titleAliases": ["Call of the Wild"],
+      "titleAliases": [
+        "Call of the Wild"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Sermon Of Swords",
-      "titleAliases": ["Sermon of Swords"],
+      "titleAliases": [
+        "Sermon of Swords"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Undress To Confess",
       "titleAliases": [],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
@@ -1614,15 +2416,21 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Reverent Of Rats",
-      "titleAliases": ["Reverent of Rats"],
+      "titleAliases": [
+        "Reverent of Rats"
+      ],
       "art": "https://i.discogs.com/Wl-Jd6HU1z5IdnFKyTOAEpXPktYCTFQOWMWuXIpcnYo/rs:fit/g:sm/q:90/h:542/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NTEy/OTY0LTE2NDI5ODMx/OTAtODI1NC5qcGVn.jpeg",
       "notes": "Powerwolf - Call Of The Wild"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Sanctified With Dynamite",
       "titleAliases": [],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
@@ -1630,55 +2438,83 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Demons Are A Girl's Best Friend",
-      "titleAliases": ["Demons Are A Girls Best Friend", "Demons Are a Girl's Best Friend"],
+      "titleAliases": [
+        "Demons Are A Girls Best Friend",
+        "Demons Are a Girl's Best Friend"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Nightside Of Siberia",
-      "titleAliases": ["Nightside of Siberia"],
+      "titleAliases": [
+        "Nightside of Siberia"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Where The Wild Wolves Have Gone",
-      "titleAliases": ["Where the Wild Wolves Have Gone"],
+      "titleAliases": [
+        "Where the Wild Wolves Have Gone"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Fist By Fist (Sacralize Or Strike)",
-      "titleAliases": ["Fist By Fist Sacralize Or Strike", "Fist by Fist (Sacralize or Strike)"],
+      "titleAliases": [
+        "Fist By Fist Sacralize Or Strike",
+        "Fist by Fist (Sacralize or Strike)"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Killers With The Cross",
-      "titleAliases": ["Killers with the Cross"],
+      "titleAliases": [
+        "Killers with the Cross"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Kiss Of The Cobra King",
-      "titleAliases": ["Kiss of the Cobra King"],
+      "titleAliases": [
+        "Kiss of the Cobra King"
+      ],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "We Drink Your Blood",
       "titleAliases": [],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
@@ -1686,7 +2522,9 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Resurrection By Erection",
       "titleAliases": [],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
@@ -1694,15 +2532,25 @@
     },
     {
       "artist": "Powerwolf",
-      "artistAliases": ["POWERWOLF"],
+      "artistAliases": [
+        "POWERWOLF"
+      ],
       "title": "Saturday Satan",
       "titleAliases": [],
       "art": "https://i.discogs.com/9dgLYuRjzkKLcpcpGpllGkA1JJUZBwd732tAxPYw0Uw/rs:fit/g:sm/q:90/h:600/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTY0/NzI3LTE3NDQ5ODE4/MTAtNTQ0MC5qcGVn.jpeg",
       "notes": "Powerwolf - Missa Cantorem II"
+    },
+    {
+      "artist": "Palace",
+      "artistAliases": [],
+      "title": "Back To '85",
+      "titleAliases": [],
+      "album": "Reckless Heart",
+      "art": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/89/b4/97/89b49720-3ad7-8cd7-6413-5ca33e484996/198391902741.jpg/600x600bb.jpg",
+      "notes": "Manual seed — playout mangles apostrophe to ?85"
     }
   ],
   "albums": [],
-
   "artists": [
     {
       "artist": "Chrome Viper",
