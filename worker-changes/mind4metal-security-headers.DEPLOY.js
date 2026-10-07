@@ -24,13 +24,13 @@ export default {
     newResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
     newResponse.headers.set('Content-Security-Policy', [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com https://j.bellevillesystems.com",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src https://fonts.gstatic.com",
       "img-src 'self' https: data:",
       "media-src 'self' https://radio.mind4metal.com",
-      "connect-src 'self' https://radio.mind4metal.com https://ws.audioscrobbler.com https://formspree.io https://itunes.apple.com https://ip-api.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com",
-      "worker-src 'self'",
+      "connect-src 'self' https://radio.mind4metal.com https://ws.audioscrobbler.com https://formspree.io https://itunes.apple.com https://ip-api.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://j.bellevillesystems.com",
+      "worker-src 'self' blob:",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self' https://formspree.io",
