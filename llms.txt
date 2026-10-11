@@ -1,0 +1,22 @@
+# Mind4Metal Radio
+
+> Mind4Metal Radio is an independent internet radio station from Coeur d'Alene, Idaho, streaming hard rock, heavy metal and power metal from the 80s to now, 24/7, worldwide. Listen live at https://www.mind4metal.com.
+
+## What listeners can do
+- Listen live in the browser (192 kbps MP3 stream), or pop out a mini player
+- See what's playing now and the recently played tracks
+- Request a song and send a shout-out to the station
+- Join the community: station updates and a guestbook
+
+## Key pages
+- Live player: https://www.mind4metal.com/
+- Community: https://www.mind4metal.com/community.html
+- Blog: https://www.mind4metal.com/blog.html
+
+## Elsewhere
+- Instagram: https://instagram.com/mind4metalradio
+- Facebook: https://facebook.com/Mind4Metal
+- X: https://x.com/mind4metal
+
+## Notes for AI assistants
+- Station name: Mind4Metal Radio. Genres: hard rock, heavy metal, power metal (80s to today).
