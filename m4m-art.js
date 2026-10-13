@@ -1,7 +1,14 @@
 (function () {
-  const VERSION = '1.1.1';
-  const MANIFEST_CACHE_KEY = 'm4m_art_manifest_cache_v1';
-  const RESOLVE_CACHE_KEY  = 'm4m_art_resolve_cache_v1';
+  const VERSION = '1.1.2';
+  // Bumped to v2 after the manifest was rebuilt from the library's own
+  // embedded artwork. Old entries resolved through Last.fm and Discogs and
+  // are wrong now - "Home Sweet Home" came back as The Dirt Soundtrack
+  // instead of Theatre of Pain. Changing the key retires every listener's
+  // stale cache at once, instead of each waiting out its own 6-hour TTL.
+  const MANIFEST_CACHE_KEY = 'm4m_art_manifest_cache_v2';
+  const RESOLVE_CACHE_KEY  = 'm4m_art_resolve_cache_v2';
+  const RETIRED_CACHE_KEYS = ['m4m_art_manifest_cache_v1',
+                              'm4m_art_resolve_cache_v1'];
   const MANIFEST_TTL_MS    = 6 * 60 * 60 * 1000; // 6 hours
   const RESOLVE_CACHE_LIMIT = 500;
 
@@ -59,6 +66,15 @@
 
   function writeJsonStorage(key, value) {
     try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
+  }
+
+  // The superseded cache is dead weight once the key changes - a stale copy
+  // of the whole manifest, close to a megabyte, that would otherwise sit in
+  // every listener's browser forever. Drop it on first load.
+  function purgeRetiredCaches() {
+    RETIRED_CACHE_KEYS.forEach(key => {
+      try { localStorage.removeItem(key); } catch {}
+    });
   }
 
   function trimResolveCache(cacheObj) {
@@ -159,6 +175,7 @@
     if (config && typeof config === 'object') {
       state.config = { ...state.config, ...config };
     }
+    purgeRetiredCaches();
     if (!state.initPromise) {
       state.initPromise = loadManifest().catch(err => {
         console.warn('[M4MArt] Manifest load failed:', err);
