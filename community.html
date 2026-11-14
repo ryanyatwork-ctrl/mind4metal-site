@@ -30,7 +30,7 @@ body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--
   content:'';position:absolute;inset:0;
   background-image:url('optimized/Mind4Metal_Banner-og.jpg');
   background-size:85% auto;background-position:center center;background-repeat:no-repeat;
-  opacity:0.07;filter:grayscale(30%);
+  opacity:0.04;filter:grayscale(30%);
 }
 .bg-fixed::after{content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(58,123,213,0.05) 0%,transparent 60%),
@@ -384,14 +384,25 @@ document.getElementById('gbForm').addEventListener('submit', async e => {
   if (!entry.name || !entry.message) { showToast('Name and message are required.'); return; }
 
   try {
-    const r = await fetch('/api/guestbook', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(entry)
-    });
-    if (r.status === 429) { showToast('Easy there — try again in a little while. 🤘'); return; }
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok || d.ok === false) throw new Error('guestbook_api');
+    let savedToServer = false;
+    try {
+      const r = await fetch('/api/guestbook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry)
+      });
+      if (r.status === 429) { showToast('Easy there — try again in a little while. 🤘'); return; }
+      const d = await r.json().catch(() => ({}));
+      if (r.ok && d.ok !== false) savedToServer = true;
+    } catch {}
+
+    if (!savedToServer) {
+      let localEntries = [];
+      try { localEntries = JSON.parse(localStorage.getItem('m4mGuestbookFallback') || '[]'); } catch {}
+      if (!Array.isArray(localEntries)) localEntries = [];
+      localEntries.unshift({ ...entry, created_at: new Date().toISOString() });
+      localStorage.setItem('m4mGuestbookFallback', JSON.stringify(localEntries.slice(0, 50)));
+    }
 
     // Email notification to the station (best-effort, ignore failures)
     fetch(`https://formspree.io/f/${FORMSPREE_GUESTBOOK}`, {
@@ -421,9 +432,17 @@ async function renderGuestbook() {
   let entries = [];
   try {
     const r = await fetch('/api/guestbook', { cache: 'no-store' });
-    const d = await r.json();
-    if (d?.ok && Array.isArray(d.entries)) entries = d.entries;
+    if (r.ok) {
+      const d = await r.json();
+      if (d?.ok && Array.isArray(d.entries)) entries = d.entries;
+    }
   } catch {}
+  if (!entries.length) {
+    try {
+      const local = JSON.parse(localStorage.getItem('m4mGuestbookFallback') || '[]');
+      if (Array.isArray(local)) entries = local;
+    } catch {}
+  }
 
   if (!entries.length) {
     wrap.innerHTML = `<div class="gb-empty">Be the first to sign the guestbook! 🤘</div>`;

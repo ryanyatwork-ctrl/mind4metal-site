@@ -30,7 +30,7 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:85% auto;background-position:center center;background-repeat:no-repeat;opacity:0.06;filter:grayscale(30%);}
+.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:85% auto;background-position:center center;background-repeat:no-repeat;opacity:0.035;filter:grayscale(30%);}
 .bg-fixed::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(255,85,0,0.05) 0%,transparent 60%);}
 .wrapper{position:relative;z-index:1;}
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:72px;background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);border-bottom:1px solid rgba(255,85,0,0.22);box-shadow:0 4px 20px rgba(0,0,0,0.8);position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);}
@@ -55,6 +55,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .coming-soon{text-align:center;padding:30px 10px;color:var(--text-muted);}
 .coming-soon .big{font-size:48px;margin-bottom:14px;}
 .coming-soon p{font-size:16px;line-height:1.7;letter-spacing:.04em;max-width:540px;margin:0 auto 10px;}
+.post-meta{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fire2);margin-bottom:8px;}
+.post-body{font-size:16px;line-height:1.65;color:var(--text-dim);letter-spacing:.02em;}
+.post-body p+p{margin-top:12px;}
 .cta{display:inline-block;margin-top:18px;padding:11px 22px;background:linear-gradient(135deg,var(--fire),var(--fire2));border-radius:4px;color:#fff;font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;box-shadow:0 4px 16px rgba(255,85,0,0.3);}
 .cta:hover{box-shadow:0 4px 24px rgba(255,85,0,0.55);transform:translateY(-1px);}
 footer{background:rgba(0,0,0,.6);border-top:1px solid rgba(255,85,0,.14);padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
@@ -92,25 +95,61 @@ posthog.init('phc_w3P5BnZop9Bn7XZr4Tjguo2BfK6ut3JgqJKgNztR2XBR', {api_host: 'htt
 </div>
 
 <main class="main">
-  <div class="card">
+  <article class="card">
     <div class="card-head">
-      <span class="card-icon">📝</span>
+      <span class="card-icon">&#x1F525;</span>
       <div>
-        <div class="card-title">Latest from the Pit</div>
-        <div class="card-sub">Riffs, reviews and radio news</div>
+        <div class="card-title">Welcome to the Upgraded Mind4Metal Radio</div>
+        <div class="card-sub">Station Update &middot; 24/7 Heavy Metal &amp; Hard Rock</div>
       </div>
     </div>
     <div class="card-body">
       <div class="fire-bar"></div>
-      <div class="coming-soon">
-        <div class="big">🤘</div>
-        <p>The Mind4Metal blog is warming up. Soon you'll find new music spotlights,
-        show announcements, gear talk and features on the bands keeping the flame alive.</p>
-        <p>Until then, keep it locked to the stream.</p>
-        <a class="cta" href="index.html">Listen Live &rarr;</a>
+      <div class="post-meta">Station News &middot; Coeur d&#39;Alene, ID</div>
+      <div class="post-body">
+        <p>Mind4Metal Radio is broadcasting 24/7 at 192 kbps MP3 with hard rock, classic 80s metal, power metal, and modern shredders—zero corporate playlists, just pure riffs.</p>
+        <p>You can now save your favorite tracks right from the live player, pop out the compact Mini Player while you work or game, and copy the direct stream URL for VLC, Winamp, or car audio.</p>
+      </div>
+      <a class="cta" href="index.html">Tune In Live &rarr;</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head">
+      <span class="card-icon">&#x1F918;</span>
+      <div>
+        <div class="card-title">Shape the Rotation: Send Us Your Requests</div>
+        <div class="card-sub">Listener Spotlight &amp; Band Submissions</div>
       </div>
     </div>
-  </div>
+    <div class="card-body">
+      <div class="fire-bar"></div>
+      <div class="post-meta">Listener Driven</div>
+      <div class="post-body">
+        <p>Whether it&#39;s an underrated NWOBHM deep cut, a Japanese power metal anthem, or a local band tearing up the Pacific Northwest, we want to hear what you&#39;re cranking.</p>
+        <p>Hit <strong>Request Song</strong> from the main player to drop an artist, track, and shout-out, or sign the guestbook in our Community hub to connect with fellow listeners.</p>
+      </div>
+      <a class="cta" href="community.html#guestbook">Sign the Guestbook &rarr;</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-head">
+      <span class="card-icon">&#x1F3B8;</span>
+      <div>
+        <div class="card-title">Listen Anywhere: Desktop, Mobile &amp; Direct Stream</div>
+        <div class="card-sub">Tips for the Best Listening Experience</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="fire-bar"></div>
+      <div class="post-meta">How to Listen</div>
+      <div class="post-body">
+        <p>On desktop, click <strong>Mini Player</strong> to keep track info and playback controls pinned in a corner window. On mobile, use your browser&#39;s <em>Add to Home Screen</em> option to install Mind4Metal like a native app with lock-screen media controls.</p>
+        <p>Prefer a standalone audio player? Point VLC, foobar2000, or Winamp straight to <code>https://radio.mind4metal.com/stream.mp3</code>.</p>
+      </div>
+    </div>
+  </article>
 </main>
 
 <footer>

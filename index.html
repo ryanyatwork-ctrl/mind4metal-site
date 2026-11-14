@@ -41,8 +41,8 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Barlow Condensed',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
 .bg-fixed{position:fixed;inset:0;z-index:0;background:var(--bg);}
-.smoke-right{position:fixed;top:0;right:0;width:320px;height:100%;z-index:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:auto 60%;background-position:right 30%;background-repeat:no-repeat;opacity:0.05;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);pointer-events:none;}
-.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:0.06;-webkit-mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);}
+.smoke-right{position:fixed;top:0;right:0;width:320px;height:100%;z-index:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:auto 60%;background-position:right 30%;background-repeat:no-repeat;opacity:0.035;-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,0.5) 40%,black 100%);pointer-events:none;}
+.bg-fixed::before{content:'';position:absolute;inset:0;background-image:url('optimized/Mind4Metal_Background.webp');background-size:100% auto;background-position:top center;background-repeat:no-repeat;opacity:0.025;-webkit-mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);mask-image:linear-gradient(to bottom,black 0%,rgba(0,0,0,.55) 32%,transparent 58%);}
 .bg-fixed::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(7,8,10,0.5) 0%,rgba(7,8,10,0.7) 30%,rgba(7,8,10,0.9) 60%,rgba(7,8,10,0.98) 80%,rgba(7,8,10,1) 100%);}
 .wrapper{position:relative;z-index:1;}
 nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:72px;background:linear-gradient(180deg,rgba(5,6,8,0.97) 0%,rgba(10,12,16,0.96) 100%);border-bottom:1px solid rgba(255,85,0,0.25);box-shadow:0 4px 20px rgba(0,0,0,0.8);position:-webkit-sticky;position:sticky;top:0;z-index:100;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);}
@@ -54,6 +54,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .fire-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--fire);box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,0.5);animation:flicker 1.8s ease-in-out infinite;}
 @keyframes flicker{0%,100%{opacity:1;box-shadow:0 0 10px var(--fire),0 0 20px rgba(255,85,0,.5);}25%{opacity:.7;box-shadow:0 0 5px var(--fire);}75%{opacity:.95;box-shadow:0 0 14px var(--fire),0 0 28px rgba(255,85,0,.6);}}
 .listener-num{color:var(--fire2);font-size:14px;}
+.nav-links{display:flex;align-items:center;gap:6px;}
+.nav-links a,.nav-links button{padding:5px 11px;border-radius:3px;background:rgba(0,0,0,0.42);border:1px solid var(--border2);font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--silver);text-decoration:none;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active,.nav-links button:hover{color:var(--fire2);border-color:rgba(255,136,0,.45);background:rgba(255,85,0,.1);}
+.nav-links .nav-cta{background:rgba(255,85,0,.16);border-color:rgba(255,85,0,.45);color:var(--fire2);}
 .nav-social{display:flex;gap:4px;}
 .nav-social a{padding:5px 10px;border-radius:3px;background:rgba(0,0,0,0.45);border:1px solid var(--border2);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--silver2);text-decoration:none;transition:all .18s;}
 .nav-social a:hover{color:var(--fire2);border-color:rgba(255,136,0,.4);background:rgba(255,85,0,.08);}
@@ -105,12 +109,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .waveform:not(.on){visibility:hidden;}
 .waveform:not(.on) .bar{animation:none;}
 @keyframes wave{0%,100%{transform:scaleY(.2);}50%{transform:scaleY(1);}}
-.controls{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
-#listen-btn{display:flex;align-items:center;gap:9px;padding:12px 26px;background:transparent;border:2px solid var(--fire);color:var(--fire2);border-radius:3px;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
-#listen-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--fire),var(--fire2));opacity:0;transition:opacity .22s;}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px 12px;margin-bottom:20px;}
+#listen-btn{display:inline-flex;align-items:center;gap:9px;padding:12px 24px;background:linear-gradient(135deg,var(--fire),var(--fire2));border:1px solid rgba(255,136,0,.7);color:#fff;border-radius:4px;font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;flex-shrink:0;white-space:nowrap;box-shadow:0 4px 18px rgba(255,85,0,.28);}
+#listen-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--fire2),#ffaa00);opacity:0;transition:opacity .22s;}
 #listen-btn:hover::before,#listen-btn.on::before{opacity:1;}
 #listen-btn:hover,#listen-btn.on{color:#fff;box-shadow:0 0 28px var(--fire-glow);}
 #listen-btn span{position:relative;z-index:1;}
+.like-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(0,0,0,.42);border:1px solid var(--border2);border-radius:4px;font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--silver2);cursor:pointer;transition:all .18s;white-space:nowrap;}
+.like-btn:hover,.like-btn:focus-visible{color:var(--fire2);border-color:rgba(255,85,0,.45);background:rgba(255,85,0,.08);outline:none;}
+.like-btn.liked{color:#fff;border-color:rgba(255,85,0,.6);background:rgba(255,85,0,.22);box-shadow:0 0 16px rgba(255,85,0,.22);}
 .elapsed{font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.1em;color:var(--text-muted);}
 .stream-meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
 .stream-status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:5px 9px;border:1px solid rgba(255,255,255,.08);border-radius:4px;background:rgba(0,0,0,.28);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);}
@@ -132,9 +139,28 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 20px
 .icon-btn{width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border2);border-radius:4px;background:rgba(0,0,0,.42);color:var(--silver2);font-size:15px;cursor:pointer;transition:all .18s;}
 .icon-btn:hover,.icon-btn:focus-visible{color:var(--fire2);border-color:rgba(255,85,0,.4);background:rgba(255,85,0,.08);outline:none;}
 .volume-slider{width:96px;accent-color:var(--fire2);}
-.popout-btn{display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:5px 12px;background:rgba(0,0,0,.45);border:1px solid var(--border2);border-radius:3px;font-family:'Oswald',sans-serif;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--silver2);cursor:pointer;transition:all .18s;}
+.popout-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(0,0,0,.45);border:1px solid var(--border2);border-radius:4px;font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--silver2);cursor:pointer;transition:all .18s;white-space:nowrap;}
 .popout-btn:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);background:rgba(255,85,0,.08);}
 .popout-btn svg{width:14px;height:14px;fill:currentColor;}
+.hist-tabs{display:flex;align-items:center;gap:6px;}
+.hist-tab{padding:5px 12px;border-radius:4px;background:rgba(0,0,0,.38);border:1px solid var(--border2);font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--silver2);cursor:pointer;transition:all .18s;white-space:nowrap;}
+.hist-tab:hover{color:var(--fire2);border-color:rgba(255,85,0,.4);}
+.hist-tab.active{background:rgba(255,85,0,.16);border-color:rgba(255,85,0,.5);color:var(--fire2);}
+.schedule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;}
+.schedule-card{padding:18px;background:linear-gradient(180deg,rgba(13,15,19,.92),rgba(9,10,13,.92));border:1px solid var(--border2);border-radius:7px;display:flex;flex-direction:column;gap:8px;transition:border-color .18s,transform .18s;}
+.schedule-card:hover{border-color:rgba(255,85,0,.35);transform:translateY(-2px);}
+.schedule-time{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--fire2);}
+.schedule-name{font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
+.schedule-desc{font-size:14px;line-height:1.45;color:var(--text-dim);}
+.stream-bar{margin-top:16px;padding:16px 20px;background:linear-gradient(180deg,rgba(13,15,19,.92),rgba(9,10,13,.92));border:1px solid var(--border2);border-radius:7px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.stream-bar-copy{display:flex;flex-direction:column;gap:3px;}
+.stream-bar-title{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--silver);}
+.stream-bar-sub{font-size:13px;color:var(--text-dim);}
+.stream-bar-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;}
+.stream-pill-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:4px;background:rgba(0,0,0,.45);border:1px solid var(--border2);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--silver);cursor:pointer;text-decoration:none;transition:all .18s;white-space:nowrap;}
+.stream-pill-btn:hover{color:var(--fire2);border-color:rgba(255,85,0,.45);background:rgba(255,85,0,.09);}
+.stream-pill-btn.primary{background:linear-gradient(135deg,var(--fire),var(--fire2));border-color:rgba(255,136,0,.6);color:#fff;}
+.stream-pill-btn.primary:hover{box-shadow:0 4px 18px rgba(255,85,0,.35);}
 .flame-divider{max-width:1100px;margin:0 auto 0;padding:0 28px;}
 .flame-divider hr{border:none;border-top:1px solid rgba(255,85,0,.14);margin:0;}
 .section{max-width:1180px;margin:0 auto;padding:32px 28px 52px;}
@@ -188,8 +214,9 @@ footer{background:rgba(0,0,0,.65);border-top:1px solid rgba(255,85,0,.14);paddin
 .panel-brand{display:flex;align-items:center;gap:9px;}
 .panel-brand img{width:26px;height:26px;filter:brightness(1.3) drop-shadow(0 0 6px rgba(255,85,0,.5));}
 .nav-sub{display:block;}
-@media(max-width:980px){.nav-sub{display:none;}.nav-social{display:none;}.now-playing-section{grid-template-columns:220px minmax(0,1fr);}.art-frame{width:220px;height:220px;}.station-rail{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;}.rail-actions{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0;}.home-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:600px){body{padding-bottom:76px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.station-rail{width:100%;grid-column:auto;display:flex;text-align:left;}.rail-actions{grid-template-columns:1fr;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}.home-grid{grid-template-columns:1fr;}.home-card{min-height:150px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
+@media(max-width:1080px){.nav-sub{display:none;}.nav-social{display:none;}.now-playing-section{grid-template-columns:220px minmax(0,1fr);gap:28px;}.art-frame{width:220px;height:220px;}.station-rail{grid-column:1/-1;display:flex;flex-direction:column;gap:14px;}.station-rail > div:first-child{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}.rail-stat{padding:4px 0;border-bottom:none;gap:8px;}.rail-actions{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:0;}.schedule-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.home-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:900px){.nav-links{display:none;}}
+@media(max-width:600px){body{padding-bottom:88px;}nav{padding:0 12px;height:64px;}.smoke-right{display:none;}.nav-tagline strong{font-size:13px;letter-spacing:.08em;}.listener-badge{padding:4px 8px;font-size:10px;}.bg-fixed::before{background-image:none;background:radial-gradient(ellipse 120% 40% at 50% 0%,rgba(255,85,0,0.07) 0%,transparent 70%);opacity:1;}.bg-fixed::after{background:none;}.now-playing-section{grid-template-columns:1fr;padding:28px 16px 16px;gap:22px;justify-items:center;text-align:center;}.art-frame{width:180px;height:180px;}.np-eyebrow,.controls{justify-content:center;}.controls{flex-wrap:wrap;gap:10px;}.volume-group{order:3;width:100%;justify-content:center;}.waveform{justify-content:center;}.np-info{width:100%;}.station-rail{width:100%;grid-column:auto;display:flex;text-align:left;}.station-rail > div:first-child{flex-direction:column;align-items:stretch;gap:4px;}.rail-stat{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06);}.rail-actions{grid-template-columns:1fr;}.schedule-grid{grid-template-columns:1fr;}.section,.social-section{padding:24px 16px 48px;}.hist-table thead{display:none;}.hist-table,.hist-table tbody,.hist-table tr,.hist-table td{display:block;width:100%;}.hist-table tbody tr{position:relative;padding:10px 0 10px 42px;border-top:1px solid rgba(255,255,255,.06);}.hist-table td{padding:1px 10px;}.hist-table .td-n{position:absolute;left:0;top:12px;width:28px;}.hist-table .td-tm{width:auto;margin-top:5px;}.home-grid{grid-template-columns:1fr;}.home-card{min-height:150px;}.stream-bar{padding:16px;}footer{padding:14px 16px;flex-direction:column;align-items:flex-start;gap:10px;}.footer-left span{display:none;}.popout-btn{display:none;}.mobile-player{display:flex;}.toast{bottom:84px;width:calc(100% - 32px);text-align:center;}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}.waveform .bar{animation:none!important;height:5px!important;}}
 </style>
 <!-- Google Analytics -->
@@ -216,6 +243,12 @@ posthog.init('phc_w3P5BnZop9Bn7XZr4Tjguo2BfK6ut3JgqJKgNztR2XBR', {api_host: 'htt
     </div>
   </div>
   <div class="nav-right">
+    <div class="nav-links" aria-label="Primary navigation">
+      <a href="#schedule">Schedule</a>
+      <a href="community.html">Community</a>
+      <a href="blog.html">Blog</a>
+      <button type="button" class="nav-cta" id="navRequestBtn">Request Song</button>
+    </div>
     <div class="listener-badge"><span class="fire-dot"></span>Listeners&nbsp;<span class="listener-num" id="listenerCount">&mdash;</span></div>
     <nav class="nav-social">
       <a href="https://facebook.com/Mind4Metal" target="_blank" rel="noopener noreferrer">Facebook</a>
@@ -284,6 +317,7 @@ posthog.init('phc_w3P5BnZop9Bn7XZr4Tjguo2BfK6ut3JgqJKgNztR2XBR', {api_host: 'htt
           <button class="icon-btn" id="muteBtn" type="button" aria-label="Mute stream" title="Mute"></button>
           <input class="volume-slider" id="volumeSlider" type="range" min="0" max="100" value="85" aria-label="Volume">
         </div>
+        <button class="like-btn" id="likeTrackBtn" type="button" aria-pressed="false" title="Save track to your favorites"><span>&#x1F525;</span><span id="likeBtnText">Like</span></button>
         <button class="popout-btn" id="popoutBtn" title="Pop out mini player"><svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg><span>Mini Player</span></button>
       </div>
       <div class="stream-meta">192 kbps &middot; Hard Rock / Heavy Metal &middot; 24/7 Live</div>
@@ -311,11 +345,45 @@ posthog.init('phc_w3P5BnZop9Bn7XZr4Tjguo2BfK6ut3JgqJKgNztR2XBR', {api_host: 'htt
   </div>
   <div class="flame-divider"><hr></div>
   <section class="section">
-    <div class="sec-head"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.7 5 9.7a5 5 0 0 1-10 0c0-1.8.7-3.4 1.6-4.8.3 1 .9 1.9 1.8 2.4C10 6.8 11.2 4.3 12 2z"/></svg><h3 class="sec-title">Recently Played</h3><div class="sec-line"></div></div>
+    <div class="sec-head">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2s5 4.7 5 9.7a5 5 0 0 1-10 0c0-1.8.7-3.4 1.6-4.8.3 1 .9 1.9 1.8 2.4C10 6.8 11.2 4.3 12 2z"/></svg>
+      <h3 class="sec-title" id="histHeading">Recently Played</h3>
+      <div class="sec-line"></div>
+      <div class="hist-tabs" role="tablist" aria-label="Track lists">
+        <button class="hist-tab active" type="button" id="tabRecentBtn" role="tab" aria-selected="true">Recently Played</button>
+        <button class="hist-tab" type="button" id="tabFavsBtn" role="tab" aria-selected="false">Favorites (<span id="favCount">0</span>)</button>
+      </div>
+    </div>
     <table class="hist-table">
-      <thead><tr><th class="td-n">#</th><th>Title</th><th>Artist</th><th>Time</th></tr></thead>
+      <thead><tr><th class="td-n">#</th><th>Title</th><th>Artist</th><th id="histColTime">Time</th></tr></thead>
       <tbody id="histBody"><tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr></tbody>
     </table>
+  </section>
+  <div class="flame-divider"><hr></div>
+  <section class="section" id="schedule">
+    <div class="sec-head"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg><h3 class="sec-title">On Air Rotation &amp; Blocks</h3><div class="sec-line"></div></div>
+    <div class="schedule-grid">
+      <div class="schedule-card">
+        <div class="schedule-time">24/7 Core Stream</div>
+        <div class="schedule-name">80s to Now Metal</div>
+        <div class="schedule-desc">Non-stop heavy metal, classic hard rock, NWOBHM, and modern shredders—no fluff, just riffs.</div>
+      </div>
+      <div class="schedule-card">
+        <div class="schedule-time">Daily Rotation</div>
+        <div class="schedule-name">Power &amp; Symphonic</div>
+        <div class="schedule-desc">High-octane double-kick anthems, soaring vocals, and melodic metal from Europe and Japan.</div>
+      </div>
+      <div class="schedule-card">
+        <div class="schedule-time">Listener Driven</div>
+        <div class="schedule-name">Request Spotlight</div>
+        <div class="schedule-desc">Drop your favorite band or deep cut in the request drawer—listener picks help shape the mix.</div>
+      </div>
+      <div class="schedule-card">
+        <div class="schedule-time">Weekend Cranking</div>
+        <div class="schedule-name">Thrash &amp; Classic Vault</div>
+        <div class="schedule-desc">Bay Area thrash, arena rock staples, and deep-cut album tracks turned up to eleven.</div>
+      </div>
+    </div>
   </section>
   <div class="flame-divider"><hr></div>
   <section class="section">
@@ -339,6 +407,16 @@ posthog.init('phc_w3P5BnZop9Bn7XZr4Tjguo2BfK6ut3JgqJKgNztR2XBR', {api_host: 'htt
         <div class="home-card-copy">Pop out a compact player for the corner of your screen while you work, game, or browse.</div>
         <div class="home-card-cta">Launch player</div>
       </a>
+    </div>
+    <div class="stream-bar">
+      <div class="stream-bar-copy">
+        <div class="stream-bar-title">Listen Anywhere &middot; 192 kbps MP3</div>
+        <div class="stream-bar-sub">Play in VLC, Winamp, car audio, or install Mind4Metal as an app on your device.</div>
+      </div>
+      <div class="stream-bar-actions">
+        <button class="stream-pill-btn" type="button" id="copyStreamBtn">Copy Stream URL</button>
+        <button class="stream-pill-btn primary" type="button" id="installAppBtn" style="display:none;">Install App</button>
+      </div>
     </div>
   </section>
 </main>
@@ -838,13 +916,61 @@ async function updateAlbumArt(artist, title) {
   }
 }
 
-// ── Recently played table ─────────────────────────────────────────────────────
+// ── Recently played & Favorites table ─────────────────────────────────────────
+let activeTrackTab = 'recent';
+let favorites = [];
+try { favorites = JSON.parse(localStorage.getItem('m4mFavorites') || '[]'); } catch {}
+if (!Array.isArray(favorites)) favorites = [];
+
+function getCurrentTrackObj() {
+  const title = (titleEl.textContent || '').trim();
+  const artist = (artistEl.textContent || '').trim();
+  if (!title || title === '\u2014' || title === 'Tuning in\u2026' || title === 'Off Air') return null;
+  return { title, artist: artist === '\u2014' ? '' : artist };
+}
+
+function trackKey(t) {
+  return `${(t.artist || '').toLowerCase()}|||${(t.title || '').toLowerCase()}`;
+}
+
+function syncLikeBtn() {
+  const btn = document.getElementById('likeTrackBtn');
+  const txt = document.getElementById('likeBtnText');
+  const countEl = document.getElementById('favCount');
+  if (countEl) countEl.textContent = favorites.length;
+  if (!btn || !txt) return;
+  const cur = getCurrentTrackObj();
+  const liked = cur ? favorites.some(f => trackKey(f) === trackKey(cur)) : false;
+  btn.classList.toggle('liked', liked);
+  btn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+  txt.textContent = liked ? 'Liked' : 'Like';
+}
+
 function renderHist() {
+  if (hist.length) {
+    localStorage.setItem('m4mRecentTracks', JSON.stringify(hist.slice(0, MAX_HIST)));
+  }
+  const countEl = document.getElementById('favCount');
+  if (countEl) countEl.textContent = favorites.length;
+
+  if (activeTrackTab === 'favs') {
+    if (!favorites.length) {
+      histBody.innerHTML = `<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">No favorite tracks saved yet — hit \uD83D\uDD25 Like on any song you dig.</td></tr>`;
+      return;
+    }
+    histBody.innerHTML = favorites.map((t, i) => `<tr>
+      <td class="td-n">${i + 1}</td>
+      <td class="td-ti">${escapeHtml(t.title)}</td>
+      <td class="td-ar">${escapeHtml(t.artist)}</td>
+      <td class="td-tm">${new Date(t.at).toLocaleDateString([], { month: 'short', day: 'numeric' })}</td>
+    </tr>`).join('');
+    return;
+  }
+
   if (!hist.length) {
     histBody.innerHTML = `<tr><td colspan="4" style="padding:20px 10px;color:var(--text-muted);font-size:13px;letter-spacing:.05em;">Waiting for song changes...</td></tr>`;
     return;
   }
-  localStorage.setItem('m4mRecentTracks', JSON.stringify(hist.slice(0, MAX_HIST)));
   histBody.innerHTML = hist.map((t, i) => `<tr>
     <td class="td-n">${i + 1}</td>
     <td class="td-ti">${escapeHtml(t.title)}</td>
@@ -853,6 +979,7 @@ function renderHist() {
   </tr>`).join('');
 }
 renderHist();
+syncLikeBtn();
 
 function normalizeRecentTrack(track) {
   return {
@@ -1001,6 +1128,7 @@ async function poll() {
       lastCombo = combo;
       titleEl.classList.remove('dim');
       artistEl.classList.remove('dim');
+      syncLikeBtn();
       // Slight delay so title/artist DOM is settled before art fetch
       setTimeout(() => updateAlbumArt(artist, title), 150);
     }
@@ -1093,7 +1221,72 @@ async function shareCurrentTrack() {
 
 railRequestBtn.addEventListener('click', openPanel);
 requestCardBtn.addEventListener('click', openPanel);
+document.getElementById('navRequestBtn')?.addEventListener('click', openPanel);
 shareTrackBtn.addEventListener('click', shareCurrentTrack);
+
+document.getElementById('likeTrackBtn')?.addEventListener('click', () => {
+  const cur = getCurrentTrackObj();
+  if (!cur) { showToast('Wait for a track to load first.'); return; }
+  const key = trackKey(cur);
+  const idx = favorites.findIndex(f => trackKey(f) === key);
+  if (idx >= 0) {
+    favorites.splice(idx, 1);
+    showToast('Removed from Favorites');
+  } else {
+    favorites.unshift({ ...cur, at: Date.now() });
+    if (favorites.length > 50) favorites.length = 50;
+    showToast('Saved to Favorites! \uD83E\uDD18');
+  }
+  localStorage.setItem('m4mFavorites', JSON.stringify(favorites));
+  syncLikeBtn();
+  if (activeTrackTab === 'favs') renderHist();
+});
+
+document.getElementById('tabRecentBtn')?.addEventListener('click', () => {
+  activeTrackTab = 'recent';
+  document.getElementById('tabRecentBtn').classList.add('active');
+  document.getElementById('tabRecentBtn').setAttribute('aria-selected', 'true');
+  document.getElementById('tabFavsBtn').classList.remove('active');
+  document.getElementById('tabFavsBtn').setAttribute('aria-selected', 'false');
+  document.getElementById('histHeading').textContent = 'Recently Played';
+  document.getElementById('histColTime').textContent = 'Time';
+  renderHist();
+});
+
+document.getElementById('tabFavsBtn')?.addEventListener('click', () => {
+  activeTrackTab = 'favs';
+  document.getElementById('tabFavsBtn').classList.add('active');
+  document.getElementById('tabFavsBtn').setAttribute('aria-selected', 'true');
+  document.getElementById('tabRecentBtn').classList.remove('active');
+  document.getElementById('tabRecentBtn').setAttribute('aria-selected', 'false');
+  document.getElementById('histHeading').textContent = 'Your Favorites';
+  document.getElementById('histColTime').textContent = 'Saved';
+  renderHist();
+});
+
+document.getElementById('copyStreamBtn')?.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(STREAM_URL);
+    showToast('Stream URL copied: ' + STREAM_URL);
+  } catch {
+    showToast(STREAM_URL);
+  }
+});
+
+let deferredInstallPrompt = null;
+const installAppBtn = document.getElementById('installAppBtn');
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  if (installAppBtn) installAppBtn.style.display = 'inline-flex';
+});
+installAppBtn?.addEventListener('click', async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installAppBtn.style.display = 'none';
+});
 
 // ── Song request form ─────────────────────────────────────────────────────────
 document.getElementById('reqform').addEventListener('submit', async e => {
